@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="ZombieGame.Options"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:ZombieGame"
+			 mc:Ignorable="d"
+			 Background="White"
+			 FontSize="20">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="5" />
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition Width="5" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="5" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="auto" />
+			<RowDefinition Height="5" />
+		</Grid.RowDefinitions>
+		<Button Grid.Column="1"
+				Grid.Row="1">STOP</Button>
+		<Button Grid.Column="1"
+				Grid.Row="2">ROLL</Button>
+		<Button Name="ResetButton"
+				Grid.Column="1"
+				Grid.Row="3"
+				Click="ResetButton_Click">RESET</Button>
+	</Grid>
+</UserControl>

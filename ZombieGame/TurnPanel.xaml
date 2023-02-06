@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="ZombieGame.TurnPanel"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:ZombieGame"
+			 mc:Ignorable="d"
+			 Background="white"
+			 FontSize="20">
+	<Border>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="5" />
+				<ColumnDefinition Width="100" />
+				<ColumnDefinition Width="100" />
+				<ColumnDefinition Width="100" />
+				<ColumnDefinition Width="5" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="5" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="5" />
+			</Grid.RowDefinitions>
+			<TextBlock Grid.Row="1"
+					   Grid.Column="1">Brains</TextBlock>
+			<TextBlock Grid.Row="1"
+					   Grid.Column="2">Shotguns</TextBlock>
+			<TextBlock Grid.Row="1"
+					   Grid.Column="3">Footsteps</TextBlock>
+			<TextBlock Name="BrainsTextBlock"
+					   Grid.Row="2"
+					   Grid.Column="1">0</TextBlock>
+			<TextBlock  Name="ShotgunsTextBlock"
+						Grid.Row="2"
+						Grid.Column="2">0</TextBlock>
+			<TextBlock Name="FootstepsTextBlock"
+					   Grid.Row="2"
+					   Grid.Column="3">0</TextBlock>
+		</Grid>
+	</Border>
+</UserControl>
