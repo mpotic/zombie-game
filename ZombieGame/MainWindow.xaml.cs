@@ -29,5 +29,10 @@ namespace ZombieGame
 		{
 
 		}
+
+		private void Players_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

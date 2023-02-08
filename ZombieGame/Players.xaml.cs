@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Back;
+using Back.Game;
+using Back.PlayerModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -21,10 +24,19 @@ namespace ZombieGame
 	/// </summary>
 	public partial class Players : UserControl
 	{
-		ObservableCollection<string> PlayersList { get; set; } = new ObservableCollection<string>();
+
 		public Players()
 		{
 			InitializeComponent();
+
+			PlayersListElement.ItemsSource = PlayerListSingleton.PlayerList.Players;
+		}
+
+		private void AddPlayerButton_Click(object sender, RoutedEventArgs e)
+		{
+			Player player = new Player();
+			player.Name = PlayerName.Text;
+			PlayerListSingleton.PlayerList.Players.Add(player);
 		}
 	}
 }

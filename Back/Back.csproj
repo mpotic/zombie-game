@@ -43,13 +43,19 @@
   <ItemGroup>
     <Compile Include="Dice\AllDice.cs" />
     <Compile Include="Dice\Dice.cs" />
-    <Compile Include="Game\Game.cs" />
+    <Compile Include="GameModel\Game.cs" />
     <Compile Include="Dice\GreenDice.cs" />
-    <Compile Include="Game\GameSingleton.cs" />
-    <Compile Include="Game\IGame.cs" />
-    <Compile Include="Game\IGameSingleton.cs" />
-    <Compile Include="NotifyPropertyChanged.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="GameModel\GameSingleton.cs" />
+    <Compile Include="GameModel\IGame.cs" />
+    <Compile Include="GameModel\IGameSingleton.cs" />
+    <Compile Include="PlayerModel\IPlayerListSingleton.cs" />
+    <Compile Include="PlayerModel\IPlayerVisitor.cs" />
+    <Compile Include="PlayerModel\IPlayer.cs" />
+    <Compile Include="PlayerModel\IPlayerList.cs" />
+    <Compile Include="PlayerModel\Player.cs" />
+    <Compile Include="PlayerModel\PlayerList.cs" />
+    <Compile Include="PlayerModel\PlayerListSingleton.cs" />
+    <Compile Include="PlayerModel\ChangePlayerVisitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dice\RedDice.cs" />
     <Compile Include="Turn.cs" />

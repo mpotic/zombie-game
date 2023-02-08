@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Back
 {
-	public class Turn : NotifyPropertyChanged
+	public class Turn : INotifyPropertyChanged
 	{
 		private int brainsCount = 0;
 		private int shotgunCount = 0;
@@ -89,6 +89,12 @@ namespace Back
 			GreenLeft = 6;
 			YellowLeft = 4;
 			RedLeft = 3;
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
