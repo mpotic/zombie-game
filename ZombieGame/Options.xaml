@@ -25,7 +25,8 @@
 		<Button Grid.Column="1"
 				Grid.Row="1">STOP</Button>
 		<Button Grid.Column="1"
-				Grid.Row="2">ROLL</Button>
+				Grid.Row="2"
+				Click="RollButton_Click">ROLL</Button>
 		<Button Name="ResetButton"
 				Grid.Column="1"
 				Grid.Row="3"

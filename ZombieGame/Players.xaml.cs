@@ -22,14 +22,17 @@ namespace ZombieGame
 	/// <summary>
 	/// Interaction logic for Players.xaml
 	/// </summary>
+	public delegate void SetActivePlayerColor(int index);
 	public partial class Players : UserControl
 	{
+		public static event SetActivePlayerColor triggerSetActivePlayerColor;
 
 		public Players()
 		{
 			InitializeComponent();
 
 			PlayersListElement.ItemsSource = PlayerListSingleton.PlayerList.Players;
+			triggerSetActivePlayerColor += ChangePlayerColorToActive;
 		}
 
 		private void AddPlayerButton_Click(object sender, RoutedEventArgs e)
@@ -37,6 +40,15 @@ namespace ZombieGame
 			Player player = new Player();
 			player.Name = PlayerName.Text;
 			PlayerListSingleton.PlayerList.Players.Add(player);
+		}
+		public static void InvokeSetActivePlayerColorEvent(int index)
+		{
+			triggerSetActivePlayerColor.Invoke(index);
+		}
+		private void ChangePlayerColorToActive(int index)
+		{
+			ListViewItem element = (ListViewItem)PlayersListElement.ItemContainerGenerator.ContainerFromIndex(index);
+			element.Background = Brushes.LightGreen;
 		}
 	}
 }

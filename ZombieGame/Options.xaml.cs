@@ -30,5 +30,10 @@ namespace ZombieGame
 		{
 			GameSingleton.Game.Turn.ResetTurn();
 		}
+
+		private void RollButton_Click(object sender, RoutedEventArgs e)
+		{
+			Players.InvokeSetActivePlayerColorEvent(0);
+		}
 	}
 }
