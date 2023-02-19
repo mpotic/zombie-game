@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Back.Game;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,16 @@ using System.Windows.Shapes;
 namespace ZombieGame
 {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	/// Interaction logic for DiceTurnInfo.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class DiceTurnInfo : UserControl
 	{
-		public MainWindow()
+		public DiceTurnInfo()
 		{
 			InitializeComponent();
+			RemainingGreen.DataContext = GameSingleton.Game.Dice.GreenDice;
+			RemainingYellow.DataContext = GameSingleton.Game.Dice.YellowDice;
+			RemainingRed.DataContext = GameSingleton.Game.Dice.RedDice;
 		}
 	}
 }

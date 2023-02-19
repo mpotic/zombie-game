@@ -26,17 +26,17 @@ namespace ZombieGame
 			InitializeComponent();
 
 			Binding bindingGreenLeft = new Binding();
-			bindingGreenLeft.Source = GameSingleton.Game.Turn;
+			bindingGreenLeft.Source = GameSingleton.Game.Score;
 			bindingGreenLeft.Path = new PropertyPath("GreenLeft");
 			GreenCount.SetBinding(TextBlock.TextProperty, bindingGreenLeft);
 
 			Binding bindingYellowLeft = new Binding();
-			bindingYellowLeft.Source = GameSingleton.Game.Turn;
+			bindingYellowLeft.Source = GameSingleton.Game.Score;
 			bindingYellowLeft.Path = new PropertyPath("YellowLeft");
 			YellowCount.SetBinding(TextBlock.TextProperty, bindingYellowLeft);
 
 			Binding bindingRedCount = new Binding();
-			bindingRedCount.Source = GameSingleton.Game.Turn;
+			bindingRedCount.Source = GameSingleton.Game.Score;
 			bindingRedCount.Path = new PropertyPath("RedLeft");
 			RedCount.SetBinding(TextBlock.TextProperty, bindingRedCount);
 		}
@@ -47,42 +47,42 @@ namespace ZombieGame
 
 			switch (buttonName)
 			{
-				case "GreenBrainsButton":
-					GameSingleton.Game.Turn.BrainsCount++;
-					GameSingleton.Game.Turn.GreenLeft--;
-					break;
-				case "YellowBrainsButton":
-					GameSingleton.Game.Turn.BrainsCount++;
-					GameSingleton.Game.Turn.YellowLeft--;
-					break;
-				case "RedBrainsButton":
-					GameSingleton.Game.Turn.BrainsCount++;
-					GameSingleton.Game.Turn.RedLeft--;
-					break;
-				case "GreenShotgunButton":
-					GameSingleton.Game.Turn.ShotgunCount++;
-					GameSingleton.Game.Turn.GreenLeft--;
-					break;
-				case "YellowShotgunButton":
-					GameSingleton.Game.Turn.ShotgunCount++;
-					GameSingleton.Game.Turn.YellowLeft--;
-					break;
-				case "RedShotgunButton":
-					GameSingleton.Game.Turn.ShotgunCount++;
-					GameSingleton.Game.Turn.RedLeft--;
-					break;
-				case "GreenFootstepsButton":
-					GameSingleton.Game.Turn.FootstepsCount++;
-					GameSingleton.Game.Turn.GreenLeft--;
-					break;
-				case "YellowFootstepsButton":
-					GameSingleton.Game.Turn.FootstepsCount++;
-					GameSingleton.Game.Turn.YellowLeft--;
-					break;
-				case "RedFootstepsButton":
-					GameSingleton.Game.Turn.FootstepsCount++;
-					GameSingleton.Game.Turn.RedLeft--;
-					break;
+				//case "GreenBrainsButton":
+				//	GameSingleton.Game.Score.BrainsCount++;
+				//	GameSingleton.Game.Score.GreenLeft--;
+				//	break;
+				//case "YellowBrainsButton":
+				//	GameSingleton.Game.Score.BrainsCount++;
+				//	GameSingleton.Game.Score.YellowLeft--;
+				//	break;
+				//case "RedBrainsButton":
+				//	GameSingleton.Game.Score.BrainsCount++;
+				//	GameSingleton.Game.Score.RedLeft--;
+				//	break;
+				//case "GreenShotgunButton":
+				//	GameSingleton.Game.Score.ShotgunCount++;
+				//	GameSingleton.Game.Score.GreenLeft--;
+				//	break;
+				//case "YellowShotgunButton":
+				//	GameSingleton.Game.Score.ShotgunCount++;
+				//	GameSingleton.Game.Score.YellowLeft--;
+				//	break;
+				//case "RedShotgunButton":
+				//	GameSingleton.Game.Score.ShotgunCount++;
+				//	GameSingleton.Game.Score.RedLeft--;
+				//	break;
+				//case "GreenFootstepsButton":
+				//	GameSingleton.Game.Score.FootstepsCount++;
+				//	GameSingleton.Game.Score.GreenLeft--;
+				//	break;
+				//case "YellowFootstepsButton":
+				//	GameSingleton.Game.Score.FootstepsCount++;
+				//	GameSingleton.Game.Score.YellowLeft--;
+				//	break;
+				//case "RedFootstepsButton":
+				//	GameSingleton.Game.Score.FootstepsCount++;
+				//	GameSingleton.Game.Score.RedLeft--;
+				//	break;
 			}
 		}
 	}

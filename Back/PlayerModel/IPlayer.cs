@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Back.PlayerModel.Visitor;
 
 namespace Back.PlayerModel
 {
@@ -10,7 +6,6 @@ namespace Back.PlayerModel
 	{
 		int TotalBrainCount { get; set; }
 		string Name { get; set; }
-		PlayerStatus Status { get; set; }
 		void Accept(IPlayerVisitor visitor);
 	}
 }

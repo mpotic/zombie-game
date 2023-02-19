@@ -26,17 +26,17 @@ namespace ZombieGame
 			InitializeComponent();
 
 			Binding brainsBinding = new Binding();
-			brainsBinding.Source = GameSingleton.Game.Turn;
+			brainsBinding.Source = GameSingleton.Game.Score;
 			brainsBinding.Path = new PropertyPath("BrainsCount");
 			BrainsTextBlock.SetBinding(TextBlock.TextProperty, brainsBinding);
 
 			Binding shotgunBinding = new Binding();
-			shotgunBinding.Source = GameSingleton.Game.Turn;
+			shotgunBinding.Source = GameSingleton.Game.Score;
 			shotgunBinding.Path = new PropertyPath("ShotgunCount");
 			ShotgunsTextBlock.SetBinding(TextBlock.TextProperty, shotgunBinding);
 
 			Binding footstepsBinding = new Binding();
-			footstepsBinding.Source = GameSingleton.Game.Turn;
+			footstepsBinding.Source = GameSingleton.Game.Score;
 			footstepsBinding.Path = new PropertyPath("FootstepsCount");
 			FootstepsTextBlock.SetBinding(TextBlock.TextProperty, footstepsBinding);
 

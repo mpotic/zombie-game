@@ -27,17 +27,35 @@
 						Grid.Row="1"
 						BorderBrush="Gray"
 						BorderThickness="2"
-						MinWidth="120"
-						Height="220">
+						Width="170"
+						Height="255">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<Border BorderThickness="0,0,0,2"
+							BorderBrush="Gray">
+						<StackPanel Margin="1, 1, 1, 5">
+							<TextBlock Text="{Binding Name}"
+									   Padding="0"
+									   Margin="0" />
+							<TextBlock Padding="0"
+									   Margin="0">
+							Brains: 
+							<Run Text="{Binding TotalBrainCount}" />
+							</TextBlock>
+							<Line Stroke="Gray"
+								  StrokeThickness="2" />
+
+						</StackPanel>
+					</Border>
+				</DataTemplate>
+			</ListView.ItemTemplate>
 			<ListView.Resources>
 				<Style TargetType="ListViewItem">
-					<Setter Property="Focusable"
-							Value="False" />
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type ListViewItem}">
 								<Border Background="{TemplateBinding Background}">
-									<ContentPresenter />
+									<ContentPresenter MouseRightButtonDown="Item_MouseRightButtonDown" />
 								</Border>
 							</ControlTemplate>
 						</Setter.Value>
@@ -45,20 +63,21 @@
 				</Style>
 			</ListView.Resources>
 		</ListView>
-		<Border BorderBrush="Gray"
-				BorderThickness="2"
-				Grid.Column="1"
+		<Border Grid.Column="1"
 				Grid.Row="2"
-				Margin="0,25,0,0"
-				Padding="12,12,12,12">
+				Padding="8,8,8,8">
 			<StackPanel>
 				<TextBox Name="PlayerName"
 						 Grid.Row="2"
 						 Grid.Column="1"
-						 Margin="0,0,0,10"
-						 Padding="5,5,5,5" />
+						 BorderBrush="Gray"
+						 BorderThickness="2"
+						 Width="150"
+						 Margin="0,7,0,7"
+						 Padding="3,3,3,3" />
 				<Button Grid.Column="1"
 						Grid.Row="2"
+						Width="130"
 						Content="Add a player"
 						Click="AddPlayerButton_Click" />
 			</StackPanel>

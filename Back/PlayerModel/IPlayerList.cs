@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 
 namespace Back.PlayerModel
 {
 	public interface IPlayerList
 	{
 		ObservableCollection<IPlayer> Players { get; set; }
+		void AddPlayer(string name);
 	}
 }

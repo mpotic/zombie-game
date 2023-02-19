@@ -1,4 +1,5 @@
-﻿using Back.PlayerModel;
+﻿using Back.Dice;
+using Back.PlayerModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,8 +11,10 @@ namespace Back.Game
 {
 	public interface IGame
 	{
-		AllDice Dice { get; set; }
-		Turn Turn { get; set; }
+		IAllDice Dice { get; set; }
+		Score Score { get; set; }
 		IPlayer CurrentPlayer { get; set; }
+		void StopAction();
+		void RollAction();
 	}
 }

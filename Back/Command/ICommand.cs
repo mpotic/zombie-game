@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Back.PlayerModel
+namespace Back.Command
 {
-	interface IPlayerListSingleton
+	public interface ICommand
 	{
-		IPlayerList Players { get; }
+		void Execute();
 	}
 }

@@ -7,7 +7,8 @@
 		mc:Ignorable="d"
 		Title="MainWindow"
 		SizeToContent="WidthAndHeight"
-		FontSize="20">
+		FontSize="20"
+		ResizeMode="CanMinimize">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="10" />
@@ -20,28 +21,26 @@
 			<RowDefinition Height="10" />
 			<RowDefinition Height="auto" />
 			<RowDefinition Height="auto" />
-			<RowDefinition Height="*" />
+			<RowDefinition Height="auto" />
 			<RowDefinition Height="10" />
 		</Grid.RowDefinitions>
 		<local:Players Grid.Column="1"
 					   Grid.Row="1"
-					   Grid.RowSpan="10"
+					   Grid.RowSpan="5"
 					   HorizontalAlignment="Center"
-					   VerticalAlignment="Center"
-					   Loaded="Players_Loaded" />
-		<local:DiceSelection Grid.Column="2"
-							 Grid.Row="1"
-							 Loaded="DiceSelection_Loaded"
-							 VerticalAlignment="Center"
-							 HorizontalAlignment="Center" />
+					   VerticalAlignment="Center"/>
+		<local:DiceTurnInfo Grid.Column="2"
+							Grid.Row="1"
+							Margin="0,0,0,30" />
 		<local:TurnPanel Grid.Column="2"
 						 Grid.ColumnSpan="1"
-						 Grid.Row="3"
+						 Grid.Row="2"
+						 Margin="0,0,0,70"
 						 HorizontalAlignment="Center"
-						 VerticalAlignment="Bottom"/>
-		<local:Options Grid.Column="3"
-					   Grid.Row="1"
-					   HorizontalAlignment="Right"
-					   VerticalAlignment="Center" />
+						 VerticalAlignment="Center" />
+		<local:Options Grid.Column="2"
+					   Grid.Row="3"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Bottom"/>
 	</Grid>
 </Window>

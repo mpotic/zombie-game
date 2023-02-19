@@ -1,4 +1,5 @@
 ﻿using Back.Game;
+using Back.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZombieGame.Callback;
 
 namespace ZombieGame
 {
@@ -28,12 +30,17 @@ namespace ZombieGame
 
 		private void ResetButton_Click(object sender, RoutedEventArgs e)
 		{
-			GameSingleton.Game.Turn.ResetTurn();
+			GameSingleton.Game.Score.ResetScore();
 		}
 
 		private void RollButton_Click(object sender, RoutedEventArgs e)
 		{
-			Players.InvokeSetActivePlayerColorEvent(0);
+			OptionsSingleton.Options.RollAction(new PlayerCallback());
+		}
+
+		private void StopButton_Click(object sender, RoutedEventArgs e)
+		{
+			OptionsSingleton.Options.StopAction(new PlayerCallback());
 		}
 	}
 }

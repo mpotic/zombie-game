@@ -9,6 +9,7 @@ namespace Back.Game
 	public class GameSingleton
 	{
 		private static IGame game;
+
 		public static IGame Game
 		{
 			get
@@ -21,6 +22,5 @@ namespace Back.Game
 		}
 
 		private GameSingleton() { }
-
 	}
 }

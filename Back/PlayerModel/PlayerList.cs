@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Back.Game;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Back.PlayerModel
 {
@@ -24,10 +22,21 @@ namespace Back.PlayerModel
 			}
 		}
 
+		public void AddPlayer(string name)
+		{
+			Player newPlayer = new Player(name);
+			
+			if (Players.Contains(newPlayer))
+				return; //TODO: Maybe add alert
+			
+			Players.Add(newPlayer);
+			if (GameSingleton.Game.CurrentPlayer == null)
+				GameSingleton.Game.CurrentPlayer = newPlayer;
+		}
+
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
-
 	}
 }
