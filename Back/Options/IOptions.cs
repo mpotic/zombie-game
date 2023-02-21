@@ -12,5 +12,6 @@ namespace Back.Options
 		void AddNewPlayer(string name, IPlayerCallback playerCallback);
 		void StopAction(IPlayerCallback playerCallback);
 		void RollAction(IPlayerCallback playerCallback);
+		void ResetAction();
 	}
 }

@@ -6,7 +6,7 @@
 			 xmlns:local="clr-namespace:ZombieGame"
 			 mc:Ignorable="d"
 			 Background="White"
-			 FontSize="20">
+			 FontSize="24">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="5" />
@@ -27,13 +27,14 @@
 						Grid.Row="1"
 						BorderBrush="Gray"
 						BorderThickness="2"
-						Width="170"
-						Height="255">
+						Width="190"
+						Height="305"
+						SelectionChanged="PlayersListElement_SelectionChanged">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<Border BorderThickness="0,0,0,2"
 							BorderBrush="Gray">
-						<StackPanel Margin="1, 1, 1, 5">
+						<StackPanel Margin="1, 1, 1, 6">
 							<TextBlock Text="{Binding Name}"
 									   Padding="0"
 									   Margin="0" />
@@ -72,12 +73,14 @@
 						 Grid.Column="1"
 						 BorderBrush="Gray"
 						 BorderThickness="2"
-						 Width="150"
-						 Margin="0,7,0,7"
+						 Width="190"
+						 Margin="0,15,0,9"
 						 Padding="3,3,3,3" />
 				<Button Grid.Column="1"
 						Grid.Row="2"
-						Width="130"
+						Width="190"
+						FontWeight="Medium"
+						Margin="2,2,2,2"
 						Content="Add a player"
 						Click="AddPlayerButton_Click" />
 			</StackPanel>

@@ -24,5 +24,10 @@ namespace ZombieGame
 		{
 			InitializeComponent();
 		}
+
+		private void DiceTurnInfo_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

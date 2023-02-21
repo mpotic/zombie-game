@@ -6,5 +6,6 @@ namespace Back.PlayerModel
 	{
 		ObservableCollection<IPlayer> Players { get; set; }
 		void AddPlayer(string name);
+		void ResetPlayersScore();
 	}
 }

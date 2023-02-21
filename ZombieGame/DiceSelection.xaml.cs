@@ -45,45 +45,45 @@ namespace ZombieGame
 		{
 			string buttonName = (e.Source as Button).Name;
 
-			switch (buttonName)
-			{
-				//case "GreenBrainsButton":
-				//	GameSingleton.Game.Score.BrainsCount++;
-				//	GameSingleton.Game.Score.GreenLeft--;
-				//	break;
-				//case "YellowBrainsButton":
-				//	GameSingleton.Game.Score.BrainsCount++;
-				//	GameSingleton.Game.Score.YellowLeft--;
-				//	break;
-				//case "RedBrainsButton":
-				//	GameSingleton.Game.Score.BrainsCount++;
-				//	GameSingleton.Game.Score.RedLeft--;
-				//	break;
-				//case "GreenShotgunButton":
-				//	GameSingleton.Game.Score.ShotgunCount++;
-				//	GameSingleton.Game.Score.GreenLeft--;
-				//	break;
-				//case "YellowShotgunButton":
-				//	GameSingleton.Game.Score.ShotgunCount++;
-				//	GameSingleton.Game.Score.YellowLeft--;
-				//	break;
-				//case "RedShotgunButton":
-				//	GameSingleton.Game.Score.ShotgunCount++;
-				//	GameSingleton.Game.Score.RedLeft--;
-				//	break;
-				//case "GreenFootstepsButton":
-				//	GameSingleton.Game.Score.FootstepsCount++;
-				//	GameSingleton.Game.Score.GreenLeft--;
-				//	break;
-				//case "YellowFootstepsButton":
-				//	GameSingleton.Game.Score.FootstepsCount++;
-				//	GameSingleton.Game.Score.YellowLeft--;
-				//	break;
-				//case "RedFootstepsButton":
-				//	GameSingleton.Game.Score.FootstepsCount++;
-				//	GameSingleton.Game.Score.RedLeft--;
-				//	break;
-			}
+			//switch (buttonName)
+			//{
+			//	case "GreenBrainsButton":
+			//		GameSingleton.Game.Score.BrainsCount++;
+			//		GameSingleton.Game.Score.GreenLeft--;
+			//		break;
+			//	case "YellowBrainsButton":
+			//		GameSingleton.Game.Score.BrainsCount++;
+			//		GameSingleton.Game.Score.YellowLeft--;
+			//		break;
+			//	case "RedBrainsButton":
+			//		GameSingleton.Game.Score.BrainsCount++;
+			//		GameSingleton.Game.Score.RedLeft--;
+			//		break;
+			//	case "GreenShotgunButton":
+			//		GameSingleton.Game.Score.ShotgunCount++;
+			//		GameSingleton.Game.Score.GreenLeft--;
+			//		break;
+			//	case "YellowShotgunButton":
+			//		GameSingleton.Game.Score.ShotgunCount++;
+			//		GameSingleton.Game.Score.YellowLeft--;
+			//		break;
+			//	case "RedShotgunButton":
+			//		GameSingleton.Game.Score.ShotgunCount++;
+			//		GameSingleton.Game.Score.RedLeft--;
+			//		break;
+			//	case "GreenFootstepsButton":
+			//		GameSingleton.Game.Score.FootstepsCount++;
+			//		GameSingleton.Game.Score.GreenLeft--;
+			//		break;
+			//	case "YellowFootstepsButton":
+			//		GameSingleton.Game.Score.FootstepsCount++;
+			//		GameSingleton.Game.Score.YellowLeft--;
+			//		break;
+			//	case "RedFootstepsButton":
+			//		GameSingleton.Game.Score.FootstepsCount++;
+			//		GameSingleton.Game.Score.RedLeft--;
+			//		break;
+			//}
 		}
 	}
 }

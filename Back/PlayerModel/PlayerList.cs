@@ -25,13 +25,21 @@ namespace Back.PlayerModel
 		public void AddPlayer(string name)
 		{
 			Player newPlayer = new Player(name);
-			
-			if (Players.Contains(newPlayer))
+
+			if (Players.Contains(newPlayer) || string.IsNullOrWhiteSpace(name))
 				return; //TODO: Maybe add alert
-			
+
 			Players.Add(newPlayer);
 			if (GameSingleton.Game.CurrentPlayer == null)
 				GameSingleton.Game.CurrentPlayer = newPlayer;
+		}
+
+		public void ResetPlayersScore()
+		{
+			foreach(IPlayer player in Players)
+			{
+				player.TotalBrainCount = 0;
+			}
 		}
 
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

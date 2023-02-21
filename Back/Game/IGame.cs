@@ -16,5 +16,7 @@ namespace Back.Game
 		IPlayer CurrentPlayer { get; set; }
 		void StopAction();
 		void RollAction();
+		void ResetGame();
+		void StartGame();
 	}
 }

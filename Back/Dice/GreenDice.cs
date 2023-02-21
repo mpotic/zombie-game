@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Back.Dice
@@ -33,6 +34,8 @@ namespace Back.Dice
 
 		public void Roll()
 		{
+			Thread.Sleep(0);
+
 			int randomInt = new Random().Next(0, 6);
 			if (randomInt < 3)
 				side = DiceSide.BRAIN;

@@ -62,5 +62,10 @@ namespace ZombieGame
 			PlayerListSingleton.PlayerList.Players.Remove(player);
 
 		}
+
+		private void PlayersListElement_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
 	}
 }

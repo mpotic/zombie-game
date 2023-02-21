@@ -24,22 +24,50 @@ namespace Back.Options
 		public void RollAction(IPlayerCallback playerCallback)
 		{
 			int previousIndex = PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer);
+
+			if (previousIndex < 0)
+				return;
+
 			RollCommand command = new RollCommand();
 			invoker.ExecuteCommand(command);
 
 			if (GameSingleton.Game.Score.Killed)
 			{
 				playerCallback.ChangeActivePlayer(previousIndex, PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer));
+				GameSingleton.Game.Score.Killed = false;
 			}
 		}
 
 		public void StopAction(IPlayerCallback playerCallback)
 		{
 			int previousIndex = PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer);
+			
+			if (previousIndex < 0)
+				return;
+			
 			ICommand command = new StopCommand();
 			invoker.ExecuteCommand(command);
 
 			playerCallback.ChangeActivePlayer(previousIndex, PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer));
+		}
+
+		public void ResetAction()
+		{
+			ICommand command = new ResetCommand();
+			invoker.ExecuteCommand(command);
+		}
+
+		public void StartAction(IPlayerCallback playerCallback)
+		{
+			int previousIndex = PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer);
+
+			if (previousIndex < 0)
+				return;
+
+			ICommand command = new StartCommand();
+			invoker.ExecuteCommand(command);
+
+			playerCallback.ChangeActivePlayer(previousIndex, 0);
 		}
 	}
 }

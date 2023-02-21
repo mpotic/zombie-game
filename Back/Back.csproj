@@ -46,7 +46,9 @@
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\IInvoker.cs" />
     <Compile Include="Command\Invoker.cs" />
+    <Compile Include="Command\ResetCommand.cs" />
     <Compile Include="Command\RollCommand.cs" />
+    <Compile Include="Command\StartCommand.cs" />
     <Compile Include="Command\StopCommand.cs" />
     <Compile Include="Dice\AllDice.cs" />
     <Compile Include="Dice\IAllDice.cs" />

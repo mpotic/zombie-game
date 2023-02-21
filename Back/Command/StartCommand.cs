@@ -1,5 +1,4 @@
-﻿using Back.Dice;
-using Back.Game;
+﻿using Back.Game;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Back.Command
 {
-	public class RollCommand : ICommand
+	public class StartCommand : ICommand
 	{
 		public void Execute()
 		{
-			GameSingleton.Game.RollAction();
+			GameSingleton.Game.StartGame();
 		}
 	}
 }

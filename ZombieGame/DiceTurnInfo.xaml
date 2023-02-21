@@ -6,7 +6,7 @@
 			 xmlns:local="clr-namespace:ZombieGame"
 			 mc:Ignorable="d"
 			 Background="White"
-			 FontSize="20">
+			 FontSize="30">
 	<Border BorderBrush="Gray"
 			BorderThickness="2"
 			Margin="5,5,5,5">

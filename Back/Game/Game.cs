@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Back.Dice;
 using Back.PlayerModel;
+using Back.PlayerModel.Singleton;
 using Back.PlayerModel.Visitor;
 
 namespace Back.Game
@@ -36,13 +37,13 @@ namespace Back.Game
 		{
 			List<DiceSide> rolledSides = dice.RollDice();
 
-			foreach(DiceSide side in rolledSides)
+			foreach (DiceSide side in rolledSides)
 			{
-				if(side == DiceSide.BRAIN)
+				if (side == DiceSide.BRAIN)
 				{
 					Score.BrainsCount++;
 				}
-				else if(side == DiceSide.FOOTSTEPS)
+				else if (side == DiceSide.FOOTSTEPS)
 				{
 					Score.FootstepsCount++;
 				}
@@ -52,7 +53,7 @@ namespace Back.Game
 				}
 			}
 
-			if(Score.ShotgunCount >= 3)
+			if (Score.ShotgunCount >= 3)
 			{
 				Score.Killed = true;
 				Score.BrainsCount = 0;
@@ -60,6 +61,26 @@ namespace Back.Game
 				return;
 			}
 			// Reduce attributes of Turn according to rolled sides and dice types
+		}
+
+		public void ResetGame()
+		{
+			Score.ResetScore();
+			Dice.ResetDice();
+
+			CurrentPlayer = null;
+
+			// For some reasons after calling Clear() on ObservableCollection it takes 1-2 seconds to reflect the changes on the UI.
+			while (PlayerListSingleton.PlayerList.Players.Count > 0)
+				PlayerListSingleton.PlayerList.Players.RemoveAt(0);
+		}
+
+		public void StartGame()
+		{
+			Score.ResetScore();
+			Dice.ResetDice();
+			PlayerListSingleton.PlayerList.ResetPlayersScore();
+			CurrentPlayer = PlayerListSingleton.PlayerList.Players[0];
 		}
 	}
 }

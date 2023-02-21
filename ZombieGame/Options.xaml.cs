@@ -30,7 +30,7 @@ namespace ZombieGame
 
 		private void ResetButton_Click(object sender, RoutedEventArgs e)
 		{
-			GameSingleton.Game.Score.ResetScore();
+			OptionsSingleton.Options.ResetAction();
 		}
 
 		private void RollButton_Click(object sender, RoutedEventArgs e)
@@ -41,6 +41,11 @@ namespace ZombieGame
 		private void StopButton_Click(object sender, RoutedEventArgs e)
 		{
 			OptionsSingleton.Options.StopAction(new PlayerCallback());
+		}
+
+		private void StartButton_Click(object sender, RoutedEventArgs e)
+		{
+			OptionsSingleton.Options.StartAction(new PlayerCallback());
 		}
 	}
 }

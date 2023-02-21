@@ -28,7 +28,7 @@ namespace Back.PlayerModel
 			set
 			{
 				totalBrainCount = value;
-				OnPropertyChanged(nameof(TotalBrainCount));
+				OnPropertyChanged();
 			}
 		}
 

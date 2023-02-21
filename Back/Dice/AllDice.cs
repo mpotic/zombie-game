@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Back.Dice
@@ -37,12 +38,19 @@ namespace Back.Dice
 				GameSingleton.Game.Score.FootstepsCount = 0;   // reset because footsteps have just been rolled
 			}
 
+			// if less than 3 dice remain roll count needs to be limited to the amount of dice
+			if (rollCount > GreenDice.Remaining + YellowDice.Remaining + RedDice.Remaining)
+				rollCount = GreenDice.Remaining + YellowDice.Remaining + RedDice.Remaining;
+
 			for (int i = 0; i < rollCount; i++)
 			{
+				// To reduce the possibility of getting the same number twice in a row if randomness is based on time
+				Thread.Sleep(0);
+
 				int number = random.Next(0, GreenDice.Remaining + YellowDice.Remaining + RedDice.Remaining);
 				if (number < GreenDice.Remaining)
 					dice = GreenDice;
-				else if (number >= GreenDice.Remaining && number < (GreenDice.Remaining + YellowDice.Remaining))
+				else if (number < (GreenDice.Remaining + YellowDice.Remaining))
 					dice = YellowDice;
 				else
 					dice = RedDice;

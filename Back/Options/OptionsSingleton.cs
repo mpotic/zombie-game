@@ -20,6 +20,5 @@ namespace Back.Options
 				return options;
 			}
 		}
-
 	}
 }
