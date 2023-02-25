@@ -1,22 +1,20 @@
 ﻿using Back.Callback;
-using Back.Game;
-using Back.PlayerModel;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace ZombieGame.Callback
 {
+	/// <summary>
+	/// Used for switching between players as the UI elements.
+	/// </summary>
 	public class PlayerCallback : IPlayerCallback
 	{
-		public static ListView playersList = null;
-		public PlayerCallback() { }
-		public void ChangeActivePlayer(int previous, int current)
+		public PlayerCallback() 
+		{ 
+		}
+
+		public void ChangeActivePlayer(int current)
 		{
-			ListViewItem item = playersList.ItemContainerGenerator.ContainerFromIndex(previous) as ListViewItem;
-			item.Background = Brushes.Transparent;
-			item = playersList.ItemContainerGenerator.ContainerFromIndex(current) as ListViewItem;
-			item.Background = Brushes.LightGreen;
+			PlayerListViewElementSingleton.PlayersList.SelectedIndex = current;
 		}
 	}
 }

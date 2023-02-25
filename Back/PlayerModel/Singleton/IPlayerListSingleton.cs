@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Back.PlayerModel.Singleton
+﻿namespace Back.PlayerModel.Singleton
 {
-	interface IPlayerListSingleton
+	public interface IPlayerListSingleton
 	{
-		IPlayerList Players { get; }
+		IPlayerList PlayersList { get; }
 	}
 }

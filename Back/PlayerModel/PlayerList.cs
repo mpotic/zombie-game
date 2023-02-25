@@ -1,16 +1,11 @@
 ﻿using Back.Game;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Back.PlayerModel
 {
-	public class PlayerList : IPlayerList, INotifyPropertyChanged
+	public class PlayerList : IPlayerList
 	{
 		ObservableCollection<IPlayer> players = new ObservableCollection<IPlayer>();
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		public ObservableCollection<IPlayer> Players
 		{
@@ -18,7 +13,6 @@ namespace Back.PlayerModel
 			set
 			{
 				players = value;
-				OnPropertyChanged();
 			}
 		}
 
@@ -30,8 +24,8 @@ namespace Back.PlayerModel
 				return; //TODO: Maybe add alert
 
 			Players.Add(newPlayer);
-			if (GameSingleton.Game.CurrentPlayer == null)
-				GameSingleton.Game.CurrentPlayer = newPlayer;
+			if (GameSingleton.instance.Game.CurrentPlayer == null)
+				GameSingleton.instance.Game.CurrentPlayer = newPlayer;
 		}
 
 		public void ResetPlayersScore()
@@ -40,11 +34,6 @@ namespace Back.PlayerModel
 			{
 				player.TotalBrainCount = 0;
 			}
-		}
-
-		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

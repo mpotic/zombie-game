@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Back.Dice;
 using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
@@ -71,16 +64,16 @@ namespace Back.Game
 			CurrentPlayer = null;
 
 			// For some reasons after calling Clear() on ObservableCollection it takes 1-2 seconds to reflect the changes on the UI.
-			while (PlayerListSingleton.PlayerList.Players.Count > 0)
-				PlayerListSingleton.PlayerList.Players.RemoveAt(0);
+			while (PlayerListSingleton.instance.PlayersList.Players.Count > 0)
+				PlayerListSingleton.instance.PlayersList.Players.RemoveAt(0);
 		}
 
 		public void StartGame()
 		{
 			Score.ResetScore();
 			Dice.ResetDice();
-			PlayerListSingleton.PlayerList.ResetPlayersScore();
-			CurrentPlayer = PlayerListSingleton.PlayerList.Players[0];
+			PlayerListSingleton.instance.PlayersList.ResetPlayersScore();
+			CurrentPlayer = PlayerListSingleton.instance.PlayersList.Players[0];
 		}
 	}
 }

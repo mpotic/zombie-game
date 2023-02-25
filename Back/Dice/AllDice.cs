@@ -1,10 +1,7 @@
 ﻿using Back.Game;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Back.Dice
 {
@@ -31,11 +28,11 @@ namespace Back.Dice
 			IDice dice = null;
 			int rollCount = 3;
 
-			if (GameSingleton.Game.Score.FootstepsCount > 0)
+			if (GameSingleton.instance.Game.Score.FootstepsCount > 0)
 			{
 				RollFootstepsDice(rolledSides);
-				rollCount -= GameSingleton.Game.Score.FootstepsCount;
-				GameSingleton.Game.Score.FootstepsCount = 0;   // reset because footsteps have just been rolled
+				rollCount -= GameSingleton.instance.Game.Score.FootstepsCount;
+				GameSingleton.instance.Game.Score.FootstepsCount = 0;   // reset because footsteps have just been rolled
 			}
 
 			// if less than 3 dice remain roll count needs to be limited to the amount of dice

@@ -58,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Callback\PlayerCallback.cs" />
+    <Compile Include="Callback\PlayerListViewElementSingleton.cs" />
     <Compile Include="DiceSelection.xaml.cs">
       <DependentUpon>DiceSelection.xaml</DependentUpon>
     </Compile>

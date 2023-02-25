@@ -1,10 +1,4 @@
-﻿using Back.Dice;
-using Back.Game;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Back.Game;
 
 namespace Back.Command
 {
@@ -12,7 +6,7 @@ namespace Back.Command
 	{
 		public void Execute()
 		{
-			GameSingleton.Game.RollAction();
+			GameSingleton.instance.Game.RollAction();
 		}
 	}
 }

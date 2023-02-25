@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Back.PlayerModel.Singleton
+﻿namespace Back.PlayerModel.Singleton
 {
-	public class PlayerListSingleton
+	public class PlayerListSingleton : IPlayerListSingleton
 	{
-		private static IPlayerList playerList;
-		public static IPlayerList PlayerList
+		public static readonly PlayerListSingleton instance = new PlayerListSingleton();
+
+		public IPlayerList PlayersList { get; }
+
+		private PlayerListSingleton()
 		{
-			get
-			{
-				if (playerList == null)
-					playerList = new PlayerList();
-
-				return playerList;
-			}
-
-			set => playerList = value;
+			this.PlayersList = new PlayerList();
 		}
 	}
 }

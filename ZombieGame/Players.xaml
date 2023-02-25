@@ -28,8 +28,7 @@
 						BorderBrush="Gray"
 						BorderThickness="2"
 						Width="190"
-						Height="305"
-						SelectionChanged="PlayersListElement_SelectionChanged">
+						Height="305">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<Border BorderThickness="0,0,0,2"
@@ -51,6 +50,12 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 			<ListView.Resources>
+				<ControlTemplate x:Key="SelectedTemplate"
+								 TargetType="ListViewItem">
+					<Border Background="#388095"
+							Cursor="Hand">
+					</Border>
+				</ControlTemplate>
 				<Style TargetType="ListViewItem">
 					<Setter Property="Template">
 						<Setter.Value>
@@ -61,6 +66,16 @@
 							</ControlTemplate>
 						</Setter.Value>
 					</Setter>
+					<Style.Triggers>
+						<MultiTrigger>
+							<MultiTrigger.Conditions>
+								<Condition Property="IsSelected"
+										   Value="true" />
+							</MultiTrigger.Conditions>
+							<Setter Property="Background"
+									Value="#FF61BFDA" />
+						</MultiTrigger>
+					</Style.Triggers>
 				</Style>
 			</ListView.Resources>
 		</ListView>

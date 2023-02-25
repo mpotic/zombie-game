@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Back.Callback;
+﻿using Back.Callback;
 using Back.Command;
-using Back.Dice;
 using Back.Game;
+using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
-using Back.PlayerModel.Visitor;
 
 namespace Back.Options
 {
@@ -18,37 +12,35 @@ namespace Back.Options
 
 		public void AddNewPlayer(string name, IPlayerCallback playerCallback)
 		{
-			PlayerListSingleton.PlayerList.AddPlayer(name);
+			PlayerListSingleton.instance.PlayersList.AddPlayer(name);
+			IPlayer player = GameSingleton.instance.Game.CurrentPlayer;
+			int currentPlayerIndex = PlayerListSingleton.instance.PlayersList.Players.IndexOf(player);
+			playerCallback.ChangeActivePlayer(currentPlayerIndex);
 		}
 
 		public void RollAction(IPlayerCallback playerCallback)
 		{
-			int previousIndex = PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer);
-
-			if (previousIndex < 0)
-				return;
-
 			RollCommand command = new RollCommand();
 			invoker.ExecuteCommand(command);
 
-			if (GameSingleton.Game.Score.Killed)
+			if (GameSingleton.instance.Game.Score.Killed)
 			{
-				playerCallback.ChangeActivePlayer(previousIndex, PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer));
-				GameSingleton.Game.Score.Killed = false;
+
+				IPlayer player = GameSingleton.instance.Game.CurrentPlayer;
+				int currentPlayerIndex = PlayerListSingleton.instance.PlayersList.Players.IndexOf(player);
+				playerCallback.ChangeActivePlayer(currentPlayerIndex); 
+				GameSingleton.instance.Game.Score.Killed = false;
 			}
 		}
 
 		public void StopAction(IPlayerCallback playerCallback)
 		{
-			int previousIndex = PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer);
-			
-			if (previousIndex < 0)
-				return;
-			
 			ICommand command = new StopCommand();
 			invoker.ExecuteCommand(command);
 
-			playerCallback.ChangeActivePlayer(previousIndex, PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer));
+			IPlayer player = GameSingleton.instance.Game.CurrentPlayer;
+			int currentPlayerIndex = PlayerListSingleton.instance.PlayersList.Players.IndexOf(player);
+			playerCallback.ChangeActivePlayer(currentPlayerIndex);
 		}
 
 		public void ResetAction()
@@ -59,15 +51,10 @@ namespace Back.Options
 
 		public void StartAction(IPlayerCallback playerCallback)
 		{
-			int previousIndex = PlayerListSingleton.PlayerList.Players.IndexOf(GameSingleton.Game.CurrentPlayer);
-
-			if (previousIndex < 0)
-				return;
-
 			ICommand command = new StartCommand();
 			invoker.ExecuteCommand(command);
 
-			playerCallback.ChangeActivePlayer(previousIndex, 0);
+			playerCallback.ChangeActivePlayer(0);
 		}
 	}
 }

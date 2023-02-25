@@ -1,26 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Back.Game
+﻿namespace Back.Game
 {
-	public class GameSingleton
+	public class GameSingleton : IGameSingleton
 	{
-		private static IGame game;
+		public static readonly GameSingleton instance = new GameSingleton();
 
-		public static IGame Game
+		public IGame Game { get;  }
+
+		private GameSingleton()
 		{
-			get
-			{
-				if (game == null)
-					game = new Game();
-
-				return game;
-			}
+			Game = new Game();
 		}
-
-		private GameSingleton() { }
 	}
 }

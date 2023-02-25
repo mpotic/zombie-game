@@ -1,9 +1,4 @@
 ﻿using Back.Game;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Back.Command
 {
@@ -11,7 +6,7 @@ namespace Back.Command
 	{
 		public void Execute()
 		{
-			GameSingleton.Game.ResetGame();
+			GameSingleton.instance.Game.ResetGame();
 		}
 	}
 }

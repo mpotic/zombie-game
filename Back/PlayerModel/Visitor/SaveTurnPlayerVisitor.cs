@@ -6,7 +6,7 @@ namespace Back.PlayerModel.Visitor
 	{
 		public void Visit(IPlayer player)
 		{
-			player.TotalBrainCount += GameSingleton.Game.Score.BrainsCount;
+			player.TotalBrainCount += GameSingleton.instance.Game.Score.BrainsCount;
 		}
 	}
 }

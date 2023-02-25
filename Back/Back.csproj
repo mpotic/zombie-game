@@ -56,6 +56,7 @@
     <Compile Include="Game\Game.cs" />
     <Compile Include="Dice\GreenDice.cs" />
     <Compile Include="Game\GameSingleton.cs" />
+    <Compile Include="Game\GameSingletonGenerator.cs" />
     <Compile Include="Game\IGame.cs" />
     <Compile Include="Game\IGameSingleton.cs" />
     <Compile Include="Options\IOptions.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Options\Options.cs" />
     <Compile Include="Options\OptionsSingleton.cs" />
     <Compile Include="PlayerModel\Singleton\IPlayerListSingleton.cs" />
+    <Compile Include="PlayerModel\Singleton\PlayerListSingletonGenerator.cs" />
     <Compile Include="PlayerModel\Visitor\IPlayerVisitor.cs" />
     <Compile Include="PlayerModel\IPlayer.cs" />
     <Compile Include="PlayerModel\IPlayerList.cs" />
