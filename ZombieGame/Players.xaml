@@ -5,8 +5,11 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:local="clr-namespace:ZombieGame"
 			 mc:Ignorable="d"
-			 Background="White"
 			 FontSize="24">
+	<UserControl.Background>
+		<SolidColorBrush Color="WhiteSmoke"
+						 Opacity="0.7" />
+	</UserControl.Background>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="5" />
@@ -16,7 +19,7 @@
 			<ColumnDefinition Width="5" />
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
-			<RowDefinition Height="5" />
+			<RowDefinition Height="15" />
 			<RowDefinition Height="auto" />
 			<RowDefinition Height="auto" />
 			<RowDefinition Height="auto" />
@@ -25,15 +28,16 @@
 		<ListView		Name="PlayersListElement"
 						Grid.Column="1"
 						Grid.Row="1"
-						BorderBrush="Gray"
+						BorderBrush="SaddleBrown"
 						BorderThickness="2"
 						Width="190"
-						Height="305">
+						Height="402"
+						Background="Transparent">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<Border BorderThickness="0,0,0,2"
-							BorderBrush="Gray">
-						<StackPanel Margin="1, 1, 1, 6">
+							BorderBrush="SaddleBrown">
+						<StackPanel Margin="4, 1, 1, 6">
 							<TextBlock Text="{Binding Name}"
 									   Padding="0"
 									   Margin="0" />
@@ -42,20 +46,17 @@
 							Brains: 
 							<Run Text="{Binding TotalBrainCount}" />
 							</TextBlock>
-							<Line Stroke="Gray"
-								  StrokeThickness="2" />
-
 						</StackPanel>
 					</Border>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 			<ListView.Resources>
-				<ControlTemplate x:Key="SelectedTemplate"
+				<!--<ControlTemplate x:Key="SelectedTemplate"
 								 TargetType="ListViewItem">
 					<Border Background="#388095"
 							Cursor="Hand">
 					</Border>
-				</ControlTemplate>
+				</ControlTemplate>-->
 				<Style TargetType="ListViewItem">
 					<Setter Property="Template">
 						<Setter.Value>
@@ -66,6 +67,8 @@
 							</ControlTemplate>
 						</Setter.Value>
 					</Setter>
+					<Setter Property="Focusable"
+							Value="False" />
 					<Style.Triggers>
 						<MultiTrigger>
 							<MultiTrigger.Conditions>
@@ -73,7 +76,9 @@
 										   Value="true" />
 							</MultiTrigger.Conditions>
 							<Setter Property="Background"
-									Value="#FF61BFDA" />
+									Value="White" />
+							<Setter Property="FontWeight"
+									Value="DemiBold" />
 						</MultiTrigger>
 					</Style.Triggers>
 				</Style>
@@ -86,15 +91,18 @@
 				<TextBox Name="PlayerName"
 						 Grid.Row="2"
 						 Grid.Column="1"
-						 BorderBrush="Gray"
+						 BorderBrush="SaddleBrown"
 						 BorderThickness="2"
 						 Width="190"
 						 Margin="0,15,0,9"
-						 Padding="3,3,3,3" />
+						 Padding="3,3,3,3"
+						 Opacity="0.75" />
 				<Button Grid.Column="1"
 						Grid.Row="2"
+						BorderBrush="SaddleBrown"
 						Width="190"
 						FontWeight="Medium"
+						Foreground="SaddleBrown"
 						Margin="2,2,2,2"
 						Content="Add a player"
 						Click="AddPlayerButton_Click" />

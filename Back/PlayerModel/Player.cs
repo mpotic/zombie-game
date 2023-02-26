@@ -7,8 +7,8 @@ namespace Back.PlayerModel
 	public class Player : IPlayer, INotifyPropertyChanged
 	{
 		private string name;
+
 		private int totalBrainCount = 0;
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		public Player() { }
 
@@ -46,6 +46,8 @@ namespace Back.PlayerModel
 			Player player = (Player)obj;
 			return player.Name == this.Name;
 		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{

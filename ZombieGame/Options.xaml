@@ -5,9 +5,12 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:local="clr-namespace:ZombieGame"
 			 mc:Ignorable="d"
-			 Background="White"
 			 FontSize="24"
 			 FontWeight="Medium">
+	<UserControl.Background>
+		<SolidColorBrush Color="WhiteSmoke"
+						 Opacity="0.7" />
+	</UserControl.Background>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="5" />

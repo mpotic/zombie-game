@@ -1,0 +1,285 @@
+﻿<UserControl x:Class="ZombieGame.TableDice"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:ZombieGame"
+			 xmlns:Back="clr-namespace:Back.Dice;assembly=Back"
+			 mc:Ignorable="d"
+			 Height="auto"
+			 Width="auto">
+	<UserControl.Background>
+		<SolidColorBrush Color="WhiteSmoke"
+						 Opacity="0.7" />
+	</UserControl.Background>
+	<ListView x:Name="Dice"
+			  Margin="5"
+			  Background="Transparent"
+			  BorderThickness="2"
+			  BorderBrush="SaddleBrown"
+			  Width="506">
+		<ListView.ItemsPanel>
+			<ItemsPanelTemplate>
+				<WrapPanel Orientation="Vertical"
+						   Height="300"
+						   MinWidth="500"
+						   ItemHeight="100"
+						   ItemWidth="100" />
+			</ItemsPanelTemplate>
+		</ListView.ItemsPanel>
+		<ListView.Resources>
+			<ControlTemplate x:Key="GreenBrainTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FF005200"
+						BorderThickness="2"
+						Background="#FF009600"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4">
+					<Border BorderBrush="#FF005200"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Brain.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="YellowBrainTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="DarkGoldenrod"
+						BorderThickness="2"
+						Background="#FFF9D200"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4">
+					<Border CornerRadius="4"
+							BorderThickness="1"
+							BorderBrush="DarkGoldenrod">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Brain.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="RedBrainTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border x:Name="Background"
+						BorderBrush="DarkRed"
+						BorderThickness="3"
+						Background="#FFD60000"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4">
+					<Border CornerRadius="4"
+							BorderThickness="1"
+							BorderBrush="DarkRed">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Brain.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="GreenShotgunTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FF005200"
+						BorderThickness="2"
+						Background="#FF009600"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4">
+					<Border BorderBrush="#FF005200"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Shotgun.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="YellowShotgunTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="DarkGoldenrod"
+						BorderThickness="2"
+						Background="#FFF9D200"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4">
+					<Border CornerRadius="4"
+							BorderThickness="1"
+							BorderBrush="DarkGoldenrod">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Shotgun.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="RedShotgunTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border x:Name="Background"
+						BorderBrush="DarkRed"
+						BorderThickness="3"
+						Background="#FFD60000"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4">
+					<Border CornerRadius="4"
+							BorderThickness="1"
+							BorderBrush="DarkRed">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Shotgun.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="GreenFootstepsTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FF005200"
+						BorderThickness="2"
+						Background="#FF009600"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4">
+					<Border BorderBrush="#FF005200"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Footsteps.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="YellowFootstepsTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="DarkGoldenrod"
+						BorderThickness="2"
+						Background="#FFF9D200"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4">
+					<Border CornerRadius="4"
+							BorderThickness="1"
+							BorderBrush="DarkGoldenrod">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Footsteps.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="RedFootstepsTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border x:Name="Background"
+						BorderBrush="DarkRed"
+						BorderThickness="3"
+						Background="#FFD60000"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4">
+					<Border CornerRadius="4"
+							BorderThickness="1"
+							BorderBrush="DarkRed">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Footsteps.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<Style TargetType="ListViewItem">
+				<Setter Property="Focusable"
+						Value="False" />
+				<Style.Triggers>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="GreenDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="BRAIN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource GreenBrainTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="GreenDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="SHOTGUN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource GreenShotgunTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="GreenDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="FOOTSTEPS" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource GreenFootstepsTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="YellowDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="BRAIN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource YellowBrainTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="YellowDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="SHOTGUN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource YellowShotgunTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="YellowDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="FOOTSTEPS" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource YellowFootstepsTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="RedDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="BRAIN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource RedBrainTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="RedDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="SHOTGUN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource RedShotgunTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="RedDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="FOOTSTEPS" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource RedFootstepsTemplate}" />
+					</MultiDataTrigger>
+				</Style.Triggers>
+			</Style>
+		</ListView.Resources>
+	</ListView>
+</UserControl>

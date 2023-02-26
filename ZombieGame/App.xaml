@@ -11,6 +11,12 @@
 					Value="0,-4,0,-4" />
 			<Setter Property="BorderThickness"
 					Value="2" />
+			<Setter Property="Background"
+					Value="WhiteSmoke" />
+			<Setter Property="BorderBrush"
+					Value="SaddleBrown" />
+			<Setter Property="Foreground"
+					Value="SaddleBrown" />
 		</Style>
 		<Style TargetType="TextBlock">
 			<Setter Property="HorizontalAlignment"

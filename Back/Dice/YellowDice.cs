@@ -5,52 +5,31 @@ using System.Threading;
 
 namespace Back.Dice
 {
-	public class YellowDice : IDice, INotifyPropertyChanged
+	public class YellowDice : IDice
 	{
 		private DiceSide side;
-		private int footstepCount = 0;
-		private int remaining = 4;
-
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		public DiceSide Side { get => side; set => side = value; }
 
-		public int FootstepCount { get => footstepCount; set => footstepCount = value; }
-
-		public int Remaining
+		public string DiceType
 		{
-			get => remaining;
-			set
+			get
 			{
-				remaining = value;
-				OnPropertyChanged();
+				return this.ToString();
 			}
 		}
 
 		public void Roll()
 		{
-			Thread.Sleep(0);
+			Thread.Sleep(1);
 
 			int randomInt = new Random().Next(0, 3);
 			side = (DiceSide)randomInt;
-
-			if (side == DiceSide.FOOTSTEPS)
-			{
-				footstepCount++;
-			}
-
-			Remaining--;
 		}
 
-		public void Reset()
+		public override string ToString()
 		{
-			FootstepCount = 0;
-			Remaining = 4;
-		}
-
-		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			return "YellowDice";
 		}
 	}
 }

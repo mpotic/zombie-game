@@ -11,5 +11,10 @@ namespace ZombieGame
 		{
 			InitializeComponent();
 		}
+
+		private void TableDice_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

@@ -11,9 +11,9 @@ namespace ZombieGame
 		public DiceTurnInfo()
 		{
 			InitializeComponent();
-			RemainingGreen.DataContext = GameSingleton.instance.Game.Dice.GreenDice;
-			RemainingYellow.DataContext = GameSingleton.instance.Game.Dice.YellowDice;
-			RemainingRed.DataContext = GameSingleton.instance.Game.Dice.RedDice;
+			RemainingGreen.DataContext = GameSingleton.instance.Game.Bag;
+			RemainingYellow.DataContext = GameSingleton.instance.Game.Bag;
+			RemainingRed.DataContext = GameSingleton.instance.Game.Bag;
 		}
 	}
 }

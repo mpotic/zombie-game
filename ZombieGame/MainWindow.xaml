@@ -9,8 +9,11 @@
 		SizeToContent="WidthAndHeight"
 		FontSize="30"
 		ResizeMode="CanMinimize"
-		Background="#CCFFFFFF"
-		FontWeight="Medium">
+		FontWeight="Medium"
+		FontFamily="HP Simplified">
+	<Window.Background>
+		<ImageBrush ImageSource="../../Images/Background/ZombieBackground.jpg" />
+	</Window.Background>
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="10" />
@@ -29,20 +32,21 @@
 		<local:Players Grid.Column="1"
 					   Grid.Row="1"
 					   Grid.RowSpan="3"
-					   Margin="0,0,15,0"
+					   Margin="0,0,30,0"
 					   HorizontalAlignment="Center"
-					   VerticalAlignment="Center"/>
+					   VerticalAlignment="Center" />
 		<local:DiceTurnInfo Grid.Column="2"
 							Grid.Row="1"
 							Margin="0,0,0,0"
 							HorizontalAlignment="Center"
 							VerticalAlignment="Top" />
-		<local:TurnPanel Grid.Column="2"
+		<local:TableDice Grid.Column="2"
 						 Grid.ColumnSpan="1"
 						 Grid.Row="2"
 						 Margin="0,0,0,0"
 						 HorizontalAlignment="Center"
-						 VerticalAlignment="Top" />
+						 VerticalAlignment="Top"
+						 Loaded="TableDice_Loaded" />
 		<local:Options Grid.Column="2"
 					   Grid.Row="3"
 					   HorizontalAlignment="Center"

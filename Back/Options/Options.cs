@@ -20,6 +20,9 @@ namespace Back.Options
 
 		public void RollAction(IPlayerCallback playerCallback)
 		{
+			if (PlayerListSingleton.instance.PlayersList.Players.Count == 0)
+				return;
+
 			RollCommand command = new RollCommand();
 			invoker.ExecuteCommand(command);
 
@@ -35,6 +38,9 @@ namespace Back.Options
 
 		public void StopAction(IPlayerCallback playerCallback)
 		{
+			if (PlayerListSingleton.instance.PlayersList.Players.Count == 0)
+				return;
+
 			ICommand command = new StopCommand();
 			invoker.ExecuteCommand(command);
 
@@ -45,12 +51,18 @@ namespace Back.Options
 
 		public void ResetAction()
 		{
+			if (PlayerListSingleton.instance.PlayersList.Players.Count == 0)
+				return;
+
 			ICommand command = new ResetCommand();
 			invoker.ExecuteCommand(command);
 		}
 
 		public void StartAction(IPlayerCallback playerCallback)
 		{
+			if (PlayerListSingleton.instance.PlayersList.Players.Count == 0)
+				return;
+
 			ICommand command = new StartCommand();
 			invoker.ExecuteCommand(command);
 

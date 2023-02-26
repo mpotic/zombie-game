@@ -57,8 +57,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Callback\PlayerCallback.cs" />
-    <Compile Include="Callback\PlayerListViewElementSingleton.cs" />
+    <Compile Include="Callback\DiceInfoCallback\TableDiceCallback.cs" />
+    <Compile Include="Callback\PlayerCallback\PlayerCallback.cs" />
+    <Compile Include="Callback\PlayerCallback\PlayerListViewElementSingleton.cs" />
     <Compile Include="DiceSelection.xaml.cs">
       <DependentUpon>DiceSelection.xaml</DependentUpon>
     </Compile>
@@ -70,6 +71,9 @@
     </Compile>
     <Compile Include="Players.xaml.cs">
       <DependentUpon>Players.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableDice.xaml.cs">
+      <DependentUpon>TableDice.xaml</DependentUpon>
     </Compile>
     <Compile Include="TurnPanel.xaml.cs">
       <DependentUpon>TurnPanel.xaml</DependentUpon>
@@ -99,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Players.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TableDice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,6 +146,16 @@
       <Project>{329CA298-5435-476B-9E2D-1847C5E7B40B}</Project>
       <Name>Back</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DiceFaces\Brain.PNG" />
+    <Resource Include="Images\DiceFaces\Footsteps.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DiceFaces\Shotgun.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Background\ZombieBackground.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

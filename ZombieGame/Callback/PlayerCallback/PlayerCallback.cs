@@ -1,5 +1,4 @@
 ﻿using Back.Callback;
-using System.Windows.Controls;
 
 namespace ZombieGame.Callback
 {

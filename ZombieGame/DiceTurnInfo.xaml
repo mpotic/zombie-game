@@ -5,11 +5,15 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:local="clr-namespace:ZombieGame"
 			 mc:Ignorable="d"
-			 Background="White"
 			 FontSize="30">
-	<Border BorderBrush="Gray"
-			BorderThickness="2"
-			Margin="5,5,5,5">
+	<UserControl.Background>
+		<SolidColorBrush Color="WhiteSmoke"
+						 Opacity="0.7" />
+	</UserControl.Background>
+	<Border BorderThickness="2"
+			CornerRadius="2"
+			Margin="5"
+			BorderBrush="SaddleBrown">
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="5" />
@@ -27,17 +31,21 @@
 			</Grid.RowDefinitions>
 			<TextBlock Grid.Column="1"
 					   Grid.Row="1"
-					   Foreground="Green"
+					   Foreground="DarkGreen"
 					   FontWeight="Heavy">
 				Green dice
 			</TextBlock>
 			<TextBlock  Name="RemainingGreen"
 						Grid.Column="1"
 						Grid.Row="2"
-						Text="{Binding Remaining}" />
+						FontWeight="Heavy"
+						FontSize="40"
+						Padding="0"
+						Margin="0"
+						Text="{Binding GreenCount}" />
 			<TextBlock Grid.Column="2"
 					   Grid.Row="1"
-					   Foreground="#FFF9E216"
+					   Foreground="Gold"
 					   Background="Black"
 					   FontWeight="Heavy">
 				Yellow dice
@@ -45,17 +53,25 @@
 			<TextBlock Name="RemainingYellow"
 					   Grid.Column="2"
 					   Grid.Row="2"
-					   Text="{Binding Remaining}" />
+					   FontWeight="Bold"
+					   FontSize="40"
+					   Padding="0"
+					   Margin="0"
+					   Text="{Binding YellowCount}" />
 			<TextBlock Grid.Column="3"
 					   Grid.Row="1"
-					   Foreground="#FFDA0606"
+					   Foreground="DarkRed"
 					   FontWeight="Heavy">
 				Red dice
 			</TextBlock>
 			<TextBlock  Name="RemainingRed"
 						Grid.Column="3"
 						Grid.Row="2"
-						Text="{Binding Remaining}" />
+						FontWeight="Bold"
+						FontSize="40"
+						Padding="0"
+						Margin="0"
+						Text="{Binding RedCount}" />
 		</Grid>
 	</Border>
 </UserControl>

@@ -4,8 +4,9 @@
 	public interface IDice
 	{
 		DiceSide Side { get; set; }
-		int FootstepCount { get; set; }
-		int Remaining { get; set; }
+
+		string DiceType { get; }
+
 		void Roll();
 	}
 }

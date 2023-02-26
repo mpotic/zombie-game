@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Callback\IPlayerCallback.cs" />
+    <Compile Include="Callback\ITableDiceCallback.cs" />
     <Compile Include="Callback\IFrontCallback.cs" />
+    <Compile Include="Callback\IPlayerCallback.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\IInvoker.cs" />
     <Compile Include="Command\Invoker.cs" />
@@ -51,8 +52,12 @@
     <Compile Include="Command\StartCommand.cs" />
     <Compile Include="Command\StopCommand.cs" />
     <Compile Include="Dice\AllDice.cs" />
+    <Compile Include="Dice\Bag.cs" />
+    <Compile Include="Dice\Hand.cs" />
     <Compile Include="Dice\IAllDice.cs" />
+    <Compile Include="Dice\IBag.cs" />
     <Compile Include="Dice\IDice.cs" />
+    <Compile Include="Dice\IHand.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Dice\GreenDice.cs" />
     <Compile Include="Game\GameSingleton.cs" />
