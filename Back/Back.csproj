@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,10 +52,8 @@
     <Compile Include="Command\RollCommand.cs" />
     <Compile Include="Command\StartCommand.cs" />
     <Compile Include="Command\StopCommand.cs" />
-    <Compile Include="Dice\AllDice.cs" />
     <Compile Include="Dice\Bag.cs" />
     <Compile Include="Dice\Hand.cs" />
-    <Compile Include="Dice\IAllDice.cs" />
     <Compile Include="Dice\IBag.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\IHand.cs" />

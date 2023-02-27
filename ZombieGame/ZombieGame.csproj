@@ -57,7 +57,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Callback\DiceInfoCallback\TableDiceCallback.cs" />
     <Compile Include="Callback\PlayerCallback\PlayerCallback.cs" />
     <Compile Include="Callback\PlayerCallback\PlayerListViewElementSingleton.cs" />
     <Compile Include="DiceSelection.xaml.cs">
@@ -156,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Background\ZombieBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Misc\RIP.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

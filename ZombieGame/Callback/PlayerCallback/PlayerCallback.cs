@@ -13,7 +13,10 @@ namespace ZombieGame.Callback
 
 		public void ChangeActivePlayer(int current)
 		{
-			PlayerListViewElementSingleton.PlayersList.SelectedIndex = current;
+			PlayerListViewElementSingleton.PlayersList.Dispatcher.Invoke(() => 
+			{
+				PlayerListViewElementSingleton.PlayersList.SelectedIndex = current;
+			});
 		}
 	}
 }

@@ -116,7 +116,7 @@ namespace Back.Dice
 
 		public void CheckAndRefil()
 		{
-			if (TotalCount >= GameSingleton.instance.Game.Hand.GrabbedDice.Count)
+			if (TotalCount >= ( 3 - GameSingleton.instance.Game.Hand.GrabbedDice.Count))
 				return;
 
 			ResetBag();

@@ -7,6 +7,8 @@ namespace ZombieGame
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		public static bool Killed = true;
+
 		public MainWindow()
 		{
 			InitializeComponent();

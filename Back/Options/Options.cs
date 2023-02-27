@@ -3,6 +3,9 @@ using Back.Command;
 using Back.Game;
 using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Back.Options
 {
@@ -28,11 +31,13 @@ namespace Back.Options
 
 			if (GameSingleton.instance.Game.Score.Killed)
 			{
-
 				IPlayer player = GameSingleton.instance.Game.CurrentPlayer;
 				int currentPlayerIndex = PlayerListSingleton.instance.PlayersList.Players.IndexOf(player);
-				playerCallback.ChangeActivePlayer(currentPlayerIndex); 
-				GameSingleton.instance.Game.Score.Killed = false;
+				Task.Run(() => 
+				{
+					Thread.Sleep(1200);
+					playerCallback.ChangeActivePlayer(currentPlayerIndex);
+				});
 			}
 		}
 

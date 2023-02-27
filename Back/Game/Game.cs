@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Back.Dice;
 using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
@@ -8,17 +10,13 @@ namespace Back.Game
 {
 	public class Game : IGame
 	{
-		//private IAllDice dice = new AllDice();
-		
 		private IPlayer currentPlayer = null;
-		
+
 		private Score score = new Score();
 
 		private IHand hand = new Hand();
 
 		private IBag bag = new Bag();
-
-		//public IAllDice Dice { get => dice; set => dice = value; }
 
 		public Score Score { get => score; set => score = value; }
 
@@ -40,39 +38,6 @@ namespace Back.Game
 		{
 			Hand.GrabAndRollDice();
 			Score.UpdateScore();
-
-			if (Score.ShotgunCount >= 3)
-			{
-				Score.Killed = true;
-				StopAction();
-				return;
-			}
-			//List<DiceSide> rolledSides = dice.RollDice();
-
-			//foreach (DiceSide side in rolledSides)
-			//{
-			//	if (side == DiceSide.BRAIN)
-			//	{
-			//		Score.BrainsCount++;
-			//	}
-			//	else if (side == DiceSide.FOOTSTEPS)
-			//	{
-			//		Score.FootstepsCount++;
-			//	}
-			//	else
-			//	{
-			//		Score.ShotgunCount++;
-			//	}
-			//}
-
-			//if (Score.ShotgunCount >= 3)
-			//{
-			//	Score.Killed = true;
-			//	Score.BrainsCount = 0;
-			//	StopAction();
-			//	return;
-			//}
-			// Reduce attributes of Turn according to rolled sides and dice types
 		}
 
 		public void ResetGame()

@@ -1,8 +1,13 @@
 ﻿using Back.Dice;
+using Back.PlayerModel.Visitor;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Back.Game
 {
@@ -15,6 +20,12 @@ namespace Back.Game
 		private bool killed = false;
 
 		private ObservableCollection<IDice> allRolledDice = new ObservableCollection<IDice>();
+
+		public Score()
+		{
+			allRolledDice = new ObservableCollection<IDice>();
+			BindingOperations.EnableCollectionSynchronization(allRolledDice, new object());
+		}
 
 		public int BrainsCount
 		{
@@ -38,7 +49,11 @@ namespace Back.Game
 		public bool Killed
 		{
 			get => killed;
-			set => killed = value;
+			set
+			{
+				killed = value;
+				OnPropertyChanged();
+			}
 		}
 
 		public ObservableCollection<IDice> AllRolledDice
@@ -54,7 +69,15 @@ namespace Back.Game
 			ShotgunCount = 0;
 			if (AllRolledDice != null)
 			{
-				AllRolledDice.Clear();
+				try
+				{
+					while (AllRolledDice.Count > 0)
+						AllRolledDice.RemoveAt(0);
+				}
+				catch (Exception e)
+				{
+
+				}
 			}
 		}
 
@@ -68,10 +91,30 @@ namespace Back.Game
 				{
 					BrainsCount++;
 				}
-				else if(x.Side == DiceSide.SHOTGUN)
+				else if (x.Side == DiceSide.SHOTGUN)
 				{
 					ShotgunCount++;
 				}
+			});
+
+			if (ShotgunCount >= 3)
+			{
+				PlayerKilled();
+			}
+		}
+
+		private void PlayerKilled()
+		{
+			Killed = true; 
+
+			GameSingleton.instance.Game.CurrentPlayer.Accept(new ChangePlayerVisitor());
+
+			Task.Run(() =>
+			{
+				Thread.Sleep(1200);
+				ResetScore();
+				GameSingleton.instance.Game.Bag.ResetBag();
+				Killed = false;
 			});
 		}
 
