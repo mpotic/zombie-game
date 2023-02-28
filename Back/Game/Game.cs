@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Back.Dice;
+﻿using Back.Dice;
 using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
 using Back.PlayerModel.Visitor;

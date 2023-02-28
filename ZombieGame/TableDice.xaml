@@ -9,13 +9,13 @@
 			 Height="auto"
 			 Width="auto">
 	<UserControl.Background>
-		<SolidColorBrush Color="WhiteSmoke"
-						 Opacity="0.7" />
+		<SolidColorBrush Color="#FFFFF3DB"
+						 Opacity="0.6" />
 	</UserControl.Background>
 	<ListView x:Name="Dice"
 			  Margin="5"
-			  Background="Transparent"
-			  BorderThickness="2"
+			  Background="#1E000000"
+			  BorderThickness="1"
 			  BorderBrush="SaddleBrown"
 			  Width="506"
 			  IsSynchronizedWithCurrentItem="True"
@@ -38,6 +38,13 @@
 						Margin="8"
 						Padding="6"
 						CornerRadius="4">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
 					<Border BorderBrush="#FF005200"
 							BorderThickness="1"
 							CornerRadius="4">
@@ -55,6 +62,13 @@
 						Margin="8"
 						Padding="6"
 						CornerRadius="4">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
 					<Border CornerRadius="4"
 							BorderThickness="1"
 							BorderBrush="DarkGoldenrod">
@@ -73,6 +87,13 @@
 						Margin="8"
 						Padding="6"
 						CornerRadius="4">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
 					<Border CornerRadius="4"
 							BorderThickness="1"
 							BorderBrush="DarkRed">
@@ -90,6 +111,13 @@
 						Margin="8"
 						Padding="6"
 						CornerRadius="4">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
 					<Border BorderBrush="#FF005200"
 							BorderThickness="1"
 							CornerRadius="4">
@@ -107,6 +135,13 @@
 						Margin="8"
 						Padding="6"
 						CornerRadius="4">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
 					<Border CornerRadius="4"
 							BorderThickness="1"
 							BorderBrush="DarkGoldenrod">
@@ -125,6 +160,13 @@
 						Margin="8"
 						Padding="6"
 						CornerRadius="4">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
 					<Border CornerRadius="4"
 							BorderThickness="1"
 							BorderBrush="DarkRed">
@@ -142,6 +184,13 @@
 						Margin="8"
 						Padding="6"
 						CornerRadius="4">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
 					<Border BorderBrush="#FF005200"
 							BorderThickness="1"
 							CornerRadius="4">
@@ -159,6 +208,13 @@
 						Margin="8"
 						Padding="6"
 						CornerRadius="4">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
 					<Border CornerRadius="4"
 							BorderThickness="1"
 							BorderBrush="DarkGoldenrod">
@@ -177,6 +233,13 @@
 						Margin="8"
 						Padding="6"
 						CornerRadius="4">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
 					<Border CornerRadius="4"
 							BorderThickness="1"
 							BorderBrush="DarkRed">

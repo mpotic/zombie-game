@@ -7,8 +7,8 @@
 			 mc:Ignorable="d"
 			 FontSize="24">
 	<UserControl.Background>
-		<SolidColorBrush Color="WhiteSmoke"
-						 Opacity="0.7" />
+		<SolidColorBrush Color="#FFFFF3DB"
+						 Opacity="0.6" />
 	</UserControl.Background>
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -29,15 +29,15 @@
 						Grid.Column="1"
 						Grid.Row="1"
 						BorderBrush="SaddleBrown"
-						BorderThickness="2"
+						BorderThickness="1"
 						Width="190"
-						Height="402"
-						Background="Transparent">
+						Height="415.8"
+						Background="#1E000000">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<Border BorderThickness="0,0,0,2"
+					<Border BorderThickness="0,0,0,1"
 							BorderBrush="SaddleBrown">
-						<StackPanel Margin="4, 1, 1, 6">
+						<StackPanel Margin="0, 6, 0, 6">
 							<TextBlock Text="{Binding Name}"
 									   Padding="0"
 									   Margin="0" />
@@ -51,12 +51,6 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 			<ListView.Resources>
-				<!--<ControlTemplate x:Key="SelectedTemplate"
-								 TargetType="ListViewItem">
-					<Border Background="#388095"
-							Cursor="Hand">
-					</Border>
-				</ControlTemplate>-->
 				<Style TargetType="ListViewItem">
 					<Setter Property="Template">
 						<Setter.Value>
@@ -76,7 +70,7 @@
 										   Value="true" />
 							</MultiTrigger.Conditions>
 							<Setter Property="Background"
-									Value="White" />
+                                    Value="#CCF5F5F5" />
 							<Setter Property="FontWeight"
 									Value="DemiBold" />
 						</MultiTrigger>
@@ -92,14 +86,17 @@
 						 Grid.Row="2"
 						 Grid.Column="1"
 						 BorderBrush="SaddleBrown"
-						 BorderThickness="2"
+                         Background="WhiteSmoke"
+                         BorderThickness="1"
 						 Width="190"
 						 Margin="0,15,0,9"
 						 Padding="3,3,3,3"
-						 Opacity="0.75" />
+						 Opacity="0.9" />
 				<Button Grid.Column="1"
 						Grid.Row="2"
 						BorderBrush="SaddleBrown"
+						Background="WhiteSmoke"
+						Opacity="0.9"
 						Width="190"
 						FontWeight="Medium"
 						Foreground="SaddleBrown"
