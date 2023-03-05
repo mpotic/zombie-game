@@ -4,13 +4,15 @@ namespace Back.Dice
 {
 	public interface IBag
 	{
-		int GreenCount { get; set; }
+		int GreenCount { get; }
 
-		int YellowCount { get; set; }
+		int YellowCount { get; }
 
-		int RedCount { get; set; }
+		int RedCount { get; }
 
 		List<IDice> GrabDice(int count);
+
+		void FillBag();
 
 		void ResetBag();
 	}

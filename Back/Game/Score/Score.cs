@@ -1,6 +1,5 @@
 ﻿using Back.Dice;
 using Back.PlayerModel.Visitor;
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -10,7 +9,7 @@ using System.Windows.Data;
 
 namespace Back.Game
 {
-	public class Score : INotifyPropertyChanged
+	public class Score : IScore
 	{
 		private int brainsCount = 0;
 
@@ -31,7 +30,6 @@ namespace Back.Game
 			get => brainsCount; set
 			{
 				brainsCount = value;
-				OnPropertyChanged();
 			}
 		}
 
@@ -41,7 +39,6 @@ namespace Back.Game
 			set
 			{
 				shotgunCount = value;
-				OnPropertyChanged();
 			}
 		}
 
@@ -51,7 +48,6 @@ namespace Back.Game
 			set
 			{
 				killed = value;
-				OnPropertyChanged();
 			}
 		}
 
@@ -61,22 +57,14 @@ namespace Back.Game
 			set => allRolledDice = value;
 		}
 
-
 		public void ResetScore()
 		{
 			BrainsCount = 0;
 			ShotgunCount = 0;
 			if (AllRolledDice != null)
 			{
-				try
-				{
-					while (AllRolledDice.Count > 0)
-						AllRolledDice.RemoveAt(0);
-				}
-				catch (Exception e)
-				{
-
-				}
+				while (AllRolledDice.Count > 0)
+					AllRolledDice.RemoveAt(0);
 			}
 		}
 
@@ -95,16 +83,19 @@ namespace Back.Game
 					ShotgunCount++;
 				}
 			});
+		}
 
+		public void CheckAndKill() 
+		{
 			if (ShotgunCount >= 3)
 			{
 				PlayerKilled();
 			}
 		}
 
-		private void PlayerKilled()
+		public void PlayerKilled()
 		{
-			Killed = true; 
+			GameSingleton.instance.Game.ScoreDecorator.Killed = true;
 
 			GameSingleton.instance.Game.CurrentPlayer.Accept(new ChangePlayerVisitor());
 
@@ -112,8 +103,8 @@ namespace Back.Game
 			{
 				Thread.Sleep(1200);
 				ResetScore();
-				GameSingleton.instance.Game.Bag.ResetBag();
-				Killed = false;
+				GameSingleton.instance.Game.Bag.FillBag();
+				GameSingleton.instance.Game.ScoreDecorator.Killed = false;
 			});
 		}
 

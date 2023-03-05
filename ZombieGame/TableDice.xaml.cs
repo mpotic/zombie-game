@@ -8,12 +8,11 @@ namespace ZombieGame
 	/// </summary>
 	public partial class TableDice : UserControl
 	{
-
 		public TableDice()
 		{
 			InitializeComponent();
 
-			Dice.ItemsSource = GameSingleton.instance.Game.Score.AllRolledDice;
+			Dice.ItemsSource = GameSingleton.instance.Game.ScoreDecorator.AllRolledDice;
 		}
 	}
 }

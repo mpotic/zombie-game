@@ -3,9 +3,10 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:Game="clr-namespace:Back.Game;assembly=Back"
 			 xmlns:local="clr-namespace:ZombieGame"
 			 mc:Ignorable="d"
-			 FontSize="30">
+			 FontSize="34">
 	<UserControl.Background>
 		<SolidColorBrush Color="#FFFFF3DB"
 						 Opacity="0.6" />
@@ -17,82 +18,195 @@
 			Background="#1E000000">
 		<Grid>
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="5" />
 				<ColumnDefinition Width="auto" />
 				<ColumnDefinition Width="auto" />
 				<ColumnDefinition Width="auto" />
-				<ColumnDefinition Width="5" />
+				<ColumnDefinition Width="auto" />
+				<ColumnDefinition Width="auto" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="5" />
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
-				<RowDefinition Height="5" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
 			</Grid.RowDefinitions>
-			<TextBlock Grid.Column="1"
-					   Grid.Row="1"
-					   Foreground="DarkGreen"
-					   FontWeight="Heavy">
+			<TextBlock Grid.Row="0"
+					   Grid.Column="0"
+					   Grid.ColumnSpan="5"
+					   Foreground="Black"
+					   Opacity="0.9"
+					   FontWeight="Heavy"
+					   Margin="0,10,0,0"
+					   Padding="0">
 				<TextBlock.Effect>
-					<DropShadowEffect ShadowDepth="4"
+					<DropShadowEffect ShadowDepth="5"
 									  Direction="330"
 									  Color="Gray"
-									  Opacity="0.25"
-									  BlurRadius="4" />
+									  Opacity="0.6"
+									  BlurRadius="5" />
 				</TextBlock.Effect>
-				Green dice
+				Dice count
 			</TextBlock>
-			<TextBlock  Name="RemainingGreen"
-						Grid.Column="1"
-						Grid.Row="2"
-						FontWeight="Heavy"
-						FontSize="40"
-						Padding="0"
-						Margin="0"
-						Text="{Binding GreenCount}" />
-			<TextBlock Grid.Column="2"
-					   Grid.Row="1"
-					   Foreground="#FFFFE500"
-					   FontWeight="ExtraBold">
-				<TextBlock.Effect>
-					<DropShadowEffect ShadowDepth="4"
-									  Direction="330"
-									  Color="Gray"
-									  Opacity="0.25"
-									  BlurRadius="4" />
-				</TextBlock.Effect>
-				Yellow dice
-			</TextBlock>
-			<TextBlock Name="RemainingYellow"
-					   Grid.Column="2"
-					   Grid.Row="2"
-					   FontWeight="Bold"
-					   FontSize="40"
-					   Padding="0"
-					   Margin="0"
-					   Text="{Binding YellowCount}" />
-			<TextBlock Grid.Column="3"
-					   Grid.Row="1"
-					   Foreground="DarkRed"
-					   FontWeight="Heavy">
-				<TextBlock.Effect>
-					<DropShadowEffect ShadowDepth="4"
-									  Direction="330"
-									  Color="Gray"
-									  Opacity="0.25"
-									  BlurRadius="4" />
-				</TextBlock.Effect>
-				Red dice
-			</TextBlock>
-			<TextBlock  Name="RemainingRed"
-						Grid.Column="3"
-						Grid.Row="2"
-						FontWeight="Bold"
-						FontSize="40"
-						Padding="0"
-						Margin="0"
-						Text="{Binding RedCount}" />
+			<!--Green dice-->
+			<StackPanel Grid.Column="1"
+						Grid.Row="1"
+						Grid.RowSpan="2"
+						Width="auto"
+						Margin="0,0,10,0">
+				<TextBlock Grid.Column="1"
+						   Grid.Row="1"
+						   Foreground="DarkGreen"
+						   FontWeight="Heavy">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="4"
+										  Direction="330"
+										  Color="Gray"
+										  Opacity="0.25"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				Green
+				</TextBlock>
+				<TextBlock  Name="RemainingGreen"
+							Grid.Column="1"
+							Grid.Row="2"
+							Foreground="Black"
+							FontWeight="Heavy"
+							FontSize="40"
+							Padding="0"
+							Margin="0"
+							Text="{Binding GreenCount}">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="3"
+										  Direction="330"
+										  Color="White"
+										  Opacity="0.4"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				</TextBlock>
+			</StackPanel>
+			<!--Yellow dice-->
+			<StackPanel Grid.Column="2"
+						Grid.Row="1"
+						Grid.RowSpan="2"
+						Width="auto"
+						Margin="0,0,10,0">
+				<TextBlock Grid.Column="2"
+						   Grid.Row="1"
+						   Foreground="#FFFFE500"
+						   FontWeight="ExtraBold">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="4"
+										  Direction="330"
+										  Color="Gray"
+										  Opacity="0.25"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				Yellow
+				</TextBlock>
+				<TextBlock Name="RemainingYellow"
+						   Grid.Column="2"
+						   Grid.Row="2"
+						   Foreground="Black"
+						   FontWeight="Heavy"
+						   FontSize="40"
+						   Padding="0"
+						   Margin="0"
+						   Text="{Binding YellowCount}">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="3"
+										  Direction="330"
+										  Color="White"
+										  Opacity="0.4"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				</TextBlock>
+			</StackPanel>
+			<!--Red dice-->
+			<StackPanel Grid.Column="3"
+						Grid.Row="1"
+						Grid.RowSpan="2"
+						Width="auto"
+						Margin="0,0,10,0">
+				<TextBlock Grid.Column="3"
+						   Grid.Row="1"
+						   Foreground="DarkRed"
+						   FontWeight="Heavy">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="4"
+										  Direction="330"
+										  Color="Gray"
+										  Opacity="0.25"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				Red
+				</TextBlock>
+				<TextBlock  Name="RemainingRed"
+							Grid.Column="3"
+							Grid.Row="2"
+							Foreground="Black"
+							FontWeight="Heavy"
+							FontSize="40"
+							Padding="0"
+							Margin="0"
+							Text="{Binding RedCount}">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="3"
+										  Direction="330"
+										  Color="White"
+										  Opacity="0.4"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				</TextBlock>
+			</StackPanel>
+			<!--Santa dice-->
+			<StackPanel Grid.Column="4"
+						Grid.Row="1"
+						Grid.RowSpan="2"
+						Width="auto"
+						Margin="0,0,10,0">
+				<StackPanel.Style>
+					<Style TargetType="StackPanel">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.GameSettings.IncludedSanta}"
+										 Value="False">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</StackPanel.Style>
+				<TextBlock Grid.Column="4"
+						   Grid.Row="1"
+						   Foreground="White"
+						   FontWeight="Heavy">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="6"
+										  Direction="330"
+										  Color="#FFD30404"
+										  Opacity="0.8"
+										  BlurRadius="7" />
+					</TextBlock.Effect>
+				Santa
+				</TextBlock>
+				<TextBlock  Name="RemainingSanta"
+							Grid.Column="4"
+							Grid.Row="2"
+							Foreground="Black"
+							FontWeight="Heavy"
+							FontSize="40"
+							Padding="0"
+							Margin="0"
+							Text="{Binding SantaCount}">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="3"
+										  Direction="330"
+										  Color="White"
+										  Opacity="0.4"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				</TextBlock>
+			</StackPanel>
 		</Grid>
 	</Border>
 </UserControl>

@@ -4,7 +4,7 @@
 	{
 		public static readonly GameSingleton instance = new GameSingleton();
 
-		public IGame Game { get;  }
+		public IGame Game { get; }
 
 		private GameSingleton()
 		{

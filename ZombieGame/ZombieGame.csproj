@@ -65,6 +65,9 @@
     <Compile Include="DiceTurnInfo.xaml.cs">
       <DependentUpon>DiceTurnInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewGameSettings.xaml.cs">
+      <DependentUpon>NewGameSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Options.xaml.cs">
       <DependentUpon>Options.xaml</DependentUpon>
     </Compile>
@@ -97,6 +100,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewGameSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Options.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

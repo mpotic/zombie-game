@@ -42,12 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Callback\ITableDiceCallback.cs" />
     <Compile Include="Callback\IFrontCallback.cs" />
     <Compile Include="Callback\IPlayerCallback.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\IInvoker.cs" />
     <Compile Include="Command\Invoker.cs" />
+    <Compile Include="Command\NewGameCommand.cs" />
     <Compile Include="Command\ResetCommand.cs" />
     <Compile Include="Command\RollCommand.cs" />
     <Compile Include="Command\StartCommand.cs" />
@@ -57,12 +57,19 @@
     <Compile Include="Dice\IBag.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\IHand.cs" />
+    <Compile Include="Dice\ParticularDice\SantaDice.cs" />
     <Compile Include="Game\Game.cs" />
-    <Compile Include="Dice\GreenDice.cs" />
-    <Compile Include="Game\GameSingleton.cs" />
-    <Compile Include="Game\GameSingletonGenerator.cs" />
+    <Compile Include="Dice\ParticularDice\GreenDice.cs" />
+    <Compile Include="Game\GameSingleton\GameSingleton.cs" />
+    <Compile Include="Game\GameSingleton\GameSingletonGenerator.cs" />
     <Compile Include="Game\IGame.cs" />
-    <Compile Include="Game\IGameSingleton.cs" />
+    <Compile Include="Game\GameSingleton\IGameSingleton.cs" />
+    <Compile Include="Game\Score\IScore.cs" />
+    <Compile Include="Game\Score\ScoreDecorator.cs" />
+    <Compile Include="Game\Score\ScoreDecoratorSanta.cs" />
+    <Compile Include="Game\Score\IScoreDecorator.cs" />
+    <Compile Include="Game\Settings\GameSettings.cs" />
+    <Compile Include="Game\Settings\IGameSettings.cs" />
     <Compile Include="Options\IOptions.cs" />
     <Compile Include="Options\IOptionsSingleton.cs" />
     <Compile Include="Options\Options.cs" />
@@ -78,9 +85,9 @@
     <Compile Include="PlayerModel\Visitor\ChangePlayerVisitor.cs" />
     <Compile Include="PlayerModel\Visitor\SaveTurnPlayerVisitor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dice\RedDice.cs" />
-    <Compile Include="Game\Score.cs" />
-    <Compile Include="Dice\YellowDice.cs" />
+    <Compile Include="Dice\ParticularDice\RedDice.cs" />
+    <Compile Include="Game\Score\Score.cs" />
+    <Compile Include="Dice\ParticularDice\YellowDice.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

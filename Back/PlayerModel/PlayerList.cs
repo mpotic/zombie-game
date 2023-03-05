@@ -35,5 +35,13 @@ namespace Back.PlayerModel
 				player.TotalBrainCount = 0;
 			}
 		}
+
+		public void RemoveAllPlayers()
+		{
+			while(Players.Count > 0)
+			{
+				Players.RemoveAt(0);
+			}
+		}
 	}
 }

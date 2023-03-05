@@ -15,9 +15,9 @@ namespace Back.Dice
 
 		public void GrabAndRollDice()
 		{
-			GrabbedDice = GrabPreviousTurnFootsteps();
-			
-			if(GrabbedDice.Count < 3)
+			GrabPreviousTurnFootsteps();
+
+			if (GrabbedDice.Count < 3)
 			{
 				GrabbedDice.AddRange(GameSingleton.instance.Game.Bag.GrabDice(3 - GrabbedDice.Count));
 			}
@@ -26,20 +26,18 @@ namespace Back.Dice
 		}
 
 		/// <summary>
-		/// Removes all dice that have their side equal to FOOTSTEPS from Score.AllRolledDice and returns them as a List.
+		/// Removes all dice that have their side equal to FOOTSTEPS from Score.AllRolledDice and saves them to GrabbedDice.
 		/// </summary>
 		/// <returns></returns>
-		private List<IDice> GrabPreviousTurnFootsteps()
+		private void GrabPreviousTurnFootsteps()
 		{
-			List<IDice> dice = GameSingleton.instance.Game.Score.AllRolledDice.ToList<IDice>();
-			dice.RemoveAll(x => x.Side != DiceSide.FOOTSTEPS);
+			GrabbedDice = GameSingleton.instance.Game.ScoreDecorator.AllRolledDice.ToList<IDice>();
+			GrabbedDice.RemoveAll(x => x.Side != DiceSide.FOOTSTEPS);
 
-			foreach (IDice element in dice)
+			foreach (IDice element in GrabbedDice)
 			{
-				GameSingleton.instance.Game.Score.AllRolledDice.Remove(element);
+				GameSingleton.instance.Game.ScoreDecorator.AllRolledDice.Remove(element);
 			}
-
-			return dice;
 		}
 	}
 }

@@ -34,5 +34,15 @@ namespace ZombieGame
 		{
 			OptionsSingleton.Options.StartAction(new PlayerCallback());
 		}
+
+		private void NewGameButton_Click(object sender, RoutedEventArgs e)
+		{
+			NewGameSettings gameSettingsWindow = new NewGameSettings();
+
+			gameSettingsWindow.Owner = Application.Current.MainWindow;
+			gameSettingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
+			gameSettingsWindow.ShowDialog();
+		}
 	}
 }

@@ -13,7 +13,7 @@ namespace Back.Dice
 		{
 			get
 			{
-				return this.ToString();
+				return this.GetType().Name;
 			}
 		}
 
@@ -34,11 +34,6 @@ namespace Back.Dice
 			{
 				side = DiceSide.FOOTSTEPS;
 			}
-		}
-
-		public override string ToString()
-		{
-			return "RedDice";
 		}
 	}
 }

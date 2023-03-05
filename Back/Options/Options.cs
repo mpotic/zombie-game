@@ -28,7 +28,7 @@ namespace Back.Options
 			RollCommand command = new RollCommand();
 			invoker.ExecuteCommand(command);
 
-			if (GameSingleton.instance.Game.Score.Killed)
+			if (GameSingleton.instance.Game.ScoreDecorator.Killed)
 			{
 				IPlayer player = GameSingleton.instance.Game.CurrentPlayer;
 				int currentPlayerIndex = PlayerListSingleton.instance.PlayersList.Players.IndexOf(player);
@@ -71,6 +71,14 @@ namespace Back.Options
 			invoker.ExecuteCommand(command);
 
 			playerCallback.ChangeActivePlayer(0);
+		}
+
+		public void SetupNewGame(bool includeSanta)
+		{
+			NewGameCommand command = new NewGameCommand();
+			command.IncludeSanta = includeSanta;
+
+			invoker.ExecuteCommand(command);
 		}
 	}
 }

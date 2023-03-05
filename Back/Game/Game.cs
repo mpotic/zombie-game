@@ -2,20 +2,23 @@
 using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
 using Back.PlayerModel.Visitor;
+using System.Linq;
 
 namespace Back.Game
 {
 	public class Game : IGame
 	{
-		private IPlayer currentPlayer = null;
+		private IPlayer currentPlayer;
 
-		private Score score = new Score();
+		private IScoreDecorator scoreDecorator;
 
-		private IHand hand = new Hand();
+		private IHand hand;
 
-		private IBag bag = new Bag();
+		private IGameSettings gameSettings;
 
-		public Score Score { get => score; set => score = value; }
+		private IBag bag;
+
+		public IScoreDecorator ScoreDecorator { get => scoreDecorator; set => scoreDecorator = value; }
 
 		public IPlayer CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
 
@@ -23,38 +26,61 @@ namespace Back.Game
 
 		public IBag Bag { get => bag; set => bag = value; }
 
+		public IGameSettings GameSettings { get => gameSettings; set => gameSettings = value; }
+
+		public Game()
+		{
+			scoreDecorator = new ScoreDecorator();
+			hand = new Hand();
+			gameSettings = new GameSettings();
+			bag = new Bag();
+		}
+
+		public void SetupNewGame(bool includeSanta)
+		{
+			GameSettings.IncludedSanta = includeSanta;
+
+			if (includeSanta)
+			{
+				ScoreDecorator = new SantaScoreDecorator();
+			}
+			else
+			{
+				ScoreDecorator = new ScoreDecorator();
+			}
+
+			StartGame();
+		}
+
 		public void StopAction()
 		{
 			currentPlayer.Accept(new SaveTurnPlayerVisitor());
 			currentPlayer.Accept(new ChangePlayerVisitor());
-			Score.ResetScore();
+			ScoreDecorator.ResetScore();
 			Bag.ResetBag();
 		}
 
 		public void RollAction()
 		{
 			Hand.GrabAndRollDice();
-			Score.UpdateScore();
+			ScoreDecorator.UpdateScore();
+			ScoreDecorator.CheckAndKill();
 		}
 
 		public void ResetGame()
 		{
-			Score.ResetScore();
+			ScoreDecorator.ResetScore();
 			Bag.ResetBag();
-
 			CurrentPlayer = null;
-
-			// For some reasons after calling Clear() on ObservableCollection it takes 1-2 seconds to reflect the changes on the UI.
-			while (PlayerListSingleton.instance.PlayersList.Players.Count > 0)
-				PlayerListSingleton.instance.PlayersList.Players.RemoveAt(0);
+			PlayerListSingleton.instance.PlayersList.RemoveAllPlayers();
 		}
 
 		public void StartGame()
 		{
-			Score.ResetScore();
+			ScoreDecorator.ResetScore();
 			Bag.ResetBag();
 			PlayerListSingleton.instance.PlayersList.ResetPlayersScore();
-			CurrentPlayer = PlayerListSingleton.instance.PlayersList.Players[0];
+			CurrentPlayer = PlayerListSingleton.instance.PlayersList.Players.FirstOrDefault();
 		}
 	}
 }

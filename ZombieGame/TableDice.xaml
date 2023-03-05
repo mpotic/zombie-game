@@ -17,16 +17,16 @@
 			  Background="#1E000000"
 			  BorderThickness="1"
 			  BorderBrush="SaddleBrown"
-			  Width="506"
 			  IsSynchronizedWithCurrentItem="True"
 			  VirtualizingPanel.IsVirtualizing="False">
 		<ListView.ItemsPanel>
 			<ItemsPanelTemplate>
 				<WrapPanel Orientation="Vertical"
-						   Height="300"
-						   MinWidth="500"
-						   ItemHeight="100"
-						   ItemWidth="100" />
+						   Height="330"
+						   MinWidth="550"
+						   MaxWidth="550"
+						   ItemHeight="110"
+						   ItemWidth="110" />
 			</ItemsPanelTemplate>
 		</ListView.ItemsPanel>
 		<ListView.Resources>

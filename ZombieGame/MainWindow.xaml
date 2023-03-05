@@ -8,14 +8,15 @@
 		mc:Ignorable="d"
 		Title="MainWindow"
 		SizeToContent="WidthAndHeight"
-		FontSize="30"
+		FontSize="34"
 		ResizeMode="CanMinimize"
 		FontWeight="Medium"
-		FontFamily="HP Simplified">
-	<Window.Background>
-		<ImageBrush ImageSource="../../Images/Background/ZombieBackground.jpg" />
-	</Window.Background>
-	<Grid>
+		FontFamily="HP Simplified"
+		Background="Gray">
+	<Grid Margin="0">
+		<Grid.Background>
+			<ImageBrush ImageSource="../../Images/Background/ZombieBackground.jpg" />
+		</Grid.Background>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="10" />
 			<ColumnDefinition Width="auto" />
@@ -46,16 +47,15 @@
 						 Grid.Row="2"
 						 Margin="0,0,0,0"
 						 HorizontalAlignment="Center"
-						 VerticalAlignment="Top"
-						 Loaded="TableDice_Loaded" />
+						 VerticalAlignment="Top" />
 		<Border Grid.Column="2"
 				Grid.Row="3"
 				BorderThickness="0">
 			<Border.Resources>
 				<Style TargetType="Border">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.Score.Killed}"
-									 Value="True">
+						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.ScoreDecorator.Killed}"
+									 Value="true">
 							<Setter Property="Visibility"
 									Value="Hidden" />
 						</DataTrigger>
@@ -65,7 +65,7 @@
 			<local:Options Grid.Column="2"
 						   Grid.Row="3"
 						   HorizontalAlignment="Center"
-						   VerticalAlignment="Bottom" />
+						   VerticalAlignment="Bottom"/>
 		</Border>
 		<Border Grid.Column="2"
 				Grid.Row="3"
@@ -75,8 +75,8 @@
 			<Border.Resources>
 				<Style TargetType="Border">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.Score.Killed}"
-									 Value="False">
+						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.ScoreDecorator.Killed}"
+									 Value="false">
 							<Setter Property="Visibility"
 									Value="Hidden" />
 						</DataTrigger>

@@ -13,7 +13,7 @@ namespace Back.Dice
 		{
 			get
 			{
-				return this.ToString();
+				return this.GetType().Name;
 			}
 		}
 
@@ -23,11 +23,6 @@ namespace Back.Dice
 
 			int randomInt = new Random().Next(0, 3);
 			side = (DiceSide)randomInt;
-		}
-
-		public override string ToString()
-		{
-			return "YellowDice";
 		}
 	}
 }

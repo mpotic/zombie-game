@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
@@ -9,39 +10,15 @@ namespace Back.Dice
 {
 	public class Bag : IBag, INotifyPropertyChanged
 	{
-		int greenCount = 6;
+		private List<IDice> dice = new List<IDice>();
 
-		int yellowCount = 4;
-
-		int redCount = 3;
-
-		int santaCount = 0;
-
-		bool includeSanta = false;
+		private bool usedSanta = false;
 
 		public int GreenCount
 		{
 			get
 			{
-				return greenCount;
-			}
-			set
-			{
-				this.greenCount = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public int RedCount
-		{
-			get
-			{
-				return redCount;
-			}
-			set
-			{
-				this.redCount = value;
-				OnPropertyChanged();
+				return dice.FindAll(x => x.DiceType == typeof(GreenDice).Name).Count;
 			}
 		}
 
@@ -49,92 +26,110 @@ namespace Back.Dice
 		{
 			get
 			{
-				return yellowCount;
-			}
-			set
-			{
-				this.yellowCount = value;
-				OnPropertyChanged();
+				return dice.FindAll(x => x.DiceType == typeof(YellowDice).Name).Count;
 			}
 		}
 
-		public int SantaCount { get => santaCount; set => santaCount = value; }
+		public int RedCount
+		{
+			get
+			{
+				return dice.FindAll(x => x.DiceType == typeof(RedDice).Name).Count;
+			}
+		}
 
-		public bool IncludeSanta { get => includeSanta; set => includeSanta = value; }
+		public int SantaCount
+		{
+			get
+			{
+				return dice.FindAll(x => x.DiceType == typeof(SantaDice).Name).Count;
+			}
+		}
 
 		public int TotalCount
 		{
 			get
 			{
-				return greenCount + yellowCount + redCount;
+				return dice.Count;
 			}
+		}
+
+		public Bag()
+		{
+			dice.AddRange(Enumerable.Range(0, 6).Select(x => new GreenDice()).ToList<IDice>());
+			dice.AddRange(Enumerable.Range(0, 4).Select(x => new YellowDice()).ToList<IDice>());
+			dice.AddRange(Enumerable.Range(0, 3).Select(x => new RedDice()).ToList<IDice>());
 		}
 
 		public List<IDice> GrabDice(int count)
 		{
-			List<IDice> dice = new List<IDice>();
+			List<IDice> grabbedDice = new List<IDice>();
 			Random random = new Random();
 
-			CheckAndRefil();
+			CheckAndRefill();
 
 			for (int i = 0; i < count; i++)
 			{
 				// To reduce the possibility of getting the same number twice in a row because randomness is based on time
 				Thread.Sleep(1);
 
-				int number = random.Next(0, TotalCount);
-				if (number < GreenCount)
-				{
-					dice.Add(new GreenDice());
-					GreenCount--;
-				}
-				else if (number < (GreenCount + YellowCount))
-				{
-					dice.Add(new YellowDice());
-					YellowCount--;
-				}
-				else
-				{
-					dice.Add(new RedDice());
-					RedCount--;
-				}
+				int index = random.Next(0, TotalCount);
+				grabbedDice.Add(dice[index]);
+				dice.RemoveAt(index);
 			}
 
-			return dice;
+			AlertPropertyChanged();
+
+			return grabbedDice;
+		}
+
+		public void FillBag()
+		{
+			int greenDiceNeeded = 6 - GreenCount;
+			int yellowDiceNeeded = 4 - YellowCount;
+			int redDiceNeeded = 3 - RedCount;
+
+			if (GameSingleton.instance.Game.GameSettings.IncludedSanta)
+			{
+				greenDiceNeeded--;
+			}
+
+			if (GameSingleton.instance.Game.GameSettings.IncludedSanta && !usedSanta)
+			{
+				dice.Add(new SantaDice());
+				usedSanta = true;
+			}
+
+			dice.AddRange(Enumerable.Range(0, greenDiceNeeded).Select(x => new GreenDice()).ToList<IDice>());
+			dice.AddRange(Enumerable.Range(0, yellowDiceNeeded).Select(x => new YellowDice()).ToList<IDice>());
+			dice.AddRange(Enumerable.Range(0, redDiceNeeded).Select(x => new RedDice()).ToList<IDice>());
+
+			AlertPropertyChanged();
 		}
 
 		public void ResetBag()
 		{
-			GreenCount = 6;
-			YellowCount = 4;
-			RedCount = 3;
-			if (IncludeSanta)
-			{
-				SantaCount = 1;
-			}
+			usedSanta = false;
+			dice.Clear();
+			FillBag();
 		}
 
-		public void CheckAndRefil()
+		public void CheckAndRefill()
 		{
-			if (TotalCount >= ( 3 - GameSingleton.instance.Game.Hand.GrabbedDice.Count))
-				return;
-
-			ResetBag();
-			GameSingleton.instance.Game.Hand.GrabbedDice.ForEach(x =>
+			if (TotalCount >= (3 - GameSingleton.instance.Game.Hand.GrabbedDice.Count))
 			{
-				if(x.DiceType == "GreenDice")
-				{
-					GreenCount--;
-				}
-				else if (x.DiceType == "YellowDice")
-				{
-					YellowCount--;
-				}
-				else
-				{
-					RedCount--;
-				}
-			});
+				return;
+			}
+
+			FillBag();
+		}
+
+		private void AlertPropertyChanged()
+		{
+			OnPropertyChanged("GreenCount");
+			OnPropertyChanged("YellowCount");
+			OnPropertyChanged("RedCount");
+			OnPropertyChanged("SantaCount");
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
