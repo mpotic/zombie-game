@@ -6,7 +6,8 @@
 		xmlns:local="clr-namespace:ZombieGame"
 		xmlns:Game="clr-namespace:Back.Game;assembly=Back"
 		mc:Ignorable="d"
-		Title="MainWindow"
+		Icon="../../Images/Icon/ZombieGameIcon.png"
+		Title="Zombie Dice"
 		SizeToContent="WidthAndHeight"
 		FontSize="34"
 		ResizeMode="CanMinimize"
@@ -54,7 +55,7 @@
 			<Border.Resources>
 				<Style TargetType="Border">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.ScoreDecorator.Killed}"
+						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.Killed}"
 									 Value="true">
 							<Setter Property="Visibility"
 									Value="Hidden" />
@@ -65,7 +66,7 @@
 			<local:Options Grid.Column="2"
 						   Grid.Row="3"
 						   HorizontalAlignment="Center"
-						   VerticalAlignment="Bottom"/>
+						   VerticalAlignment="Bottom" />
 		</Border>
 		<Border Grid.Column="2"
 				Grid.Row="3"
@@ -75,7 +76,7 @@
 			<Border.Resources>
 				<Style TargetType="Border">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.ScoreDecorator.Killed}"
+						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.Killed}"
 									 Value="false">
 							<Setter Property="Visibility"
 									Value="Hidden" />

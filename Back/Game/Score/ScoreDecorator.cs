@@ -7,7 +7,7 @@ namespace Back.Game
 {
 	public class ScoreDecorator : IScoreDecorator, INotifyPropertyChanged
 	{
-		private IScore scoreComponent = new Score();
+		private IScore scoreComponent;
 
 		public IScore ScoreComponent { get => scoreComponent; set => scoreComponent = value; }
 
@@ -44,7 +44,7 @@ namespace Back.Game
 			set
 			{
 				ScoreComponent.Killed = value;
-				OnPropertyChanged();
+				//OnPropertyChanged();
 			}
 		}
 
@@ -62,8 +62,11 @@ namespace Back.Game
 
 		public ScoreDecorator()
 		{
-			AllRolledDice = GameSingleton.instance != null ?
-				GameSingleton.instance.Game.ScoreDecorator.AllRolledDice : new ObservableCollection<IDice>();
+			// If it is the first instantiation create a new list, otherwise reference the existing one, so that the reference that is already bound on the UI stays the same.
+			ObservableCollection<IDice> dice  = GameSingleton.instance != null ?
+				GameSingleton.instance.Game.ScoreDecorator.ScoreComponent.AllRolledDice : new ObservableCollection<IDice>();
+
+			ScoreComponent = new Score(dice);
 		}
 
 		public virtual void CheckAndKill()
@@ -83,6 +86,9 @@ namespace Back.Game
 
 		public virtual void SetScoreComponent(IScore score)
 		{
+			ObservableCollection<IDice> dice = GameSingleton.instance != null ?
+				GameSingleton.instance.Game.ScoreDecorator.ScoreComponent.AllRolledDice : new ObservableCollection<IDice>();
+
 			ScoreComponent = score;
 		}
 

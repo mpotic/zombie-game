@@ -1,5 +1,6 @@
 ﻿using Back.Options;
 using System.Windows;
+using ZombieGame.Callback;
 
 namespace ZombieGame
 {
@@ -16,7 +17,7 @@ namespace ZombieGame
 		private void StartNewGame_Click(object sender, RoutedEventArgs e)
 		{
 			bool includeSanta = IncludeSanta.IsChecked.Value;
-			OptionsSingleton.Options.SetupNewGame(includeSanta);
+			OptionsSingleton.Options.SetupNewGameAction(includeSanta, false, false, new PlayerCallback());
 
 			this.DialogResult = true;
 			this.Close();

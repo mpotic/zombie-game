@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using Back.Game;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace ZombieGame
 {
@@ -11,7 +14,8 @@ namespace ZombieGame
 
 		public MainWindow()
 		{
-			InitializeComponent(); 
+			InitializeComponent();
+			WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 		}
 	}
 }

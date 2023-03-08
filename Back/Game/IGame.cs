@@ -17,7 +17,9 @@ namespace Back.Game
 
 		IGameSettings GameSettings { get; set; }
 
-		void SetupNewGame(bool includeSanta);
+		bool Killed { get; set; }
+
+		void SetupNewGame(bool includeSanta, bool includeHero, bool includeHeroine);
 
 		void StopAction();
 

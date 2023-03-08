@@ -2,9 +2,9 @@
 {
 	public class OptionsSingleton : IOptionsSingleton
 	{
-		private static Options options = null;
+		private static IOptions options = null;
 		private OptionsSingleton() { }
-		public static Options Options
+		public static IOptions Options
 		{
 			get
 			{

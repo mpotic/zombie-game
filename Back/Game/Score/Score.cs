@@ -2,6 +2,7 @@
 using Back.PlayerModel.Visitor;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,11 +18,17 @@ namespace Back.Game
 
 		private bool killed = false;
 
-		private ObservableCollection<IDice> allRolledDice = new ObservableCollection<IDice>();
+		private ObservableCollection<IDice> allRolledDice;
 
 		public Score()
 		{
-			allRolledDice = new ObservableCollection<IDice>();
+			AllRolledDice = new ObservableCollection<IDice>();
+			BindingOperations.EnableCollectionSynchronization(allRolledDice, new object());
+		}
+
+		public Score(ObservableCollection<IDice> dice)
+		{
+			AllRolledDice = dice;
 			BindingOperations.EnableCollectionSynchronization(allRolledDice, new object());
 		}
 
@@ -48,6 +55,7 @@ namespace Back.Game
 			set
 			{
 				killed = value;
+				//OnPropertyChanged();
 			}
 		}
 
@@ -95,7 +103,7 @@ namespace Back.Game
 
 		public void PlayerKilled()
 		{
-			GameSingleton.instance.Game.ScoreDecorator.Killed = true;
+			GameSingleton.instance.Game.Killed = true;
 
 			GameSingleton.instance.Game.CurrentPlayer.Accept(new ChangePlayerVisitor());
 
@@ -103,8 +111,8 @@ namespace Back.Game
 			{
 				Thread.Sleep(1200);
 				ResetScore();
-				GameSingleton.instance.Game.Bag.FillBag();
-				GameSingleton.instance.Game.ScoreDecorator.Killed = false;
+				GameSingleton.instance.Game.Bag.ResetBag();
+				GameSingleton.instance.Game.Killed = false;
 			});
 		}
 

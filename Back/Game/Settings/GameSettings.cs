@@ -7,6 +7,10 @@ namespace Back.Game
 	{
 		bool includedSanta = false;
 
+		bool includedHero = false;
+
+		bool includedHeroine = false;
+
 		public bool IncludedSanta
 		{
 			get
@@ -18,6 +22,39 @@ namespace Back.Game
 				includedSanta = value;
 				OnPropertyChanged();
 			}
+		}
+
+		public bool IncludedHero
+		{
+			get
+			{
+				return includedHero;
+			}
+			set
+			{
+				includedHero = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public bool IncludedHeroine
+		{
+			get
+			{
+				return includedHeroine;
+			}
+			set
+			{
+				includedHeroine = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public void Configure(bool includeSanta, bool includeHero, bool includeHeroine)
+		{
+			IncludedSanta = includeSanta;
+			IncludedHero = includeHero;
+			IncludedHeroine = includeHeroine;
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

@@ -11,7 +11,7 @@
 		<SolidColorBrush Color="#FFFFF3DB"
 						 Opacity="0.6" />
 	</UserControl.Background>
-	<Border BorderThickness="1"
+	<Border BorderThickness="2"
 			CornerRadius="2"
 			Margin="5"
 			BorderBrush="SaddleBrown"

@@ -66,6 +66,8 @@
     <Compile Include="Game\GameSingleton\IGameSingleton.cs" />
     <Compile Include="Game\Score\IScore.cs" />
     <Compile Include="Game\Score\ScoreDecorator.cs" />
+    <Compile Include="Game\Score\ScoreDecoratorHero.cs" />
+    <Compile Include="Game\Score\ScoreDecoratorHeroine.cs" />
     <Compile Include="Game\Score\ScoreDecoratorSanta.cs" />
     <Compile Include="Game\Score\IScoreDecorator.cs" />
     <Compile Include="Game\Settings\GameSettings.cs" />

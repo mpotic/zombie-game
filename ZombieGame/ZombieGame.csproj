@@ -139,6 +139,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Images\DiceFaces\Background\RedBackWhiteFlakes.avif" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -165,6 +166,22 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Misc\RIP.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DiceFaces\Background\RedBackWhiteFlakes.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DiceFaces\Background\WhiteBackRedDice.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DiceFaces\DoubleBrain.PNG" />
+    <Resource Include="Images\DiceFaces\DoubleShotgun.PNG" />
+    <Resource Include="Images\DiceFaces\EnergyDrink.PNG" />
+    <Resource Include="Images\DiceFaces\Helmet.PNG" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Icon\ZombieGameIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

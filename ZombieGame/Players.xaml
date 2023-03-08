@@ -29,7 +29,7 @@
 						Grid.Column="1"
 						Grid.Row="1"
 						BorderBrush="SaddleBrown"
-						BorderThickness="1"
+						BorderThickness="2"
 						Width="190"
 						Height="480"
 						Background="#1E000000">

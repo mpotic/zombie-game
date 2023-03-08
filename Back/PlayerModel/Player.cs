@@ -34,11 +34,6 @@ namespace Back.PlayerModel
 			visitor.Visit(this);
 		}
 
-		public override string ToString()
-		{
-			return Name + '\n' + "Brains: " + TotalBrainCount;
-		}
-
 		public override bool Equals(object obj)
 		{
 			if (obj == null) return false;

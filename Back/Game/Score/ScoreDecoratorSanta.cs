@@ -1,4 +1,5 @@
 ﻿using Back.Dice;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Back.Game
@@ -29,27 +30,41 @@ namespace Back.Game
 
 			if (santaDice.Side == DiceSide.ENERGY_DRINK)
 			{
-				foreach (IDice dice in GameSingleton.instance.Game.Hand.GrabbedDice)
+				List<IDice> greenFootsteps = new List<IDice>();
+				foreach (IDice dice in AllRolledDice)
 				{
 					if (dice.DiceType == typeof(GreenDice).Name && dice.Side == DiceSide.FOOTSTEPS)
 					{
 						dice.Side = DiceSide.BRAIN;
+						greenFootsteps.Add(dice);
 					}
+				}
+
+				foreach(IDice dice in greenFootsteps)
+				{
+					AllRolledDice.Remove(dice);
+					AllRolledDice.Add(dice);
 				}
 			}
 		}
 
+		public override void ResetScore()
+		{
+			base.ResetScore();
+
+			santaDice = null;
+		}
+
 		public override void CheckAndKill()
 		{
-			if(santaDice == null || santaDice.Side != DiceSide.HELMET)
+			if(santaDice != null && santaDice.Side == DiceSide.HELMET && ShotgunCount < 4)
 			{
-				base.CheckAndKill();
 				return;
 			}
 
-			if(ShotgunCount >= 4)
+			base.CheckAndKill();
+			if(GameSingleton.instance.Game.Killed)
 			{
-				PlayerKilled();
 				santaDice = null;
 			}
 		}

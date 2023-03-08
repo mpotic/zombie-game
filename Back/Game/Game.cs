@@ -2,11 +2,13 @@
 using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
 using Back.PlayerModel.Visitor;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Back.Game
 {
-	public class Game : IGame
+	public class Game : IGame, INotifyPropertyChanged
 	{
 		private IPlayer currentPlayer;
 
@@ -18,6 +20,8 @@ namespace Back.Game
 
 		private IBag bag;
 
+		private bool killed;
+
 		public IScoreDecorator ScoreDecorator { get => scoreDecorator; set => scoreDecorator = value; }
 
 		public IPlayer CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
@@ -28,6 +32,16 @@ namespace Back.Game
 
 		public IGameSettings GameSettings { get => gameSettings; set => gameSettings = value; }
 
+		public bool Killed
+		{
+			get => killed;
+			set
+			{
+				killed = value;
+				OnPropertyChanged();
+			}
+		}
+
 		public Game()
 		{
 			scoreDecorator = new ScoreDecorator();
@@ -36,18 +50,34 @@ namespace Back.Game
 			bag = new Bag();
 		}
 
-		public void SetupNewGame(bool includeSanta)
+		public void SetupNewGame(bool includeSanta = false, bool includeHero = false, bool includeHeroine = false)
 		{
-			GameSettings.IncludedSanta = includeSanta;
+			GameSettings.Configure(includeSanta, includeHero, includeHeroine);
 
-			if (includeSanta)
+			IScoreDecorator currentDecorator = new ScoreDecorator();
+
+			if (GameSettings.IncludedSanta)
 			{
-				ScoreDecorator = new SantaScoreDecorator();
+				IScoreDecorator santaDecorator = new SantaScoreDecorator();
+				santaDecorator.SetScoreComponent(currentDecorator);
+				currentDecorator = santaDecorator;
 			}
-			else
+
+			if (GameSettings.IncludedHero)
 			{
-				ScoreDecorator = new ScoreDecorator();
+				IScoreDecorator heroDecorator = new ScoreDecoratorHero();
+				heroDecorator.SetScoreComponent(currentDecorator);
+				currentDecorator = heroDecorator;
 			}
+
+			if (GameSettings.IncludedHeroine)
+			{
+				IScoreDecorator heroineDecorator = new ScoreDecoratorHeroine();
+				heroineDecorator.SetScoreComponent(currentDecorator);
+				currentDecorator = heroineDecorator;
+			}
+
+			ScoreDecorator = currentDecorator;
 
 			StartGame();
 		}
@@ -81,6 +111,13 @@ namespace Back.Game
 			Bag.ResetBag();
 			PlayerListSingleton.instance.PlayersList.ResetPlayersScore();
 			CurrentPlayer = PlayerListSingleton.instance.PlayersList.Players.FirstOrDefault();
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

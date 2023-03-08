@@ -6,7 +6,7 @@ namespace Back.PlayerModel.Visitor
 	{
 		public void Visit(IPlayer player)
 		{
-			if(GameSingleton.instance.Game.ScoreDecorator.Killed)
+			if(GameSingleton.instance.Game.Killed)
 			{
 				return;
 			}	

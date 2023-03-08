@@ -15,16 +15,14 @@
 	<ListView x:Name="Dice"
 			  Margin="5"
 			  Background="#1E000000"
-			  BorderThickness="1"
+			  BorderThickness="2"
 			  BorderBrush="SaddleBrown"
-			  IsSynchronizedWithCurrentItem="True"
-			  VirtualizingPanel.IsVirtualizing="False">
+			  Width="558">
 		<ListView.ItemsPanel>
 			<ItemsPanelTemplate>
 				<WrapPanel Orientation="Vertical"
 						   Height="330"
 						   MinWidth="550"
-						   MaxWidth="550"
 						   ItemHeight="110"
 						   ItemWidth="110" />
 			</ItemsPanelTemplate>
@@ -249,6 +247,162 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<ControlTemplate x:Key="SantaBrainTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FFCA3F3F"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Background/RedBackWhiteFlakes.jpg" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="White"
+										  Opacity="0.68"
+										  RenderingBias="Quality"
+										  ShadowDepth="5" />
+					</Border.Effect>
+					<Border BorderBrush="White"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Brain.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="SantaFootstepsTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FFCA3F3F"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Background/RedBackWhiteFlakes.jpg" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="White"
+										  Opacity="0.68"
+										  RenderingBias="Quality"
+										  ShadowDepth="5" />
+					</Border.Effect>
+					<Border BorderBrush="White"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Footsteps.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="SantaShotgunTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FFCA3F3F"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Background/RedBackWhiteFlakes.jpg" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="White"
+										  Opacity="0.68"
+										  RenderingBias="Quality"
+										  ShadowDepth="5" />
+					</Border.Effect>
+					<Border BorderBrush="White"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Shotgun.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="SantaDoubleBrainTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FFCA3F3F"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Background/RedBackWhiteFlakes.jpg" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="White"
+										  Opacity="0.68"
+										  RenderingBias="Quality"
+										  ShadowDepth="5" />
+					</Border.Effect>
+					<Border BorderBrush="White"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/DoubleBrain.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="SantaEnergyDrinkTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FFCA3F3F"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Background/RedBackWhiteFlakes.jpg" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="White"
+										  Opacity="0.68"
+										  RenderingBias="Quality"
+										  ShadowDepth="5" />
+					</Border.Effect>
+					<Border BorderBrush="White"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/EnergyDrink.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<ControlTemplate x:Key="SantaHelmetTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FFCA3F3F"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Background/RedBackWhiteFlakes.jpg" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="White"
+										  Opacity="0.68"
+										  RenderingBias="Quality"
+										  ShadowDepth="5" />
+					</Border.Effect>
+					<Border BorderBrush="White"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Helmet.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
 			<Style TargetType="ListViewItem">
 				<Setter Property="Focusable"
 						Value="False" />
@@ -342,6 +496,66 @@
 						</MultiDataTrigger.Conditions>
 						<Setter Property="Template"
 								Value="{StaticResource RedFootstepsTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="SantaDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="BRAIN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource SantaBrainTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="SantaDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="FOOTSTEPS" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource SantaFootstepsTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="SantaDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="SHOTGUN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource SantaShotgunTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="SantaDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="DOUBLE_BRAIN_GIFT" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource SantaDoubleBrainTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="SantaDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="ENERGY_DRINK" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource SantaEnergyDrinkTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="SantaDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="HELMET" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource SantaHelmetTemplate}" />
 					</MultiDataTrigger>
 				</Style.Triggers>
 			</Style>
