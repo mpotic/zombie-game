@@ -16,8 +16,10 @@ namespace Back.Dice
 		private bool usedSanta = false;
 
 		public List<IDice> Dice 
-		{ 
-			get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		{
+			get => dice;
+			set => dice = value;
+		}
 
 		public int GreenCount
 		{
@@ -51,16 +53,30 @@ namespace Back.Dice
 			}
 		}
 
+		public int HeroCount
+		{
+			get
+			{
+				return dice.FindAll(x => x.DiceType == typeof(HeroDice).Name).Count;
+			}
+		}
+
+		public int HeroineCount
+		{
+			get
+			{
+				return dice.FindAll(x => x.DiceType == typeof(HeroineDice).Name).Count;
+			}
+		}
+
 		public int TotalCount
 		{
 			get
 			{
 				return dice.Count;
 			}
-		}
 
-		public int HeroDice { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-		public int HeroineDice { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		}
 
 		public Bag()
 		{
@@ -105,13 +121,13 @@ namespace Back.Dice
 			if (GameSingleton.instance.Game.GameSettings.IncludedHero)
 			{
 				yellowDiceNeeded--;
-				//dice.Add(new HeroDice());
+				dice.Add(new HeroDice());
 			}
 
 			if (GameSingleton.instance.Game.GameSettings.IncludedHeroine)
 			{
 				yellowDiceNeeded--;
-				//dice.Add(new HeroineDice());
+				dice.Add(new HeroineDice());
 			}
 
 			if (GameSingleton.instance.Game.GameSettings.IncludedSanta && !usedSanta)
@@ -144,12 +160,20 @@ namespace Back.Dice
 			FillBag();
 		}
 
+		public void ReturnDice(IDice dice)
+		{
+			Dice.Add(dice);
+			AlertPropertyChanged();
+		}
+
 		private void AlertPropertyChanged()
 		{
 			OnPropertyChanged("GreenCount");
 			OnPropertyChanged("YellowCount");
 			OnPropertyChanged("RedCount");
 			OnPropertyChanged("SantaCount");
+			OnPropertyChanged("HeroCount");
+			OnPropertyChanged("HeroineCount");
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

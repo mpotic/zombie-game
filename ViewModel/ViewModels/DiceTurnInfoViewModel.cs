@@ -15,8 +15,18 @@ namespace ViewModel
 
 		private int santaDiceCount;
 
+		private int heroDiceCount;
+
+		private int heroineDiceCount;
+
+		private bool includedSanta;
+
+		private bool includedHero;
+
+		private bool includedHeroine;
+
 		public int GreenDiceCount
-		{ 
+		{
 			get => greenDiceCount;
 			set
 			{
@@ -55,6 +65,56 @@ namespace ViewModel
 			}
 		}
 
+		public int HeroDiceCount
+		{
+			get => heroDiceCount;
+			set
+			{
+				heroDiceCount = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public int HeroineDiceCount
+		{
+			get => heroineDiceCount;
+			set
+			{
+				heroineDiceCount = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public bool IncludedSanta
+		{ 
+			get => includedSanta;
+			set 
+			{
+				includedSanta = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public bool IncludedHero
+		{
+			get => includedHero;
+			set
+			{
+				includedHero = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public bool IncludedHeroine
+		{
+			get => includedHeroine;
+			set
+			{
+				includedHeroine = value;
+				OnPropertyChanged();
+			}
+		}
+
 		public DiceTurnInfoViewModel()
 		{
 			GreenDiceCount = GameSingleton.instance.Game.Bag.GreenCount;
@@ -62,6 +122,7 @@ namespace ViewModel
 			RedDiceCount = GameSingleton.instance.Game.Bag.RedCount;
 
 			((Bag)GameSingleton.instance.Game.Bag).PropertyChanged += UpdateDiceProperties;
+			((GameSettings)GameSingleton.instance.Game.GameSettings).PropertyChanged += UpdateSettingsProperties;
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -86,6 +147,34 @@ namespace ViewModel
 
 				case "SantaCount":
 					SantaDiceCount = bag.SantaCount;
+					break;
+
+				case "HeroCount":
+					HeroDiceCount = bag.HeroCount;
+					break;
+
+				case "HeroineCount":
+					HeroineDiceCount = bag.HeroineCount;
+					break;
+			}
+		}
+
+		void UpdateSettingsProperties(object sender, PropertyChangedEventArgs args)
+		{
+			IGameSettings settings = (IGameSettings)sender;
+
+			switch (args.PropertyName)
+			{
+				case "IncludedSanta":
+					IncludedSanta = settings.IncludedSanta;
+					break;
+
+				case "IncludedHero":
+					IncludedHero = settings.IncludedHero;
+					break;
+					
+				case "IncludedHeroine":
+					IncludedHeroine = settings.IncludedHeroine;
 					break;
 			}
 		}

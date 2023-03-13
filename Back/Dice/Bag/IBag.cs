@@ -14,14 +14,16 @@ namespace Back.Dice
 
 		int SantaCount { get;}
 
-		int HeroDice { get; }
+		int HeroCount { get; }
 
-		int HeroineDice { get; }
+		int HeroineCount { get; }
 
 		List<IDice> GrabDice(int count);
 
 		void FillBag();
 
 		void ResetBag();
+
+		void ReturnDice(IDice dice);
 	}
 }

@@ -28,6 +28,7 @@
 			</ItemsPanelTemplate>
 		</ListView.ItemsPanel>
 		<ListView.Resources>
+			<!--Green brain template-->
 			<ControlTemplate x:Key="GreenBrainTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="#FF005200"
@@ -52,6 +53,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Yellow brain template-->
 			<ControlTemplate x:Key="YellowBrainTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="DarkGoldenrod"
@@ -76,6 +78,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Red brain template-->
 			<ControlTemplate x:Key="RedBrainTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border x:Name="Background"
@@ -101,6 +104,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Green shotgun template-->
 			<ControlTemplate x:Key="GreenShotgunTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="#FF005200"
@@ -125,6 +129,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Yellow shotgun template-->
 			<ControlTemplate x:Key="YellowShotgunTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="DarkGoldenrod"
@@ -149,6 +154,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Red shotgun template-->
 			<ControlTemplate x:Key="RedShotgunTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border x:Name="Background"
@@ -174,6 +180,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Green footsteps template-->
 			<ControlTemplate x:Key="GreenFootstepsTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="#FF005200"
@@ -198,6 +205,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Yellow footsteps template-->
 			<ControlTemplate x:Key="YellowFootstepsTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="DarkGoldenrod"
@@ -222,6 +230,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Red footsteps template-->
 			<ControlTemplate x:Key="RedFootstepsTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border x:Name="Background"
@@ -247,6 +256,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Santa brain template-->
 			<ControlTemplate x:Key="SantaBrainTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="#FFCA3F3F"
@@ -273,6 +283,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Santa footsteps template-->
 			<ControlTemplate x:Key="SantaFootstepsTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="#FFCA3F3F"
@@ -299,6 +310,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Santa shotgun template-->
 			<ControlTemplate x:Key="SantaShotgunTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="#FFCA3F3F"
@@ -325,6 +337,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Santa double brain template-->
 			<ControlTemplate x:Key="SantaDoubleBrainTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="#FFCA3F3F"
@@ -351,6 +364,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Santa energy drink template-->
 			<ControlTemplate x:Key="SantaEnergyDrinkTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="#FFCA3F3F"
@@ -377,6 +391,7 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Santa helmet template-->
 			<ControlTemplate x:Key="SantaHelmetTemplate"
 							 TargetType="{x:Type ListViewItem}">
 				<Border BorderBrush="#FFCA3F3F"
@@ -399,6 +414,195 @@
 							CornerRadius="4">
 						<Border.Background>
 							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Helmet.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Hero double brain template-->
+			<ControlTemplate x:Key="HeroDoubleBrainTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FF3232CD"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<SolidColorBrush Color="#FF3232CD" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border BorderBrush="#FF3232CD"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/DoubleBrain.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Hero footsteps template-->
+			<ControlTemplate x:Key="HeroFootstepsTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FF3232CD"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<SolidColorBrush Color="#FF3232CD" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border BorderBrush="#FF3232CD"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Footsteps.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Hero shotgun template-->
+			<ControlTemplate x:Key="HeroShotgunTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FF3232CD"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<SolidColorBrush Color="#FF3232CD" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border BorderBrush="#FF3232CD"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Shotgun.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Hero double shotgun template-->
+			<ControlTemplate x:Key="HeroDoubleShotgunTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FF3232CD"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<SolidColorBrush Color="#FF3232CD" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border BorderBrush="#FF3232CD"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/DoubleShotgun.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Heroine brain template-->
+			<ControlTemplate x:Key="HeroineBrainTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FFFD5EAF"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<SolidColorBrush Color="#FFFD5EAF" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border BorderBrush="#FFFD5EAF"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Brain.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Heroine shotgun template-->
+			<ControlTemplate x:Key="HeroineShotgunTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FFFD5EAF"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<SolidColorBrush Color="#FFFD5EAF" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border BorderBrush="#FFFD5EAF"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Shotgun.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Heroine footsteps template-->
+			<ControlTemplate x:Key="HeroineFootstepsTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="#FFFD5EAF"
+						BorderThickness="1"
+						Margin="8"
+						Padding="8"
+						CornerRadius="4">
+					<Border.Background>
+						<SolidColorBrush Color="#FFFD5EAF" />
+					</Border.Background>
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border BorderBrush="#FFFD5EAF"
+							BorderThickness="1"
+							CornerRadius="4">
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/HeroineFootsteps.PNG" />
 						</Border.Background>
 					</Border>
 				</Border>
@@ -556,6 +760,76 @@
 						</MultiDataTrigger.Conditions>
 						<Setter Property="Template"
 								Value="{StaticResource SantaHelmetTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="HeroDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="DOUBLE_BRAIN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource HeroDoubleBrainTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="HeroDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="FOOTSTEPS" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource HeroFootstepsTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="HeroDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="SHOTGUN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource HeroShotgunTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="HeroDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="DOUBLE_SHOTGUN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource HeroDoubleShotgunTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="HeroineDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="BRAIN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource HeroineBrainTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="HeroineDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="FOOTSTEPS" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource HeroineFootstepsTemplate}" />
+					</MultiDataTrigger>
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="HeroineDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="SHOTGUN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource HeroineShotgunTemplate}" />
 					</MultiDataTrigger>
 				</Style.Triggers>
 			</Style>

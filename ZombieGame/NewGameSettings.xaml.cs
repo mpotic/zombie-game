@@ -17,7 +17,10 @@ namespace ZombieGame
 		private void StartNewGame_Click(object sender, RoutedEventArgs e)
 		{
 			bool includeSanta = IncludeSanta.IsChecked.Value;
-			OptionsSingleton.Options.SetupNewGameAction(includeSanta, false, false, new PlayerCallback());
+			bool includeHero = IncludeHero.IsChecked.Value;
+			bool includedHeroine = IncludeHeroine.IsChecked.Value;
+
+			OptionsSingleton.Options.SetupNewGameAction(includeSanta, includeHero, includedHeroine, new PlayerCallback());
 
 			this.DialogResult = true;
 			this.Close();

@@ -31,7 +31,8 @@ namespace Back.Game
 
 		public int BrainsCount
 		{
-			get => brainsCount; set
+			get => brainsCount;
+			set
 			{
 				brainsCount = value;
 			}
@@ -93,7 +94,7 @@ namespace Back.Game
 				GameSingleton.instance.Game.Hand.GrabbedDice));
 		}
 
-		public void CheckAndKill() 
+		public void CheckAndKill()
 		{
 			if (ShotgunCount >= 3)
 			{

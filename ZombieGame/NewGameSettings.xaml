@@ -32,11 +32,17 @@
 				<RowDefinition Height="5" />
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
 				<RowDefinition Height="5" />
 			</Grid.RowDefinitions>
+			<!--Santa dice-->
 			<TextBlock Grid.Row="1"
 					   Grid.Column="1"
-					   Text="Include Santa dice in the game?" />
+					   HorizontalAlignment="Left">
+				Include <Run Foreground="#FFE82727"
+							 FontWeight="Bold">SANTA</Run> dice in the game?
+			</TextBlock>
 			<CheckBox Grid.Row="1"
 					  Grid.Column="2"
 					  Name="IncludeSanta"
@@ -48,8 +54,45 @@
 									ScaleY="1.5" />
 				</CheckBox.LayoutTransform>
 			</CheckBox>
+			<!--Hero dice-->
+			<TextBlock Grid.Row="2"
+					   Grid.Column="1"
+					   HorizontalAlignment="Left">
+				Include <Run Foreground="#FF3232CD"
+							 FontWeight="Bold">HERO</Run> dice in the game?
+			</TextBlock>
+			<CheckBox Grid.Row="2"
+					  Grid.Column="2"
+					  Name="IncludeHero"
+					  IsChecked="False"
+					  VerticalAlignment="Center"
+					  Margin="10">
+				<CheckBox.LayoutTransform>
+					<ScaleTransform ScaleX="1.5"
+									ScaleY="1.5" />
+				</CheckBox.LayoutTransform>
+			</CheckBox>
+			<!--Heroine dice-->
+			<TextBlock Grid.Row="3"
+					   Grid.Column="1"
+					   HorizontalAlignment="Left">
+				Include <Run Foreground="#FFFF4DA7"
+							 FontWeight="Bold">HEROINE</Run> dice in the game?
+			</TextBlock>
+			<CheckBox Grid.Row="3"
+					  Grid.Column="2"
+					  Name="IncludeHeroine"
+					  IsChecked="False"
+					  VerticalAlignment="Center"
+					  Margin="10">
+				<CheckBox.LayoutTransform>
+					<ScaleTransform ScaleX="1.5"
+									ScaleY="1.5" />
+				</CheckBox.LayoutTransform>
+			</CheckBox>
+
 			<Button Name="StartNewGame"
-					Grid.Row="2"
+					Grid.Row="4"
 					Grid.Column="1"
 					Grid.ColumnSpan="2"
 					Margin="0,25,0,8"

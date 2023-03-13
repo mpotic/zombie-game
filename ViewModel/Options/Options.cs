@@ -77,8 +77,8 @@ namespace ViewModel.Options
 		{
 			NewGameCommand command = new NewGameCommand();
 			command.IncludeSanta = includeSanta;
-			command.IncludeSanta = includeSanta;
-			command.IncludeSanta = includeSanta;
+			command.IncludeHero = includeHero;
+			command.IncludeHeroine = includeHeroine;
 
 			invoker.ExecuteCommand(command);
 

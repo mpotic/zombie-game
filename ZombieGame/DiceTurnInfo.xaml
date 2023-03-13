@@ -5,8 +5,9 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:Game="clr-namespace:Back.Game;assembly=Back"
 			 xmlns:local="clr-namespace:ZombieGame"
+			 DataContext="{Binding RelativeSource={RelativeSource Self}}"
 			 mc:Ignorable="d"
-			 FontSize="34">
+			 FontSize="32">
 	<UserControl.Background>
 		<SolidColorBrush Color="#FFFFF3DB"
 						 Opacity="0.6" />
@@ -23,17 +24,16 @@
 				<ColumnDefinition Width="auto" />
 				<ColumnDefinition Width="auto" />
 				<ColumnDefinition Width="auto" />
+				<ColumnDefinition Width="auto" />
+				<ColumnDefinition Width="auto" />
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 			</Grid.RowDefinitions>
 			<TextBlock Grid.Row="0"
 					   Grid.Column="0"
-					   Grid.ColumnSpan="5"
+					   Grid.ColumnSpan="100"
 					   Foreground="Black"
 					   Opacity="0.9"
 					   FontWeight="Heavy"
@@ -171,7 +171,7 @@
 				<StackPanel.Style>
 					<Style TargetType="StackPanel">
 						<Style.Triggers>
-							<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.GameSettings.IncludedSanta}"
+							<DataTrigger Binding="{Binding DiceTurnInfoViewModel.IncludedSanta}"
 										 Value="False">
 								<Setter Property="Visibility"
 										Value="Collapsed" />
@@ -202,6 +202,102 @@
 							Margin="0"
 							DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
 							Text="{Binding DiceTurnInfoViewModel.SantaDiceCount}">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="3"
+										  Direction="330"
+										  Color="White"
+										  Opacity="0.4"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				</TextBlock>
+			</StackPanel>
+			<!--Santa dice-->
+			<StackPanel Grid.Column="5"
+						Grid.Row="1"
+						Width="auto"
+						Margin="0,0,10,0">
+				<StackPanel.Style>
+					<Style TargetType="StackPanel">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding DiceTurnInfoViewModel.IncludedHero}"
+										 Value="False">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</StackPanel.Style>
+				<TextBlock Grid.Column="4"
+						   Grid.Row="1"
+						   Foreground="#FF3232CD"
+						   FontWeight="Heavy">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="4"
+										  Direction="330"
+										  Color="Gray"
+										  Opacity="0.25"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				Hero
+				</TextBlock>
+				<TextBlock  Name="RemainingHero"
+							Grid.Column="4"
+							Grid.Row="2"
+							Foreground="Black"
+							FontWeight="Heavy"
+							FontSize="40"
+							Padding="0"
+							Margin="0"
+							DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+							Text="{Binding DiceTurnInfoViewModel.HeroDiceCount}">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="3"
+										  Direction="330"
+										  Color="White"
+										  Opacity="0.4"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				</TextBlock>
+			</StackPanel>
+			<!--Hero dice-->
+			<StackPanel Grid.Column="6"
+						Grid.Row="1"
+						Width="auto"
+						Margin="0,0,10,0">
+				<StackPanel.Style>
+					<Style TargetType="StackPanel">
+						<Style.Triggers>
+							<DataTrigger Binding="{Binding DiceTurnInfoViewModel.IncludedHeroine}"
+										 Value="False">
+								<Setter Property="Visibility"
+										Value="Collapsed" />
+							</DataTrigger>
+						</Style.Triggers>
+					</Style>
+				</StackPanel.Style>
+				<TextBlock Grid.Column="4"
+						   Grid.Row="1"
+						   Foreground="#FFDD348B"
+						   FontWeight="Heavy">
+					<TextBlock.Effect>
+						<DropShadowEffect ShadowDepth="4"
+										  Direction="330"
+										  Color="White"
+										  Opacity="0.35"
+										  BlurRadius="4" />
+					</TextBlock.Effect>
+				Heroine
+				</TextBlock>
+				<TextBlock  Name="RemainingHeroine"
+							Grid.Column="4"
+							Grid.Row="2"
+							Foreground="Black"
+							FontWeight="Heavy"
+							FontSize="40"
+							Padding="0"
+							Margin="0"
+							DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+							Text="{Binding DiceTurnInfoViewModel.HeroineDiceCount}">
 					<TextBlock.Effect>
 						<DropShadowEffect ShadowDepth="3"
 										  Direction="330"
