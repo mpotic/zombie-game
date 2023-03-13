@@ -1,10 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 
 namespace Back.PlayerModel
 {
 	public interface IPlayerList
 	{
-		ObservableCollection<IPlayer> Players { get; set; }
+		List<IPlayer> Players { get; set; }
 		
 		void AddPlayer(string name);
 		

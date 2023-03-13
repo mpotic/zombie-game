@@ -153,6 +153,10 @@
       <Project>{329CA298-5435-476B-9E2D-1847C5E7B40B}</Project>
       <Name>Back</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{628DB989-EF67-4150-930E-A9C40C1B7BE4}</Project>
+      <Name>ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\DiceFaces\Brain.PNG" />

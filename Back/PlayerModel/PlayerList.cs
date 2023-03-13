@@ -1,13 +1,14 @@
 ﻿using Back.Game;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace Back.PlayerModel
 {
-	public class PlayerList : IPlayerList
+	public class PlayerList : IPlayerList, INotifyCollectionChanged
 	{
-		ObservableCollection<IPlayer> players = new ObservableCollection<IPlayer>();
+		List<IPlayer> players = new List<IPlayer>();
 
-		public ObservableCollection<IPlayer> Players
+		public List<IPlayer> Players
 		{
 			get => players;
 			set
@@ -16,16 +17,24 @@ namespace Back.PlayerModel
 			}
 		}
 
+		public event NotifyCollectionChangedEventHandler CollectionChanged;
+		
 		public void AddPlayer(string name)
 		{
 			Player newPlayer = new Player(name);
 
 			if (Players.Contains(newPlayer) || string.IsNullOrWhiteSpace(name))
-				return; //TODO: Maybe add alert
+			{
+				return;
+			}
 
 			Players.Add(newPlayer);
 			if (GameSingleton.instance.Game.CurrentPlayer == null)
+			{
 				GameSingleton.instance.Game.CurrentPlayer = newPlayer;
+			}
+
+			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, newPlayer));
 		}
 
 		public void ResetPlayersScore()
@@ -42,6 +51,8 @@ namespace Back.PlayerModel
 			{
 				Players.RemoveAt(0);
 			}
+			
+			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 		}
 	}
 }

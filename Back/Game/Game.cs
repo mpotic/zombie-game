@@ -20,7 +20,7 @@ namespace Back.Game
 
 		private IBag bag;
 
-		private bool killed;
+		private IScoreFlyweightFactory factory;
 
 		public IScoreDecorator ScoreDecorator { get => scoreDecorator; set => scoreDecorator = value; }
 
@@ -32,47 +32,42 @@ namespace Back.Game
 
 		public IGameSettings GameSettings { get => gameSettings; set => gameSettings = value; }
 
-		public bool Killed
-		{
-			get => killed;
-			set
-			{
-				killed = value;
-				OnPropertyChanged();
-			}
-		}
+		public IScoreFlyweightFactory Factory { get => factory; set => factory = value; }
 
 		public Game()
 		{
-			scoreDecorator = new ScoreDecorator();
 			hand = new Hand();
 			gameSettings = new GameSettings();
 			bag = new Bag();
+			Factory = new ScoreFlyweightFactory();
+
+			ScoreDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(ScoreDecorator));
+			ScoreDecorator.SetScoreComponent(Factory.GetFlyweight(typeof(Score)));
 		}
 
 		public void SetupNewGame(bool includeSanta = false, bool includeHero = false, bool includeHeroine = false)
 		{
 			GameSettings.Configure(includeSanta, includeHero, includeHeroine);
 
-			IScoreDecorator currentDecorator = new ScoreDecorator();
+			IScoreDecorator currentDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(ScoreDecorator));
 
 			if (GameSettings.IncludedSanta)
 			{
-				IScoreDecorator santaDecorator = new SantaScoreDecorator();
+				IScoreDecorator santaDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(SantaScoreDecorator));
 				santaDecorator.SetScoreComponent(currentDecorator);
 				currentDecorator = santaDecorator;
 			}
 
 			if (GameSettings.IncludedHero)
 			{
-				IScoreDecorator heroDecorator = new ScoreDecoratorHero();
+				IScoreDecorator heroDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(ScoreDecoratorHero));
 				heroDecorator.SetScoreComponent(currentDecorator);
 				currentDecorator = heroDecorator;
 			}
 
 			if (GameSettings.IncludedHeroine)
 			{
-				IScoreDecorator heroineDecorator = new ScoreDecoratorHeroine();
+				IScoreDecorator heroineDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(ScoreDecoratorHeroine));
 				heroineDecorator.SetScoreComponent(currentDecorator);
 				currentDecorator = heroineDecorator;
 			}

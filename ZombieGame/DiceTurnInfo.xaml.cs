@@ -1,5 +1,5 @@
-﻿using Back.Game;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using ViewModel;
 
 namespace ZombieGame
 {
@@ -8,14 +8,13 @@ namespace ZombieGame
 	/// </summary>
 	public partial class DiceTurnInfo : UserControl
 	{
+		private IDiceTurnInfoViewModel diceTurnInfoViewModel = new DiceTurnInfoViewModel();
+
+		public IDiceTurnInfoViewModel DiceTurnInfoViewModel { get => diceTurnInfoViewModel; set => diceTurnInfoViewModel = value; }
+
 		public DiceTurnInfo()
 		{
 			InitializeComponent();
-
-			RemainingGreen.DataContext = GameSingleton.instance.Game.Bag;
-			RemainingYellow.DataContext = GameSingleton.instance.Game.Bag;
-			RemainingRed.DataContext = GameSingleton.instance.Game.Bag;
-			RemainingSanta.DataContext = GameSingleton.instance.Game.Bag;
 		}
 	}
 }

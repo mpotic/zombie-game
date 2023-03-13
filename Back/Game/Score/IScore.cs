@@ -1,5 +1,5 @@
 ﻿using Back.Dice;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Back.Game
 {
@@ -12,7 +12,7 @@ namespace Back.Game
 
 		bool Killed { get; set; }
 
-		ObservableCollection<IDice> AllRolledDice { get; set; }
+		List<IDice> AllRolledDice { get; set; }
 
 		void CheckAndKill();
 
@@ -21,5 +21,7 @@ namespace Back.Game
 		void ResetScore();
 		
 		void UpdateScore();
+
+		void RemoveDice(IDice dice);
 	}
 }

@@ -1,5 +1,5 @@
-﻿using Back.Game;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using ViewModel;
 
 namespace ZombieGame
 {
@@ -8,11 +8,15 @@ namespace ZombieGame
 	/// </summary>
 	public partial class TableDice : UserControl
 	{
+		private ITableDiceViewModel tableDiceViewModel = new TableDiceViewModel();
+
+		public ITableDiceViewModel TableDiceViewModel { get => tableDiceViewModel; set => tableDiceViewModel = value; }
+
 		public TableDice()
 		{
 			InitializeComponent();
 
-			Dice.ItemsSource = GameSingleton.instance.Game.ScoreDecorator.AllRolledDice;
+			Dice.ItemsSource = TableDiceViewModel.Dice;
 		}
 	}
 }

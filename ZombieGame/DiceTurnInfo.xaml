@@ -75,7 +75,8 @@
 							FontSize="40"
 							Padding="0"
 							Margin="0"
-							Text="{Binding GreenCount}">
+							DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+							Text="{Binding DiceTurnInfoViewModel.GreenDiceCount}">
 					<TextBlock.Effect>
 						<DropShadowEffect ShadowDepth="3"
 										  Direction="330"
@@ -112,7 +113,8 @@
 						   FontSize="40"
 						   Padding="0"
 						   Margin="0"
-						   Text="{Binding YellowCount}">
+						   DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+						   Text="{Binding DiceTurnInfoViewModel.YellowDiceCount}">
 					<TextBlock.Effect>
 						<DropShadowEffect ShadowDepth="3"
 										  Direction="330"
@@ -149,7 +151,8 @@
 							FontSize="40"
 							Padding="0"
 							Margin="0"
-							Text="{Binding RedCount}">
+							DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+							Text="{Binding DiceTurnInfoViewModel.RedDiceCount}">
 					<TextBlock.Effect>
 						<DropShadowEffect ShadowDepth="3"
 										  Direction="330"
@@ -197,7 +200,8 @@
 							FontSize="40"
 							Padding="0"
 							Margin="0"
-							Text="{Binding SantaCount}">
+							DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+							Text="{Binding DiceTurnInfoViewModel.SantaDiceCount}">
 					<TextBlock.Effect>
 						<DropShadowEffect ShadowDepth="3"
 										  Direction="330"

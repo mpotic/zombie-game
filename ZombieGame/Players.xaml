@@ -31,7 +31,7 @@
 						BorderBrush="SaddleBrown"
 						BorderThickness="2"
 						Width="190"
-						Height="480"
+						Height="555"
 						Background="#1E000000">
 			<ListView.ItemTemplate>
 				<DataTemplate>
@@ -56,7 +56,7 @@
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type ListViewItem}">
 								<Border Background="{TemplateBinding Background}">
-									<ContentPresenter MouseRightButtonDown="Item_MouseRightButtonDown" />
+									<ContentPresenter />
 								</Border>
 							</ControlTemplate>
 						</Setter.Value>

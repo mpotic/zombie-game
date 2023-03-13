@@ -9,12 +9,12 @@
 		SizeToContent="WidthAndHeight"
 		WindowStartupLocation="CenterOwner"
 		WindowStyle="ToolWindow"
-		FontSize="22"
+		FontSize="24"
 		ResizeMode="NoResize"
 		FontFamily="HP Simplified"
 		Background="WhiteSmoke">
 	<Border BorderBrush="SaddleBrown"
-			BorderThickness="1">
+			BorderThickness="0,1,0,1">
 		<Grid Margin="0">
 			<Grid.Background>
 
@@ -23,8 +23,8 @@
 			</Grid.Background>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="5" />
-				<ColumnDefinition Width="238.6" />
-				<ColumnDefinition Width="68.6" />
+				<ColumnDefinition Width="auto" />
+				<ColumnDefinition Width="auto" />
 				<ColumnDefinition Width="auto" />
 				<ColumnDefinition Width="5" />
 			</Grid.ColumnDefinitions>
@@ -36,22 +36,27 @@
 			</Grid.RowDefinitions>
 			<TextBlock Grid.Row="1"
 					   Grid.Column="1"
-					   Text="Include Santa dice in the game?"
-					   Grid.ColumnSpan="2" />
+					   Text="Include Santa dice in the game?" />
 			<CheckBox Grid.Row="1"
-					  Grid.Column="3"
+					  Grid.Column="2"
 					  Name="IncludeSanta"
 					  IsChecked="False"
-					  VerticalAlignment="Center" />
+					  VerticalAlignment="Center"
+					  Margin="10">
+				<CheckBox.LayoutTransform>
+					<ScaleTransform ScaleX="1.5"
+									ScaleY="1.5" />
+				</CheckBox.LayoutTransform>
+			</CheckBox>
 			<Button Name="StartNewGame"
 					Grid.Row="2"
 					Grid.Column="1"
 					Grid.ColumnSpan="2"
-					Margin="0,15,0,0"
+					Margin="0,25,0,8"
 					VerticalAlignment="Center"
 					HorizontalAlignment="Center"
 					Content="Start new game"
-					Click="StartNewGame_Click"/>
+					Click="StartNewGame_Click" />
 		</Grid>
 	</Border>
 </Window>

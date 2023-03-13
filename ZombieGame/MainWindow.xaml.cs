@@ -1,7 +1,5 @@
-﻿using Back.Game;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
+﻿using System.Windows;
+using ViewModel;
 
 namespace ZombieGame
 {
@@ -10,7 +8,9 @@ namespace ZombieGame
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public static bool Killed = true;
+		private IKilledViewModel killedViewModel = new KilledViewModel();
+
+		public IKilledViewModel KilledViewModel { get => killedViewModel; set => killedViewModel = value; }
 
 		public MainWindow()
 		{

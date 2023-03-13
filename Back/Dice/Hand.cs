@@ -1,6 +1,7 @@
 ﻿using Back.Game;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Back.Dice
 {
@@ -22,7 +23,11 @@ namespace Back.Dice
 				GrabbedDice.AddRange(GameSingleton.instance.Game.Bag.GrabDice(3 - GrabbedDice.Count));
 			}
 
-			GrabbedDice.ForEach(x => x.Roll());
+			foreach(IDice dice in GrabbedDice)
+			{
+				Thread.Sleep(1);
+				dice.Roll();
+			}
 		}
 
 		/// <summary>
@@ -36,7 +41,7 @@ namespace Back.Dice
 
 			foreach (IDice element in GrabbedDice)
 			{
-				GameSingleton.instance.Game.ScoreDecorator.AllRolledDice.Remove(element);
+				GameSingleton.instance.Game.ScoreDecorator.RemoveDice(element);
 			}
 		}
 	}

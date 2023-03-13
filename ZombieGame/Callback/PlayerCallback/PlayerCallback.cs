@@ -1,4 +1,4 @@
-﻿using Back.Callback;
+﻿using ViewModel.Callback;
 
 namespace ZombieGame.Callback
 {

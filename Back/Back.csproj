@@ -31,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,21 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Callback\IFrontCallback.cs" />
-    <Compile Include="Callback\IPlayerCallback.cs" />
-    <Compile Include="Command\ICommand.cs" />
-    <Compile Include="Command\IInvoker.cs" />
-    <Compile Include="Command\Invoker.cs" />
-    <Compile Include="Command\NewGameCommand.cs" />
-    <Compile Include="Command\ResetCommand.cs" />
-    <Compile Include="Command\RollCommand.cs" />
-    <Compile Include="Command\StartCommand.cs" />
-    <Compile Include="Command\StopCommand.cs" />
-    <Compile Include="Dice\Bag.cs" />
+    <Compile Include="Dice\Bag\Bag.cs" />
+    <Compile Include="Dice\DiceEnum.cs" />
     <Compile Include="Dice\Hand.cs" />
-    <Compile Include="Dice\IBag.cs" />
+    <Compile Include="Dice\Bag\IBag.cs" />
     <Compile Include="Dice\IDice.cs" />
     <Compile Include="Dice\IHand.cs" />
+    <Compile Include="Dice\ParticularDice\HeroDice.cs" />
+    <Compile Include="Dice\ParticularDice\HeroineDice.cs" />
     <Compile Include="Dice\ParticularDice\SantaDice.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Dice\ParticularDice\GreenDice.cs" />
@@ -64,18 +56,16 @@
     <Compile Include="Game\GameSingleton\GameSingletonGenerator.cs" />
     <Compile Include="Game\IGame.cs" />
     <Compile Include="Game\GameSingleton\IGameSingleton.cs" />
+    <Compile Include="Game\Score\Flyweight\IScoreFlyweightFactory.cs" />
     <Compile Include="Game\Score\IScore.cs" />
-    <Compile Include="Game\Score\ScoreDecorator.cs" />
-    <Compile Include="Game\Score\ScoreDecoratorHero.cs" />
-    <Compile Include="Game\Score\ScoreDecoratorHeroine.cs" />
-    <Compile Include="Game\Score\ScoreDecoratorSanta.cs" />
-    <Compile Include="Game\Score\IScoreDecorator.cs" />
+    <Compile Include="Game\Score\Decorators\ScoreDecorator.cs" />
+    <Compile Include="Game\Score\Decorators\ScoreDecoratorHero.cs" />
+    <Compile Include="Game\Score\Decorators\ScoreDecoratorHeroine.cs" />
+    <Compile Include="Game\Score\Decorators\ScoreDecoratorSanta.cs" />
+    <Compile Include="Game\Score\Decorators\IScoreDecorator.cs" />
+    <Compile Include="Game\Score\Flyweight\ScoreFlyweightFactory.cs" />
     <Compile Include="Game\Settings\GameSettings.cs" />
     <Compile Include="Game\Settings\IGameSettings.cs" />
-    <Compile Include="Options\IOptions.cs" />
-    <Compile Include="Options\IOptionsSingleton.cs" />
-    <Compile Include="Options\Options.cs" />
-    <Compile Include="Options\OptionsSingleton.cs" />
     <Compile Include="PlayerModel\Singleton\IPlayerListSingleton.cs" />
     <Compile Include="PlayerModel\Singleton\PlayerListSingletonGenerator.cs" />
     <Compile Include="PlayerModel\Visitor\IPlayerVisitor.cs" />

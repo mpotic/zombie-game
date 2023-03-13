@@ -1,11 +1,8 @@
-﻿using Back.Game;
-using Back.Options;
-using Back.PlayerModel;
-using Back.PlayerModel.Singleton;
+﻿using ViewModel.Options;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using ZombieGame.Callback;
+using ViewModel;
 
 namespace ZombieGame
 {
@@ -14,11 +11,13 @@ namespace ZombieGame
 	/// </summary>
 	public partial class Players : UserControl
 	{
+		private IPlayersViewModel playersViewModel = new PlayersViewModel();
+
 		public Players()
 		{
 			InitializeComponent();
 
-			PlayersListElement.ItemsSource = PlayerListSingleton.instance.PlayersList.Players;
+			PlayersListElement.ItemsSource = playersViewModel.Players;
 			PlayerListViewElementSingleton.PlayersList = PlayersListElement;
 		}
 
@@ -29,13 +28,14 @@ namespace ZombieGame
 			PlayerName.Text = "";
 		}
 
-		private void Item_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			IPlayer player = (IPlayer)((ContentPresenter)sender).Content;
-			if (player == GameSingleton.instance.Game.CurrentPlayer)
-				return;
+		// TODO: Rewrite so that Command is used.
+		//private void Item_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+		//{
+		//	IPlayer player = (IPlayer)((ContentPresenter)sender).Content;
+		//	if (player == GameSingleton.instance.Game.CurrentPlayer)
+		//		return;
 
-			PlayerListSingleton.instance.PlayersList.Players.Remove(player);
-		}
+		//	PlayerListSingleton.instance.PlayersList.Players.Remove(player);
+		//}
 	}
 }

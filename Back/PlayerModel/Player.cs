@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Back.PlayerModel
 {
-	public class Player : IPlayer, INotifyPropertyChanged
+	public class Player : IPlayer, INotifyPropertyChanged		// TODO: Is used in the View. Maybe should utilize a seperate ViewModel for Player.
 	{
 		private string name;
 
@@ -47,6 +47,16 @@ namespace Back.PlayerModel
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		public override string ToString()
+		{
+			return base.ToString();
+		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
 		}
 	}
 }

@@ -5,8 +5,6 @@ namespace Back.Game
 {
 	public interface IGame
 	{
-		//IAllDice Dice { get; set; }
-
 		IScoreDecorator ScoreDecorator { get; set; }
 
 		IPlayer CurrentPlayer { get; set; }
@@ -17,7 +15,7 @@ namespace Back.Game
 
 		IGameSettings GameSettings { get; set; }
 
-		bool Killed { get; set; }
+		IScoreFlyweightFactory Factory { get; set; }
 
 		void SetupNewGame(bool includeSanta, bool includeHero, bool includeHeroine);
 

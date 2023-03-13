@@ -13,7 +13,8 @@
 		ResizeMode="CanMinimize"
 		FontWeight="Medium"
 		FontFamily="HP Simplified"
-		Background="Gray">
+		Background="Gray"
+		DataContext="{Binding RelativeSource={RelativeSource Self}}">
 	<Grid Margin="0">
 		<Grid.Background>
 			<ImageBrush ImageSource="../../Images/Background/ZombieBackground.jpg" />
@@ -55,7 +56,7 @@
 			<Border.Resources>
 				<Style TargetType="Border">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.Killed}"
+						<DataTrigger Binding="{Binding KilledViewModel.Killed}"
 									 Value="true">
 							<Setter Property="Visibility"
 									Value="Hidden" />
@@ -76,7 +77,7 @@
 			<Border.Resources>
 				<Style TargetType="Border">
 					<Style.Triggers>
-						<DataTrigger Binding="{Binding Source={x:Static Game:GameSingleton.instance}, Path=Game.Killed}"
+						<DataTrigger Binding="{Binding KilledViewModel.Killed}"
 									 Value="false">
 							<Setter Property="Visibility"
 									Value="Hidden" />
