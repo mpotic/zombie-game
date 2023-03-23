@@ -57,6 +57,11 @@ namespace Back.Game
 			}
 		}
 
+		public ScoreDecorator()
+		{
+			scoreComponent = new Score();
+		}
+
 		public virtual void CheckAndKill()
 		{
 			ScoreComponent.CheckAndKill();

@@ -9,13 +9,15 @@ using System.Threading;
 namespace Back.Dice
 {
 	// TODO: Make Decorator and Flyweight for Bag?
-	public class Bag : IBag, INotifyPropertyChanged	
+	public class Bag : IBag, INotifyPropertyChanged
 	{
 		private List<IDice> dice = new List<IDice>();
 
 		private bool usedSanta = false;
 
-		public List<IDice> Dice 
+		private IGame game;
+
+		public List<IDice> Dice
 		{
 			get => dice;
 			set => dice = value;
@@ -80,9 +82,28 @@ namespace Back.Dice
 
 		public Bag()
 		{
+			InitDice();
+		}
+
+		public Bag(IGame game)
+		{
+			InitDice();
+			this.game = game;
+		}
+
+		public void InitDice()
+		{
 			dice.AddRange(Enumerable.Range(0, 6).Select(x => new GreenDice()).ToList<IDice>());
 			dice.AddRange(Enumerable.Range(0, 4).Select(x => new YellowDice()).ToList<IDice>());
 			dice.AddRange(Enumerable.Range(0, 3).Select(x => new RedDice()).ToList<IDice>());
+		}
+
+		private void CheckGameAndInit()
+		{
+			if (game == null)
+			{
+				game = GameSingleton.instance.Game;
+			}
 		}
 
 		public List<IDice> GrabDice(int count)
@@ -109,28 +130,53 @@ namespace Back.Dice
 
 		public void FillBag()
 		{
+			CheckGameAndInit();
+
 			int greenDiceNeeded = 6 - GreenCount;
 			int yellowDiceNeeded = 4 - YellowCount;
 			int redDiceNeeded = 3 - RedCount;
 
-			if (GameSingleton.instance.Game.GameSettings.IncludedSanta)
+			if (game.GameSettings.IncludedSanta)
 			{
-				greenDiceNeeded--;
+				if(greenDiceNeeded > 0)
+				{
+					greenDiceNeeded--;
+				}
+				else
+				{
+					int index = Dice.FindIndex(x => x.DiceType == typeof(GreenDice).Name);
+					Dice.RemoveAt(index);
+				}
 			}
 
-			if (GameSingleton.instance.Game.GameSettings.IncludedHero)
+			if (game.GameSettings.IncludedHero)
 			{
-				yellowDiceNeeded--;
+				if (yellowDiceNeeded > 0)
+				{
+					yellowDiceNeeded--;
+				}
+				else
+				{
+					Dice.RemoveAt(Dice.FindIndex(x => x.DiceType == typeof(YellowDice).Name));
+				}
+				 
 				dice.Add(new HeroDice());
 			}
 
-			if (GameSingleton.instance.Game.GameSettings.IncludedHeroine)
+			if (game.GameSettings.IncludedHeroine)
 			{
-				yellowDiceNeeded--;
+				if (yellowDiceNeeded > 0)
+				{
+					yellowDiceNeeded--;
+				}
+				else
+				{
+					Dice.RemoveAt(Dice.FindIndex(x => x.DiceType == typeof(YellowDice).Name));
+				}
 				dice.Add(new HeroineDice());
 			}
 
-			if (GameSingleton.instance.Game.GameSettings.IncludedSanta && !usedSanta)
+			if (game.GameSettings.IncludedSanta && !usedSanta)
 			{
 				dice.Add(new SantaDice());
 				usedSanta = true;
@@ -152,7 +198,9 @@ namespace Back.Dice
 
 		public void CheckAndRefill()
 		{
-			if (TotalCount >= (3 - GameSingleton.instance.Game.Hand.GrabbedDice.Count))
+			CheckGameAndInit();
+
+			if (TotalCount >= (3 - game.Hand.GrabbedDice.Count))
 			{
 				return;
 			}

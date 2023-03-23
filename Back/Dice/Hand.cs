@@ -12,15 +12,27 @@ namespace Back.Dice
 	{
 		List<IDice> grabbedDice = new List<IDice>();
 
+		private IGame game;
+
 		public List<IDice> GrabbedDice { get => grabbedDice; set => grabbedDice = value; }
+
+		public Hand()
+		{
+		}
+
+		public Hand(IGame game)
+		{
+			this.game = game;
+		}
 
 		public void GrabAndRollDice()
 		{
+			CheckAndInit();
 			GrabPreviousTurnFootsteps();
 
 			if (GrabbedDice.Count < 3)
 			{
-				GrabbedDice.AddRange(GameSingleton.instance.Game.Bag.GrabDice(3 - GrabbedDice.Count));
+				GrabbedDice.AddRange(game.Bag.GrabDice(3 - GrabbedDice.Count));
 			}
 
 			foreach(IDice dice in GrabbedDice)
@@ -30,18 +42,26 @@ namespace Back.Dice
 			}
 		}
 
+		private void CheckAndInit()
+		{
+			if(game == null)
+			{
+				game = GameSingleton.instance.Game;
+			}
+		}
+
 		/// <summary>
 		/// Removes all dice that have their side equal to FOOTSTEPS from Score.AllRolledDice and saves them to GrabbedDice.
 		/// </summary>
 		/// <returns></returns>
 		private void GrabPreviousTurnFootsteps()
 		{
-			GrabbedDice = GameSingleton.instance.Game.ScoreDecorator.AllRolledDice.ToList<IDice>();
+			GrabbedDice = game.ScoreDecorator.AllRolledDice.ToList<IDice>();
 			GrabbedDice.RemoveAll(x => x.Side != DiceSide.FOOTSTEPS);
 
 			foreach (IDice element in GrabbedDice)
 			{
-				GameSingleton.instance.Game.ScoreDecorator.RemoveDice(element);
+				game.ScoreDecorator.RemoveDice(element);
 			}
 		}
 	}

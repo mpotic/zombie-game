@@ -2,7 +2,7 @@
 {
 	public interface IScoreDecorator : IScore
 	{
-		IScore ScoreComponent { get; }
+		IScore ScoreComponent { get; set; }
 
 		void SetScoreComponent(IScore score);
 	}

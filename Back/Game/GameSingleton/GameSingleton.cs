@@ -2,7 +2,7 @@
 {
 	public class GameSingleton : IGameSingleton
 	{
-		public static readonly GameSingleton instance = new GameSingleton();
+		public static readonly IGameSingleton instance = new GameSingleton();
 
 		public IGame Game { get; }
 
