@@ -16,10 +16,9 @@ namespace Back.Dice
 			}
 		}
 
-		public void Roll()
+		public void Roll(IRandomNumberProvider randomNumberProvider)
 		{
-			Random random = new Random();
-			int randNumber = random.Next(0, 6);
+			int randNumber = randomNumberProvider.GetRandomNumber(0, 6);
 
 			switch (randNumber)
 			{

@@ -1,13 +1,10 @@
 ﻿using Back.Dice;
-using Back.PlayerModel;
 
 namespace Back.Game
 {
 	public interface IGame
 	{
 		IScoreDecorator ScoreDecorator { get; set; }
-
-		IPlayer CurrentPlayer { get; set; }
 
 		IHand Hand { get; set; }
 

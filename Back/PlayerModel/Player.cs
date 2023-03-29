@@ -1,10 +1,9 @@
-﻿using Back.PlayerModel.Visitor;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Back.PlayerModel
 {
-	public class Player : IPlayer, INotifyPropertyChanged		// TODO: Is used in the View. Maybe should utilize a seperate ViewModel for Player.
+	public class Player : IPlayer, INotifyPropertyChanged
 	{
 		private string name;
 
@@ -29,9 +28,9 @@ namespace Back.PlayerModel
 
 		public string Name { get => name; set => name = value; }
 
-		public void Accept(IPlayerVisitor visitor)
+		public void SaveScore(int brainCount)
 		{
-			visitor.Visit(this);
+			TotalBrainCount += brainCount;
 		}
 
 		public override bool Equals(object obj)

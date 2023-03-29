@@ -14,14 +14,16 @@ namespace Back.Game
 
 		List<IDice> AllRolledDice { get; set; }
 
-		void CheckAndKill();
+		bool CheckAndKill();
 
-		void PlayerKilled();
+		void KillPlayer();
 
 		void ResetScore();
 		
 		void UpdateScore();
 
 		void RemoveDice(IDice dice);
+
+		List<IDice> RetrieveFootsteps();
 	}
 }

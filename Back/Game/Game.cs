@@ -1,49 +1,38 @@
 ﻿using Back.Dice;
-using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
-using Back.PlayerModel.Visitor;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Back.Game
 {
-	public class Game : IGame, INotifyPropertyChanged
+	public sealed class Game : IGame
 	{
-		private IPlayer currentPlayer;
+		//public Game()
+		//	: this(new Hand(), new GameSettings(), new Bag(), new ScoreFlyweightFactory())
+		//{
+		//}
 
-		private IScoreDecorator scoreDecorator;
-
-		private IHand hand;
-
-		private IGameSettings gameSettings;
-
-		private IBag bag;
-
-		private IScoreFlyweightFactory factory;
-
-		public IScoreDecorator ScoreDecorator { get => scoreDecorator; set => scoreDecorator = value; }
-
-		public IPlayer CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
-
-		public IHand Hand { get => hand; set => hand = value; }
-
-		public IBag Bag { get => bag; set => bag = value; }
-
-		public IGameSettings GameSettings { get => gameSettings; set => gameSettings = value; }
-
-		public IScoreFlyweightFactory Factory { get => factory; set => factory = value; }
+		//private Game(IHand hand, IGameSettings gameSettings, IBag bag, IScoreFlyweightFactory factory)
 
 		public Game()
 		{
-			hand = new Hand();
-			gameSettings = new GameSettings();
-			bag = new Bag();
+			Hand = new Hand();
+			GameSettings = new GameSettings();
+			Bag = new Bag();
 			Factory = new ScoreFlyweightFactory();
 
 			ScoreDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(ScoreDecorator));
 			ScoreDecorator.SetScoreComponent(Factory.GetFlyweight(typeof(Score)));
 		}
+
+		public IScoreDecorator ScoreDecorator { get; set; }
+
+		public IHand Hand { get; set; }
+
+		public IBag Bag { get; set; }
+
+		public IGameSettings GameSettings { get; set; }
+
+		public IScoreFlyweightFactory Factory { get; set; }
 
 		public void SetupNewGame(bool includeSanta = false, bool includeHero = false, bool includeHeroine = false)
 		{
@@ -74,45 +63,49 @@ namespace Back.Game
 
 			ScoreDecorator = currentDecorator;
 
+			this.Hand = new Hand();
+
 			StartGame();
 		}
 
 		public void StopAction()
 		{
-			currentPlayer.Accept(new SaveTurnPlayerVisitor());
-			currentPlayer.Accept(new ChangePlayerVisitor());
+			PlayerListSingleton.instance.PlayersList.CurrentPlayer.SaveScore(ScoreDecorator.BrainsCount);
+			PlayerListSingleton.instance.PlayersList.ChangeCurrentPlayerToNext();
 			ScoreDecorator.ResetScore();
-			Bag.ResetBag();
+			Bag.ResetBag(GameSettings);
 		}
 
 		public void RollAction()
 		{
-			Hand.GrabAndRollDice();
+			Hand.GrabAndRollDice(ScoreDecorator, Bag, GameSettings);
 			ScoreDecorator.UpdateScore();
-			ScoreDecorator.CheckAndKill();
+			if (ScoreDecorator.CheckAndKill())
+			{
+				Task.Run(() =>
+				{
+					ScoreDecorator.KillPlayer();
+					PlayerListSingleton.instance.PlayersList.ChangeCurrentPlayerToNext();
+					Bag.ResetBag(GameSettings);
+					ScoreDecorator.ResetScore();
+				});
+			}
 		}
 
 		public void ResetGame()
 		{
 			ScoreDecorator.ResetScore();
-			Bag.ResetBag();
-			CurrentPlayer = null;
+			Bag.ResetBag(GameSettings);
+			PlayerListSingleton.instance.PlayersList.CurrentPlayer = null;
 			PlayerListSingleton.instance.PlayersList.RemoveAllPlayers();
 		}
 
 		public void StartGame()
 		{
 			ScoreDecorator.ResetScore();
-			Bag.ResetBag();
+			Bag.ResetBag(GameSettings);
 			PlayerListSingleton.instance.PlayersList.ResetPlayersScore();
-			CurrentPlayer = PlayerListSingleton.instance.PlayersList.Players.FirstOrDefault();
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			PlayerListSingleton.instance.PlayersList.SetFirstPlayerAsCurrent();
 		}
 	}
 }

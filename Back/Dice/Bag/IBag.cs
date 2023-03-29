@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Back.Game;
+using System.Collections.Generic;
 
 namespace Back.Dice
 {
 	public interface IBag
 	{
-		List<IDice> Dice { get; set; }
+		List<IDice> Dice { get; }
 
 		int GreenCount { get; }
 
@@ -18,11 +19,9 @@ namespace Back.Dice
 
 		int HeroineCount { get; }
 
-		List<IDice> GrabDice(int count);
+		List<IDice> GrabDice(int count, IGameSettings settings, IRandomNumberProvider randomNumberProvider);
 
-		void FillBag();
-
-		void ResetBag();
+		void ResetBag(IGameSettings settings);
 
 		void ReturnDice(IDice dice);
 	}

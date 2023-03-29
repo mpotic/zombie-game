@@ -2,12 +2,28 @@
 using Back.PlayerModel.Singleton;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace ViewModel
 {
-	public class PlayersViewModel : IPlayersViewModel
+	public class PlayersViewModel : IPlayersViewModel, INotifyPropertyChanged
 	{
 		private ObservableCollection<IPlayer> players = new ObservableCollection<IPlayer>();
+
+		private IPlayer currentPlayer;
+
+		public IPlayer CurrentPlayer 
+		{
+			get
+			{
+				return currentPlayer;
+			}
+			private set
+			{
+				currentPlayer = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPlayer"));
+			}
+		}
 
 		public ObservableCollection<IPlayer> Players
 		{
@@ -17,9 +33,12 @@ namespace ViewModel
 		public PlayersViewModel()
 		{
 			((PlayerList)PlayerListSingleton.instance.PlayersList).CollectionChanged += UpdatePlayersProperty;
+			((PlayerList)PlayerListSingleton.instance.PlayersList).PropertyChanged += PlayerChanged;
 		}
 
-		void UpdatePlayersProperty(object sender, NotifyCollectionChangedEventArgs args)
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void UpdatePlayersProperty(object sender, NotifyCollectionChangedEventArgs args)
 		{
 			if(args.Action == NotifyCollectionChangedAction.Reset)
 			{
@@ -36,6 +55,11 @@ namespace ViewModel
 			{
 				Players.Remove((IPlayer)args.OldItems[0]);
 			}
+		}
+
+		private void PlayerChanged(object sender, PropertyChangedEventArgs args)
+		{
+			CurrentPlayer = ((IPlayerList)sender).CurrentPlayer;
 		}
 	}
 }

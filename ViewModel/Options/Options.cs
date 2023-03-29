@@ -1,10 +1,5 @@
-﻿using ViewModel.Callback;
-using ViewModel.Command;
-using Back.Game;
-using Back.PlayerModel;
+﻿using ViewModel.Command;
 using Back.PlayerModel.Singleton;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ViewModel.Options
 {
@@ -12,79 +7,60 @@ namespace ViewModel.Options
 	{
 		Invoker invoker = new Invoker();
 
-		public void AddNewPlayer(string name, IPlayerCallback playerCallback)
+		public void AddNewPlayer(string name)
 		{
 			PlayerListSingleton.instance.PlayersList.AddPlayer(name);
-			IPlayer player = GameSingleton.instance.Game.CurrentPlayer;
-			int currentPlayerIndex = PlayerListSingleton.instance.PlayersList.Players.IndexOf(player);
-			playerCallback.ChangeActivePlayer(currentPlayerIndex);
 		}
 
-		public void RollAction(IPlayerCallback playerCallback)
+		public void RollAction()
 		{
 			if (PlayerListSingleton.instance.PlayersList.Players.Count == 0)
+			{
 				return;
+			}
 
 			RollCommand command = new RollCommand();
 			invoker.ExecuteCommand(command);
-
-			if (GameSingleton.instance.Game.ScoreDecorator.Killed)
-			{
-				IPlayer player = GameSingleton.instance.Game.CurrentPlayer;
-				int currentPlayerIndex = PlayerListSingleton.instance.PlayersList.Players.IndexOf(player);
-				Task.Run(() => 
-				{
-					Thread.Sleep(1200);
-					playerCallback.ChangeActivePlayer(currentPlayerIndex);
-				});
-			}
 		}
 
-		public void StopAction(IPlayerCallback playerCallback)
+		public void StopAction()
 		{
 			if (PlayerListSingleton.instance.PlayersList.Players.Count == 0)
+			{
 				return;
+			}
 
 			ICommand command = new StopCommand();
 			invoker.ExecuteCommand(command);
-
-			IPlayer player = GameSingleton.instance.Game.CurrentPlayer;
-			int currentPlayerIndex = PlayerListSingleton.instance.PlayersList.Players.IndexOf(player);
-			playerCallback.ChangeActivePlayer(currentPlayerIndex);
 		}
 
 		public void ResetAction()
 		{
 			if (PlayerListSingleton.instance.PlayersList.Players.Count == 0)
+			{
 				return;
+			}
 
 			ICommand command = new ResetCommand();
 			invoker.ExecuteCommand(command);
 		}
 
-		public void StartAction(IPlayerCallback playerCallback)
+		public void StartAction()
 		{
 			if (PlayerListSingleton.instance.PlayersList.Players.Count == 0)
+			{
 				return;
+			}
 
 			ICommand command = new StartCommand();
 			invoker.ExecuteCommand(command);
-
-			playerCallback.ChangeActivePlayer(0);
 		}
 
-		public void SetupNewGameAction(bool includeSanta, bool includeHero, bool includeHeroine, IPlayerCallback playerCallback)
+		public void SetupNewGameAction(bool includeSanta, bool includeHero, bool includeHeroine)
 		{
-			NewGameCommand command = new NewGameCommand();
-			command.IncludeSanta = includeSanta;
-			command.IncludeHero = includeHero;
-			command.IncludeHeroine = includeHeroine;
+			NewGameCommand command = new NewGameCommand(includeSanta, includeHero, includeHeroine);
 
 			invoker.ExecuteCommand(command);
-
-			IPlayer player = GameSingleton.instance.Game.CurrentPlayer;
-			int currentPlayerIndex = PlayerListSingleton.instance.PlayersList.Players.IndexOf(player);
-			playerCallback.ChangeActivePlayer(currentPlayerIndex);
 		}
 	}
 }

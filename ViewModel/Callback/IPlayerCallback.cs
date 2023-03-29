@@ -1,6 +1,6 @@
 ﻿namespace ViewModel.Callback
 {
-	public interface IPlayerCallback: IFrontCallback
+	public interface IPlayerCallback
 	{
 		void ChangeActivePlayer(int current);
 	}

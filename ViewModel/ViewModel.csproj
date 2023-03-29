@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Callback\IFrontCallback.cs" />
     <Compile Include="Callback\IPlayerCallback.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\IInvoker.cs" />

@@ -1,7 +1,6 @@
 ﻿using ViewModel.Options;
 using System.Windows;
 using System.Windows.Controls;
-using ZombieGame.Callback;
 
 namespace ZombieGame
 {
@@ -22,17 +21,17 @@ namespace ZombieGame
 
 		private void RollButton_Click(object sender, RoutedEventArgs e)
 		{
-			OptionsSingleton.Options.RollAction(new PlayerCallback());
+			OptionsSingleton.Options.RollAction();
 		}
 
 		private void StopButton_Click(object sender, RoutedEventArgs e)
 		{
-			OptionsSingleton.Options.StopAction(new PlayerCallback());
+			OptionsSingleton.Options.StopAction();
 		}
 
 		private void StartButton_Click(object sender, RoutedEventArgs e)
 		{
-			OptionsSingleton.Options.StartAction(new PlayerCallback());
+			OptionsSingleton.Options.StartAction();
 		}
 
 		private void NewGameButton_Click(object sender, RoutedEventArgs e)

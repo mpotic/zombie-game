@@ -1,8 +1,8 @@
 ﻿using ViewModel.Options;
 using System.Windows;
 using System.Windows.Controls;
-using ZombieGame.Callback;
 using ViewModel;
+using System.Windows.Data;
 
 namespace ZombieGame
 {
@@ -18,13 +18,20 @@ namespace ZombieGame
 			InitializeComponent();
 
 			PlayersListElement.ItemsSource = playersViewModel.Players;
-			PlayerListViewElementSingleton.PlayersList = PlayersListElement;
+
+			Binding selectedItemBinding = new Binding
+			{
+				Source = playersViewModel,
+				Path = new PropertyPath("CurrentPlayer"),
+				Mode = BindingMode.OneWay
+			};
+
+			BindingOperations.SetBinding(PlayersListElement, ListView.SelectedItemProperty, selectedItemBinding);
 		}
 
 		private void AddPlayerButton_Click(object sender, RoutedEventArgs e)
 		{
-			PlayerCallback callback = new PlayerCallback();
-			OptionsSingleton.Options.AddNewPlayer(PlayerName.Text, callback);
+			OptionsSingleton.Options.AddNewPlayer(PlayerName.Text);
 			PlayerName.Text = "";
 		}
 

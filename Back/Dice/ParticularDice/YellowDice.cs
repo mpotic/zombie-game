@@ -17,11 +17,9 @@ namespace Back.Dice
 			}
 		}
 
-		public void Roll()
+		public void Roll(IRandomNumberProvider randomNumberProvider)
 		{
-			Thread.Sleep(1);
-
-			int randomInt = new Random().Next(0, 3);
+			int randomInt = randomNumberProvider.GetRandomNumber(0, 3);
 			side = (DiceSide)randomInt;
 		}
 	}

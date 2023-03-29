@@ -11,16 +11,23 @@ namespace Back.Dice
 	// TODO: Make Decorator and Flyweight for Bag?
 	public class Bag : IBag, INotifyPropertyChanged
 	{
-		private List<IDice> dice = new List<IDice>();
+		private List<IDice> dice;
 
-		private bool usedSanta = false;
+		private bool usedSanta;
 
-		private IGame game;
+		public Bag()
+		{
+			dice = new List<IDice>();
+			dice.AddRange(Enumerable.Range(0, 6).Select(x => new GreenDice()).ToList<IDice>());
+			dice.AddRange(Enumerable.Range(0, 4).Select(x => new YellowDice()).ToList<IDice>());
+			dice.AddRange(Enumerable.Range(0, 3).Select(x => new RedDice()).ToList<IDice>());
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		public List<IDice> Dice
 		{
 			get => dice;
-			set => dice = value;
 		}
 
 		public int GreenCount
@@ -80,45 +87,15 @@ namespace Back.Dice
 
 		}
 
-		public Bag()
-		{
-			InitDice();
-		}
-
-		public Bag(IGame game)
-		{
-			InitDice();
-			this.game = game;
-		}
-
-		public void InitDice()
-		{
-			dice.AddRange(Enumerable.Range(0, 6).Select(x => new GreenDice()).ToList<IDice>());
-			dice.AddRange(Enumerable.Range(0, 4).Select(x => new YellowDice()).ToList<IDice>());
-			dice.AddRange(Enumerable.Range(0, 3).Select(x => new RedDice()).ToList<IDice>());
-		}
-
-		private void CheckGameAndInit()
-		{
-			if (game == null)
-			{
-				game = GameSingleton.instance.Game;
-			}
-		}
-
-		public List<IDice> GrabDice(int count)
+		public List<IDice> GrabDice(int count, IGameSettings settings, IRandomNumberProvider randomNumberProvider)
 		{
 			List<IDice> grabbedDice = new List<IDice>();
-			Random random = new Random();
 
-			CheckAndRefill();
+			CheckAndRefill(count, settings);
 
 			for (int i = 0; i < count; i++)
 			{
-				// To reduce the possibility of getting the same number twice in a row because randomness is based on time
-				Thread.Sleep(1);
-
-				int index = random.Next(0, TotalCount);
+				int index = randomNumberProvider.GetRandomNumber(0, TotalCount);
 				grabbedDice.Add(dice[index]);
 				dice.RemoveAt(index);
 			}
@@ -128,15 +105,13 @@ namespace Back.Dice
 			return grabbedDice;
 		}
 
-		public void FillBag()
+		private void FillBag(IGameSettings settings)
 		{
-			CheckGameAndInit();
-
 			int greenDiceNeeded = 6 - GreenCount;
 			int yellowDiceNeeded = 4 - YellowCount;
 			int redDiceNeeded = 3 - RedCount;
 
-			if (game.GameSettings.IncludedSanta)
+			if (settings.IncludedSanta)
 			{
 				if(greenDiceNeeded > 0)
 				{
@@ -149,7 +124,7 @@ namespace Back.Dice
 				}
 			}
 
-			if (game.GameSettings.IncludedHero)
+			if (settings.IncludedHero)
 			{
 				if (yellowDiceNeeded > 0)
 				{
@@ -163,7 +138,7 @@ namespace Back.Dice
 				dice.Add(new HeroDice());
 			}
 
-			if (game.GameSettings.IncludedHeroine)
+			if (settings.IncludedHeroine)
 			{
 				if (yellowDiceNeeded > 0)
 				{
@@ -176,7 +151,7 @@ namespace Back.Dice
 				dice.Add(new HeroineDice());
 			}
 
-			if (game.GameSettings.IncludedSanta && !usedSanta)
+			if (settings.IncludedSanta && !usedSanta)
 			{
 				dice.Add(new SantaDice());
 				usedSanta = true;
@@ -189,23 +164,25 @@ namespace Back.Dice
 			AlertPropertyChanged();
 		}
 
-		public void ResetBag()
+		public void ResetBag(IGameSettings settings)
 		{
 			usedSanta = false;
 			dice.Clear();
-			FillBag();
+			FillBag(settings);
 		}
 
-		public void CheckAndRefill()
+		/// <summary>
+		/// Refill checks if it will have enought dice to satisfy the current roll. Depending on how many footsteps have already been taken,
+		/// the bag will be filled or not. This allows for bag to be filled only when necessary.
+		/// </summary>
+		private void CheckAndRefill(int count, IGameSettings settings)
 		{
-			CheckGameAndInit();
-
-			if (TotalCount >= (3 - game.Hand.GrabbedDice.Count))
+			if (TotalCount >= count)
 			{
 				return;
 			}
 
-			FillBag();
+			FillBag(settings);
 		}
 
 		public void ReturnDice(IDice dice)
@@ -224,9 +201,7 @@ namespace Back.Dice
 			OnPropertyChanged("HeroineCount");
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}

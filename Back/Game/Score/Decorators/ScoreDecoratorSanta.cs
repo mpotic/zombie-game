@@ -74,18 +74,14 @@ namespace Back.Game
 			santaDice = null;
 		}
 
-		public override void CheckAndKill()
+		public override bool CheckAndKill()
 		{
 			if(santaDice != null && santaDice.Side == DiceSide.HELMET && ShotgunCount < 4)
 			{
-				return;
+				return false;
 			}
 
-			base.CheckAndKill();
-			if(GameSingleton.instance.Game.ScoreDecorator.Killed)
-			{
-				santaDice = null;
-			}
+			return base.CheckAndKill();
 		}
 	}
 }

@@ -57,8 +57,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Callback\PlayerCallback\PlayerCallback.cs" />
-    <Compile Include="Callback\PlayerCallback\PlayerListViewElementSingleton.cs" />
     <Compile Include="DiceSelection.xaml.cs">
       <DependentUpon>DiceSelection.xaml</DependentUpon>
     </Compile>

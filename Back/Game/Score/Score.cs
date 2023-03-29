@@ -1,23 +1,15 @@
 ﻿using Back.Dice;
-using Back.PlayerModel.Visitor;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Back.Game
 {
 	public class Score : IScore, INotifyPropertyChanged, INotifyCollectionChanged
 	{
-		private int brainsCount = 0;
-
-		private int shotgunCount = 0;
-
-		private bool killed = false;
-
-		private List<IDice> allRolledDice;
+		private bool killed;
 
 		public Score()
 		{
@@ -29,23 +21,13 @@ namespace Back.Game
 			AllRolledDice = dice;
 		}
 
-		public int BrainsCount
-		{
-			get => brainsCount;
-			set
-			{
-				brainsCount = value;
-			}
-		}
+		public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-		public int ShotgunCount
-		{
-			get => shotgunCount;
-			set
-			{
-				shotgunCount = value;
-			}
-		}
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public int BrainsCount { get; set; }
+
+		public int ShotgunCount { get; set; }
 
 		public bool Killed
 		{
@@ -53,18 +35,19 @@ namespace Back.Game
 			set
 			{
 				killed = value;
-				OnPropertyChanged();
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Kiled"));
 			}
 		}
 
-		public List<IDice> AllRolledDice
-		{
-			get => allRolledDice;
-			set => allRolledDice = value;
-		}
+		public List<IDice> AllRolledDice { get; set; }
 
 		public void ResetScore()
 		{
+			if (killed)
+			{
+				Thread.Sleep(1200);
+			}
+
 			BrainsCount = 0;
 			ShotgunCount = 0;
 			if (AllRolledDice != null)
@@ -94,27 +77,21 @@ namespace Back.Game
 				GameSingleton.instance.Game.Hand.GrabbedDice));
 		}
 
-		public void CheckAndKill()
+		public bool CheckAndKill()
 		{
 			if (ShotgunCount >= 3)
 			{
-				PlayerKilled();
+				return true;
 			}
+
+			return false;
 		}
 
-		public void PlayerKilled()
+		public void KillPlayer()
 		{
 			Killed = true;
-
-			GameSingleton.instance.Game.CurrentPlayer.Accept(new ChangePlayerVisitor());
-
-			Task.Run(() =>
-			{
-				Thread.Sleep(1200);
-				ResetScore();
-				GameSingleton.instance.Game.Bag.ResetBag();
-				Killed = false;
-			});
+			Thread.Sleep(1200);
+			Killed = false;
 		}
 
 		public void RemoveDice(IDice dice)
@@ -124,9 +101,22 @@ namespace Back.Game
 			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, dice));
 		}
 
-		public event NotifyCollectionChangedEventHandler CollectionChanged;
+		public void AddDice(IDice dice)
+		{
+			AllRolledDice.Add(dice);
 
-		public event PropertyChangedEventHandler PropertyChanged;
+			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, dice));
+		}
+
+		public List<IDice> RetrieveFootsteps()
+		{
+			List<IDice> footsteps = AllRolledDice.FindAll(x => x.Side == DiceSide.FOOTSTEPS);
+
+			AllRolledDice.RemoveAll(x => x.Side == DiceSide.FOOTSTEPS);
+			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, footsteps));
+
+			return footsteps;
+		}
 
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{

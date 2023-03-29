@@ -1,6 +1,5 @@
 ﻿using ViewModel.Options;
 using System.Windows;
-using ZombieGame.Callback;
 
 namespace ZombieGame
 {
@@ -20,7 +19,7 @@ namespace ZombieGame
 			bool includeHero = IncludeHero.IsChecked.Value;
 			bool includedHeroine = IncludeHeroine.IsChecked.Value;
 
-			OptionsSingleton.Options.SetupNewGameAction(includeSanta, includeHero, includedHeroine, new PlayerCallback());
+			OptionsSingleton.Options.SetupNewGameAction(includeSanta, includeHero, includedHeroine);
 
 			this.DialogResult = true;
 			this.Close();

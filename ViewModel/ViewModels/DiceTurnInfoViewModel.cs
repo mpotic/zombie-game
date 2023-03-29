@@ -28,7 +28,7 @@ namespace ViewModel
 		public int GreenDiceCount
 		{
 			get => greenDiceCount;
-			set
+			private set
 			{
 				greenDiceCount = value;
 				OnPropertyChanged();

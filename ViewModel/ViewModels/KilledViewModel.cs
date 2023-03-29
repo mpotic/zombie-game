@@ -11,7 +11,7 @@ namespace ViewModel
 		public bool Killed
 		{
 			get => killed;
-			set
+			private set
 			{
 				killed = value;
 				OnPropertyChanged();

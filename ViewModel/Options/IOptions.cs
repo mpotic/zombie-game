@@ -1,19 +1,17 @@
-﻿using ViewModel.Callback;
-
-namespace ViewModel.Options
+﻿namespace ViewModel.Options
 {
 	public interface IOptions
 	{
-		void AddNewPlayer(string name, IPlayerCallback playerCallback);
+		void AddNewPlayer(string name);
 
-		void RollAction(IPlayerCallback playerCallback);
+		void RollAction();
 
-		void StopAction(IPlayerCallback playerCallback);
+		void StopAction();
 		
 		void ResetAction();
 
-		void StartAction(IPlayerCallback playerCallback);
+		void StartAction();
 
-		void SetupNewGameAction(bool includeSanta, bool includeHero, bool includeHeroine, IPlayerCallback playerCallback);
+		void SetupNewGameAction(bool includeSanta, bool includeHero, bool includeHeroine);
 	}
 }

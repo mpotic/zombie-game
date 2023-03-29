@@ -1,11 +1,6 @@
 ﻿using Back.Dice;
 using Back.Game;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Back.UnitTests.BagTests
 {
@@ -14,8 +9,8 @@ namespace Back.UnitTests.BagTests
 		internal IGame InitGameStub()
 		{
 			IGame gameStub = Substitute.For<IGame>();
-			gameStub.Hand = new Hand(gameStub);
-			gameStub.Bag = new Bag(gameStub);
+			gameStub.Hand = new Hand();
+			gameStub.Bag = new Bag();
 			gameStub.GameSettings = new GameSettings();
 			gameStub.ScoreDecorator = new ScoreDecorator();
 

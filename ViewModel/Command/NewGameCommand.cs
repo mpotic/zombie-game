@@ -4,15 +4,22 @@ namespace ViewModel.Command
 {
 	public class NewGameCommand : ICommand
 	{
-		public bool IncludeSanta { get; set; }
+		private readonly bool includedSanta;
 
-		public bool IncludeHero { get; set; }
+		private readonly bool includedHero;
 
-		public bool IncludeHeroine { get; set; }
+		private readonly bool includedHeroine;
+
+		public NewGameCommand(bool includedSanta, bool includedHero, bool includedHeroine)
+		{
+			this.includedSanta = includedSanta;
+			this.includedHero = includedHero;
+			this.includedHeroine = includedHeroine;
+		}
 
 		public void Execute()
 		{
-			GameSingleton.instance.Game.SetupNewGame(IncludeSanta, IncludeHero, IncludeHeroine);
+			GameSingleton.instance.Game.SetupNewGame(includedSanta, includedHero, includedHeroine);
 		}
 	}
 }

@@ -21,11 +21,9 @@ namespace Back.Dice
 			}
 		}
 
-		public void Roll()
+		public void Roll(IRandomNumberProvider randomNumberProvider)
 		{
-			Thread.Sleep(1);
-
-			int randomInt = new Random().Next(0, 6);
+			int randomInt = randomNumberProvider.GetRandomNumber(0, 6);
 			if (randomInt < 3)
 			{
 				side = DiceSide.FOOTSTEPS;

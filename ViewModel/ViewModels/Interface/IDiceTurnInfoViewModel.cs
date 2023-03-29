@@ -2,22 +2,22 @@
 {
 	public interface IDiceTurnInfoViewModel
 	{
-		int GreenDiceCount { get; set; }
+		int GreenDiceCount { get; }
 		
-		int YellowDiceCount { get; set; }
+		int YellowDiceCount { get; }
 
-		int RedDiceCount { get; set; }
+		int RedDiceCount { get; }
 
-		int SantaDiceCount { get; set; }
+		int SantaDiceCount { get; }
 
-		int HeroDiceCount { get; set; }
+		int HeroDiceCount { get; }
 
-		int HeroineDiceCount { get; set; }
+		int HeroineDiceCount { get; }
 
-		bool IncludedSanta { get; set; }
+		bool IncludedSanta { get; }
 
-		bool IncludedHero { get; set; }
+		bool IncludedHero { get; }
 
-		bool IncludedHeroine { get; set; }
+		bool IncludedHeroine { get; }
 	}
 }

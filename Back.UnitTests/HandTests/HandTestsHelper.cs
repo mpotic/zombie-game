@@ -9,9 +9,10 @@ namespace Back.UnitTests.HandTests
 		internal IGame InitGameStub()
 		{
 			IGame gameStub = Substitute.For<IGame>();
-			gameStub.Hand = new Hand(gameStub);
-			gameStub.Bag = new Bag(gameStub);
+			gameStub.Hand = new Hand();
+			gameStub.Bag = new Bag();
 			gameStub.ScoreDecorator = new ScoreDecorator();
+			gameStub.GameSettings = new GameSettings();
 
 			return gameStub;
 		}

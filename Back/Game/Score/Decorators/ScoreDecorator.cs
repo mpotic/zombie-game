@@ -62,14 +62,14 @@ namespace Back.Game
 			scoreComponent = new Score();
 		}
 
-		public virtual void CheckAndKill()
+		public virtual bool CheckAndKill()
 		{
-			ScoreComponent.CheckAndKill();
+			return ScoreComponent.CheckAndKill();
 		}
 
-		public virtual void PlayerKilled()
+		public virtual void KillPlayer()
 		{
-			ScoreComponent.PlayerKilled();
+			ScoreComponent.KillPlayer();
 		}
 
 		public virtual void ResetScore()
@@ -90,6 +90,11 @@ namespace Back.Game
 		public virtual void SetScoreComponent(IScore score)
 		{
 			ScoreComponent = score;
+		}
+
+		public List<IDice> RetrieveFootsteps()
+		{
+			return ScoreComponent.RetrieveFootsteps();
 		}
 	}
 }

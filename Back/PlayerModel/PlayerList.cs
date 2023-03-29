@@ -1,24 +1,38 @@
-﻿using Back.Game;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Linq;
 
 namespace Back.PlayerModel
 {
-	public class PlayerList : IPlayerList, INotifyCollectionChanged
+	public class PlayerList : IPlayerList, INotifyCollectionChanged, INotifyPropertyChanged
 	{
-		List<IPlayer> players = new List<IPlayer>();
+		private IPlayer currentPlayer; 
 
-		public List<IPlayer> Players
+		public PlayerList()
 		{
-			get => players;
-			set
-			{
-				players = value;
-			}
+			Players = new List<IPlayer>();
 		}
 
 		public event NotifyCollectionChangedEventHandler CollectionChanged;
-		
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		public IPlayer CurrentPlayer 
+		{
+			get
+			{
+				return currentPlayer;
+			}
+			set
+			{
+				currentPlayer = value;
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPlayer"));
+			} 
+		}
+
+		public List<IPlayer> Players { get; set; }
+
 		public void AddPlayer(string name)
 		{
 			Player newPlayer = new Player(name);
@@ -29,9 +43,9 @@ namespace Back.PlayerModel
 			}
 
 			Players.Add(newPlayer);
-			if (GameSingleton.instance.Game.CurrentPlayer == null)
+			if (CurrentPlayer == null)
 			{
-				GameSingleton.instance.Game.CurrentPlayer = newPlayer;
+				CurrentPlayer = newPlayer;
 			}
 
 			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, newPlayer));
@@ -53,6 +67,16 @@ namespace Back.PlayerModel
 			}
 			
 			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+		}
+
+		public void SetFirstPlayerAsCurrent()
+		{
+			CurrentPlayer = Players.FirstOrDefault();
+		}
+
+		public void ChangeCurrentPlayerToNext()
+		{
+			CurrentPlayer = Players[(Players.IndexOf(CurrentPlayer) + 1) % Players.Count];
 		}
 	}
 }

@@ -6,6 +6,6 @@
 
 		string DiceType { get; }
 
-		void Roll();
+		void Roll(IRandomNumberProvider randomNumberProvider);
 	}
 }
