@@ -1,5 +1,6 @@
 ﻿using Back.Dice;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Back.Game
 {
@@ -67,9 +68,9 @@ namespace Back.Game
 			return ScoreComponent.CheckAndKill();
 		}
 
-		public virtual void KillPlayer()
+		public async virtual Task SetKilledToTrueAfterDelay(int delay)
 		{
-			ScoreComponent.KillPlayer();
+			await ScoreComponent.SetKilledToTrueAfterDelay(delay);
 		}
 
 		public virtual void ResetScore()
@@ -77,9 +78,9 @@ namespace Back.Game
 			ScoreComponent.ResetScore();
 		}
 
-		public virtual void UpdateScore()
+		public virtual void UpdateScore(IGame game)
 		{
-			ScoreComponent.UpdateScore();
+			ScoreComponent.UpdateScore(game);
 		}
 
 		public virtual void RemoveDice(IDice dice)

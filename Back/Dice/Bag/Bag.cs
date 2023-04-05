@@ -87,13 +87,13 @@ namespace Back.Dice
 
 		}
 
-		public List<IDice> GrabDice(int count, IGameSettings settings, IRandomNumberProvider randomNumberProvider)
+		public List<IDice> GrabDice(int rollsNeeded, IGameSettings settings, IRandomNumberProvider randomNumberProvider)
 		{
 			List<IDice> grabbedDice = new List<IDice>();
 
-			CheckAndRefill(count, settings);
+			CheckAndRefill(rollsNeeded, settings);
 
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < rollsNeeded; i++)
 			{
 				int index = randomNumberProvider.GetRandomNumber(0, TotalCount);
 				grabbedDice.Add(dice[index]);

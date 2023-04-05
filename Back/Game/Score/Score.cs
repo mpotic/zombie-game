@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Back.Game
 {
@@ -57,9 +58,9 @@ namespace Back.Game
 			}
 		}
 
-		public void UpdateScore()
+		public void UpdateScore(IGame game)
 		{
-			GameSingleton.instance.Game.Hand.GrabbedDice.ForEach(x =>
+			game.Hand.GrabbedDice.ForEach(x =>
 			{
 				AllRolledDice.Add(x);
 
@@ -74,23 +75,23 @@ namespace Back.Game
 			});
 
 			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add,
-				GameSingleton.instance.Game.Hand.GrabbedDice));
+				game.Hand.GrabbedDice));
 		}
 
 		public bool CheckAndKill()
 		{
 			if (ShotgunCount >= 3)
 			{
+				Killed = true;
 				return true;
 			}
 
 			return false;
 		}
 
-		public void KillPlayer()
+		public async Task SetKilledToTrueAfterDelay(int delay)
 		{
-			Killed = true;
-			Thread.Sleep(1200);
+			await Task.Delay(delay);
 			Killed = false;
 		}
 

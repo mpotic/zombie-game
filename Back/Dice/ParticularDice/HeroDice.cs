@@ -24,7 +24,7 @@ namespace Back.Dice
 			{
 				Side = DiceSide.FOOTSTEPS;
 			}
-			else if (randomInt >= 2 && randomInt < 4)
+			else if (randomInt >= 2 && randomInt <= 3)
 			{
 				Side = DiceSide.SHOTGUN;
 			}

@@ -1,4 +1,6 @@
 ﻿using Back.Dice;
+using Back.PlayerModel;
+using System.Threading.Tasks;
 
 namespace Back.Game
 {
@@ -14,11 +16,13 @@ namespace Back.Game
 
 		IScoreFlyweightFactory Factory { get; set; }
 
+		IPlayerList PlayerList { get; set; }
+
 		void SetupNewGame(bool includeSanta, bool includeHero, bool includeHeroine);
 
 		void StopAction();
 
-		void RollAction();
+		Task RollAction();
 
 		void ResetGame();
 

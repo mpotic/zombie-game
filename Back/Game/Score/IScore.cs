@@ -1,5 +1,6 @@
 ﻿using Back.Dice;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Back.Game
 {
@@ -16,11 +17,11 @@ namespace Back.Game
 
 		bool CheckAndKill();
 
-		void KillPlayer();
+		Task SetKilledToTrueAfterDelay(int delay);
 
 		void ResetScore();
 		
-		void UpdateScore();
+		void UpdateScore(IGame game);
 
 		void RemoveDice(IDice dice);
 

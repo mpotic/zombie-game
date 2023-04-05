@@ -8,13 +8,13 @@ namespace Back.Game
 	{
 		protected SantaDice santaDice = null;
 
-		public override void UpdateScore()
+		public override void UpdateScore(IGame game)
 		{
-			base.UpdateScore();
+			base.UpdateScore(game);
 
 			if (santaDice == null)
 			{
-				SantaDice dice = (SantaDice)GameSingleton.instance.Game.Hand.GrabbedDice.FirstOrDefault(x => x.DiceType == typeof(SantaDice).Name);
+				SantaDice dice = (SantaDice)game.Hand.GrabbedDice.FirstOrDefault(x => x.DiceType == typeof(SantaDice).Name);
 				if (dice == null)
 				{
 					return;
@@ -33,16 +33,16 @@ namespace Back.Game
 
 					if(heroDice != null)
 					{
-						GameSingleton.instance.Game.ScoreDecorator.RemoveDice(heroDice);
-						GameSingleton.instance.Game.Bag.ReturnDice(heroDice);
-						GameSingleton.instance.Game.ScoreDecorator.BrainsCount--;
+						game.ScoreDecorator.RemoveDice(heroDice);
+						game.Bag.ReturnDice(heroDice);
+						game.ScoreDecorator.BrainsCount--;
 					}
 
 					if(heroineDice != null)
 					{
-						GameSingleton.instance.Game.ScoreDecorator.RemoveDice(heroineDice);
-						GameSingleton.instance.Game.Bag.ReturnDice(heroineDice);
-						GameSingleton.instance.Game.ScoreDecorator.BrainsCount--;
+						game.ScoreDecorator.RemoveDice(heroineDice);
+						game.Bag.ReturnDice(heroineDice);
+						game.ScoreDecorator.BrainsCount--;
 					}
 				}
 			}

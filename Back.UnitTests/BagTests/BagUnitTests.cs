@@ -16,11 +16,12 @@ namespace Back.UnitTests.BagTests
 		
 		private IGame game;
 
+		private TestInitHelper testInitHelper = new TestInitHelper();
+
 		[TestInitialize()]
 		public void BagUnitTestsInitialize() 
 		{
-			BagTestsHelper helper = new BagTestsHelper();
-			game = helper.InitGameStub();
+			game = testInitHelper.InitGameStub();
 			bag = (Bag)game.Bag;
 		}
 

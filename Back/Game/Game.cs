@@ -1,4 +1,5 @@
 ﻿using Back.Dice;
+using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
 using System.Threading.Tasks;
 
@@ -6,16 +7,11 @@ namespace Back.Game
 {
 	public sealed class Game : IGame
 	{
-		//public Game()
-		//	: this(new Hand(), new GameSettings(), new Bag(), new ScoreFlyweightFactory())
-		//{
-		//}
-
-		//private Game(IHand hand, IGameSettings gameSettings, IBag bag, IScoreFlyweightFactory factory)
+		private IPlayerList playerList;
 
 		public Game()
 		{
-			Hand = new Hand();
+			Hand = new Hand(new RandomNumberProvider());
 			GameSettings = new GameSettings();
 			Bag = new Bag();
 			Factory = new ScoreFlyweightFactory();
@@ -33,6 +29,23 @@ namespace Back.Game
 		public IGameSettings GameSettings { get; set; }
 
 		public IScoreFlyweightFactory Factory { get; set; }
+
+		public IPlayerList PlayerList 
+		{
+			get
+			{
+				if(playerList == null)
+				{
+					playerList = PlayerListSingleton.instance.PlayersList;
+				}
+
+				return playerList;
+			}
+			set
+			{
+				playerList = value;
+			}
+		} 
 
 		public void SetupNewGame(bool includeSanta = false, bool includeHero = false, bool includeHeroine = false)
 		{
@@ -63,32 +76,29 @@ namespace Back.Game
 
 			ScoreDecorator = currentDecorator;
 
-			this.Hand = new Hand();
+			Hand = new Hand(new RandomNumberProvider());
 
 			StartGame();
 		}
 
 		public void StopAction()
 		{
-			PlayerListSingleton.instance.PlayersList.CurrentPlayer.SaveScore(ScoreDecorator.BrainsCount);
-			PlayerListSingleton.instance.PlayersList.ChangeCurrentPlayerToNext();
+			PlayerList.CurrentPlayer.SaveScore(ScoreDecorator.BrainsCount);
+			PlayerList.ChangeCurrentPlayerToNext();
 			ScoreDecorator.ResetScore();
 			Bag.ResetBag(GameSettings);
 		}
 
-		public void RollAction()
+		public async Task RollAction()
 		{
 			Hand.GrabAndRollDice(ScoreDecorator, Bag, GameSettings);
-			ScoreDecorator.UpdateScore();
+			ScoreDecorator.UpdateScore(this);
 			if (ScoreDecorator.CheckAndKill())
 			{
-				Task.Run(() =>
-				{
-					ScoreDecorator.KillPlayer();
-					PlayerListSingleton.instance.PlayersList.ChangeCurrentPlayerToNext();
-					Bag.ResetBag(GameSettings);
-					ScoreDecorator.ResetScore();
-				});
+				await ScoreDecorator.SetKilledToTrueAfterDelay(1200);
+				PlayerList.ChangeCurrentPlayerToNext();
+				Bag.ResetBag(GameSettings);
+				ScoreDecorator.ResetScore();
 			}
 		}
 
@@ -96,16 +106,16 @@ namespace Back.Game
 		{
 			ScoreDecorator.ResetScore();
 			Bag.ResetBag(GameSettings);
-			PlayerListSingleton.instance.PlayersList.CurrentPlayer = null;
-			PlayerListSingleton.instance.PlayersList.RemoveAllPlayers();
+			PlayerList.CurrentPlayer = null;
+			PlayerList.RemoveAllPlayers();
 		}
 
 		public void StartGame()
 		{
 			ScoreDecorator.ResetScore();
 			Bag.ResetBag(GameSettings);
-			PlayerListSingleton.instance.PlayersList.ResetPlayersScore();
-			PlayerListSingleton.instance.PlayersList.SetFirstPlayerAsCurrent();
+			PlayerList.ResetPlayersScore();
+			PlayerList.SetFirstPlayerAsCurrent();
 		}
 	}
 }

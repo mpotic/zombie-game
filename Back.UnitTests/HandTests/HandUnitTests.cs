@@ -12,11 +12,12 @@ namespace Back.UnitTests.HandTests
 
 		private IGame game;
 
+		private TestInitHelper testInitHelper = new TestInitHelper();
+
 		[TestInitialize]
 		public void HandUnitTestsInitialize()
 		{
-			HandTestsHelper helper = new HandTestsHelper();
-			game = helper.InitGameStub();
+			game = testInitHelper.InitGameStub();
 			hand = (Hand)game.Hand;
 		}
 

@@ -5,11 +5,11 @@ namespace Back.Game
 {
 	public class ScoreDecoratorHero : ScoreDecorator
 	{
-		public override void UpdateScore()
+		public override void UpdateScore(IGame game)
 		{
-			base.UpdateScore();
+			base.UpdateScore(game);
 
-			HeroDice dice = (HeroDice)GameSingleton.instance.Game.Hand.GrabbedDice.FirstOrDefault(x => x.DiceType == typeof(HeroDice).Name);
+			HeroDice dice = (HeroDice)game.Hand.GrabbedDice.FirstOrDefault(x => x.DiceType == typeof(HeroDice).Name);
 			if (dice == null)
 			{
 				return;
@@ -31,15 +31,15 @@ namespace Back.Game
 
 				if (santaDice != null)
 				{
-					GameSingleton.instance.Game.ScoreDecorator.RemoveDice(santaDice);
-					GameSingleton.instance.Game.ScoreDecorator.BrainsCount--;
+					game.ScoreDecorator.RemoveDice(santaDice);
+					game.ScoreDecorator.BrainsCount--;
 				}
 
 				if (heroineDice != null)
 				{
-					GameSingleton.instance.Game.ScoreDecorator.RemoveDice(heroineDice);
-					GameSingleton.instance.Game.Bag.ReturnDice(heroineDice);
-					GameSingleton.instance.Game.ScoreDecorator.BrainsCount--;
+					game.ScoreDecorator.RemoveDice(heroineDice);
+					game.Bag.ReturnDice(heroineDice);
+					game.ScoreDecorator.BrainsCount--;
 				}
 			}
 		}

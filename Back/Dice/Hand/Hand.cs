@@ -11,15 +11,15 @@ namespace Back.Dice
 	{
 		private readonly List<IDice> grabbedDice;
 
-		private readonly IRandomNumberProvider randomNumberProvider;
-
-		public List<IDice> GrabbedDice { get => grabbedDice; }
-
-		public Hand()
+		public Hand(IRandomNumberProvider randomNumberProvider)
 		{
 			grabbedDice = new List<IDice>();
-			randomNumberProvider = new RandomNumberProvider();
+			this.randomNumberProvider = randomNumberProvider;
 		}
+
+		private IRandomNumberProvider randomNumberProvider;
+
+		public List<IDice> GrabbedDice { get => grabbedDice; }
 
 		public void GrabAndRollDice(IScore score, IBag bag, IGameSettings settings)
 		{
