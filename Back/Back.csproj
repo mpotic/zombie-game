@@ -60,7 +60,6 @@
     <Compile Include="Game\GameSingleton\IGameSingleton.cs" />
     <Compile Include="Game\Score\Flyweight\IScoreFlyweightFactory.cs" />
     <Compile Include="Game\Score\IScore.cs" />
-    <Compile Include="Game\Score\Decorators\ScoreDecorator.cs" />
     <Compile Include="Game\Score\Decorators\ScoreDecoratorHero.cs" />
     <Compile Include="Game\Score\Decorators\ScoreDecoratorHeroine.cs" />
     <Compile Include="Game\Score\Decorators\ScoreDecoratorSanta.cs" />

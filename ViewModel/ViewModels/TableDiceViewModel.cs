@@ -2,6 +2,8 @@
 using Back.Game;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace ViewModel
@@ -25,10 +27,14 @@ namespace ViewModel
 		{
 			if(args.Action == NotifyCollectionChangedAction.Reset)
 			{
-				while(Dice.Count > 0)
+				Task.Run(() =>
 				{
-					Dice.RemoveAt(0);
-				}
+					Thread.Sleep(1200);
+					while (Dice.Count > 0)
+					{
+						Dice.RemoveAt(0);
+					}
+				});
 			}
 			else if(args.Action == NotifyCollectionChangedAction.Add)
 			{

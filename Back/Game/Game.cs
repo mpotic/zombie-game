@@ -16,11 +16,10 @@ namespace Back.Game
 			Bag = new Bag();
 			Factory = new ScoreFlyweightFactory();
 
-			ScoreDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(ScoreDecorator));
-			ScoreDecorator.SetScoreComponent(Factory.GetFlyweight(typeof(Score)));
+			Score = (IScore)Factory.GetFlyweight(typeof(Score));
 		}
 
-		public IScoreDecorator ScoreDecorator { get; set; }
+		public IScore Score { get; set; }
 
 		public IHand Hand { get; set; }
 
@@ -51,7 +50,7 @@ namespace Back.Game
 		{
 			GameSettings.Configure(includeSanta, includeHero, includeHeroine);
 
-			IScoreDecorator currentDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(ScoreDecorator));
+			IScore currentDecorator = Factory.GetFlyweight(typeof(Score));
 
 			if (GameSettings.IncludedSanta)
 			{
@@ -74,7 +73,7 @@ namespace Back.Game
 				currentDecorator = heroineDecorator;
 			}
 
-			ScoreDecorator = currentDecorator;
+			Score = currentDecorator;
 
 			Hand = new Hand(new RandomNumberProvider());
 
@@ -83,28 +82,28 @@ namespace Back.Game
 
 		public void StopAction()
 		{
-			PlayerList.CurrentPlayer.SaveScore(ScoreDecorator.BrainsCount);
+			PlayerList.CurrentPlayer.SaveScore(Score.BrainsCount);
 			PlayerList.ChangeCurrentPlayerToNext();
-			ScoreDecorator.ResetScore();
+			Score.ResetScore();
 			Bag.ResetBag(GameSettings);
 		}
 
-		public async Task RollAction()
+		public void RollAction()
 		{
-			Hand.GrabAndRollDice(ScoreDecorator, Bag, GameSettings);
-			ScoreDecorator.UpdateScore(this);
-			if (ScoreDecorator.CheckAndKill())
+			Hand.GrabAndRollDice(Score, Bag, GameSettings);
+			Score.UpdateScore(this);
+			if (Score.CheckAndKill())
 			{
-				await ScoreDecorator.SetKilledToTrueAfterDelay(1200);
+				Score.SetKilledToFalse();
 				PlayerList.ChangeCurrentPlayerToNext();
 				Bag.ResetBag(GameSettings);
-				ScoreDecorator.ResetScore();
+				Score.ResetScore();
 			}
 		}
 
 		public void ResetGame()
 		{
-			ScoreDecorator.ResetScore();
+			Score.ResetScore();
 			Bag.ResetBag(GameSettings);
 			PlayerList.CurrentPlayer = null;
 			PlayerList.RemoveAllPlayers();
@@ -112,7 +111,7 @@ namespace Back.Game
 
 		public void StartGame()
 		{
-			ScoreDecorator.ResetScore();
+			Score.ResetScore();
 			Bag.ResetBag(GameSettings);
 			PlayerList.ResetPlayersScore();
 			PlayerList.SetFirstPlayerAsCurrent();

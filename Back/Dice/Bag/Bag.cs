@@ -124,6 +124,12 @@ namespace Back.Dice
 				}
 			}
 
+			if (settings.IncludedSanta && !usedSanta)
+			{
+				dice.Add(new SantaDice());
+				usedSanta = true;
+			}
+
 			if (settings.IncludedHero)
 			{
 				if (yellowDiceNeeded > 0)
@@ -149,12 +155,6 @@ namespace Back.Dice
 					Dice.RemoveAt(Dice.FindIndex(x => x.DiceType == typeof(YellowDice).Name));
 				}
 				dice.Add(new HeroineDice());
-			}
-
-			if (settings.IncludedSanta && !usedSanta)
-			{
-				dice.Add(new SantaDice());
-				usedSanta = true;
 			}
 
 			dice.AddRange(Enumerable.Range(0, greenDiceNeeded).Select(x => new GreenDice()).ToList<IDice>());

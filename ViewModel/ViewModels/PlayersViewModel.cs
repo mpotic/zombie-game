@@ -3,6 +3,8 @@ using Back.PlayerModel.Singleton;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ViewModel
 {
@@ -59,7 +61,14 @@ namespace ViewModel
 
 		private void PlayerChanged(object sender, PropertyChangedEventArgs args)
 		{
-			CurrentPlayer = ((IPlayerList)sender).CurrentPlayer;
+			Task.Run(() =>
+			{
+				if(Players.Count > 1)
+				{
+					Thread.Sleep(1200);
+				}
+				CurrentPlayer = ((IPlayerList)sender).CurrentPlayer;
+			});
 		}
 	}
 }

@@ -34,15 +34,5 @@ namespace ZombieGame
 			OptionsSingleton.Options.AddNewPlayer(PlayerName.Text);
 			PlayerName.Text = "";
 		}
-
-		// TODO: Rewrite so that Command is used.
-		//private void Item_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-		//{
-		//	IPlayer player = (IPlayer)((ContentPresenter)sender).Content;
-		//	if (player == GameSingleton.instance.Game.CurrentPlayer)
-		//		return;
-
-		//	PlayerListSingleton.instance.PlayersList.Players.Remove(player);
-		//}
 	}
 }

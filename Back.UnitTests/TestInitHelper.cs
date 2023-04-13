@@ -1,5 +1,6 @@
 ﻿using Back.Dice;
 using Back.Game;
+using Back.PlayerModel;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,10 @@ namespace Back.UnitTests
 		internal IGame InitGameStub()
 		{
 			IGame gameStub = Substitute.For<IGame>();
+
 			gameStub.Hand = new Hand(new RandomNumberProvider());
 			gameStub.Bag = new Bag();
-			gameStub.ScoreDecorator = new ScoreDecorator();
+			gameStub.Score = new Score();
 			gameStub.GameSettings = new GameSettings();
 
 			return gameStub;

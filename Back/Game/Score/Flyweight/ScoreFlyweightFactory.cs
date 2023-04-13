@@ -5,7 +5,7 @@ namespace Back.Game
 {
 	public class ScoreFlyweightFactory : IScoreFlyweightFactory
 	{
-		private Dictionary<Type, IScore> flyweights = new Dictionary<Type, IScore>();
+		private readonly Dictionary<Type, IScore> flyweights = new Dictionary<Type, IScore>();
 
 		public IScore GetFlyweight(Type type)
 		{
@@ -15,6 +15,7 @@ namespace Back.Game
 			}
 
 			flyweights[type] = (IScore)Activator.CreateInstance(type);
+
 			return flyweights[type];
 		}
 	}

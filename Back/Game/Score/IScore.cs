@@ -17,7 +17,7 @@ namespace Back.Game
 
 		bool CheckAndKill();
 
-		Task SetKilledToTrueAfterDelay(int delay);
+		void SetKilledToFalse();
 
 		void ResetScore();
 		

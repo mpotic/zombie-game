@@ -1,13 +1,54 @@
 ﻿using Back.Dice;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Back.Game
 {
-	public class ScoreDecoratorHero : ScoreDecorator
+	public class ScoreDecoratorHero : IScoreDecorator
 	{
-		public override void UpdateScore(IGame game)
+		public IScore ScoreComponent { get; set; }
+
+		public int BrainsCount { get => ScoreComponent.BrainsCount; set => ScoreComponent.BrainsCount = value; }
+
+		public int ShotgunCount { get => ScoreComponent.ShotgunCount; set => ScoreComponent.ShotgunCount = value; }
+
+		public bool Killed { get => ScoreComponent.Killed; set => ScoreComponent.Killed = value; }
+
+		public List<IDice> AllRolledDice { get => ScoreComponent.AllRolledDice; set => ScoreComponent.AllRolledDice = value; }
+
+		public bool CheckAndKill()
 		{
-			base.UpdateScore(game);
+			return ScoreComponent.CheckAndKill();
+		}
+
+		public void RemoveDice(IDice dice)
+		{
+			ScoreComponent.RemoveDice(dice);
+		}
+
+		public void ResetScore()
+		{
+			ScoreComponent.ResetScore();
+		}
+
+		public List<IDice> RetrieveFootsteps()
+		{
+			return ScoreComponent.RetrieveFootsteps();
+		}
+
+		public void SetKilledToFalse()
+		{
+			ScoreComponent.SetKilledToFalse();
+		}
+
+		public void SetScoreComponent(IScore score)
+		{
+			ScoreComponent = score;
+		}
+
+		public void UpdateScore(IGame game)
+		{
+			ScoreComponent.UpdateScore(game);
 
 			HeroDice dice = (HeroDice)game.Hand.GrabbedDice.FirstOrDefault(x => x.DiceType == typeof(HeroDice).Name);
 			if (dice == null)
@@ -31,15 +72,15 @@ namespace Back.Game
 
 				if (santaDice != null)
 				{
-					game.ScoreDecorator.RemoveDice(santaDice);
-					game.ScoreDecorator.BrainsCount--;
+					game.Score.RemoveDice(santaDice);
+					game.Score.BrainsCount--;
 				}
 
 				if (heroineDice != null)
 				{
-					game.ScoreDecorator.RemoveDice(heroineDice);
+					game.Score.RemoveDice(heroineDice);
 					game.Bag.ReturnDice(heroineDice);
-					game.ScoreDecorator.BrainsCount--;
+					game.Score.BrainsCount--;
 				}
 			}
 		}

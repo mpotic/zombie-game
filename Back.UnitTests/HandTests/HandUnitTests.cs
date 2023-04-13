@@ -33,7 +33,7 @@ namespace Back.UnitTests.HandTests
 		[TestMethod]
 		public void GrabbedDice_OnGrabAndRollDice_HasThreeDice()
 		{
-			hand.GrabAndRollDice(game.ScoreDecorator, game.Bag, game.GameSettings);
+			hand.GrabAndRollDice(game.Score, game.Bag, game.GameSettings);
 			var actual = hand.GrabbedDice;
 
 			Assert.AreEqual(3, actual.Count);

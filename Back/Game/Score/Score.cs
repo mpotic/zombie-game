@@ -89,9 +89,8 @@ namespace Back.Game
 			return false;
 		}
 
-		public async Task SetKilledToTrueAfterDelay(int delay)
+		public void SetKilledToFalse()
 		{
-			await Task.Delay(delay);
 			Killed = false;
 		}
 

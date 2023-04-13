@@ -4,13 +4,60 @@ using System.Linq;
 
 namespace Back.Game
 {
-	public class SantaScoreDecorator : ScoreDecorator
+	public class SantaScoreDecorator : IScoreDecorator
 	{
 		protected SantaDice santaDice = null;
 
-		public override void UpdateScore(IGame game)
+		public IScore ScoreComponent { get; set; }
+
+		public int BrainsCount { get => ScoreComponent.BrainsCount; set => ScoreComponent.BrainsCount = value; }
+
+		public int ShotgunCount { get => ScoreComponent.ShotgunCount; set => ScoreComponent.ShotgunCount = value; }
+
+		public bool Killed { get => ScoreComponent.Killed; set => ScoreComponent.Killed = value; }
+
+		public List<IDice> AllRolledDice { get => ScoreComponent.AllRolledDice; set => ScoreComponent.AllRolledDice = value; }
+
+		public bool CheckAndKill()
 		{
-			base.UpdateScore(game);
+			if (santaDice != null && santaDice.Side == DiceSide.HELMET && ShotgunCount < 4)
+			{
+				return false;
+			}
+
+			return ScoreComponent.CheckAndKill();
+		}
+
+		public void RemoveDice(IDice dice)
+		{
+			ScoreComponent.RemoveDice(dice);
+		}
+
+		public void ResetScore()
+		{
+			ScoreComponent.ResetScore();
+
+			santaDice = null;
+		}
+
+		public List<IDice> RetrieveFootsteps()
+		{
+			return ScoreComponent.RetrieveFootsteps();
+		}
+
+		public void SetKilledToFalse()
+		{
+			ScoreComponent.SetKilledToFalse();
+		}
+
+		public void SetScoreComponent(IScore score)
+		{
+			ScoreComponent = score;
+		}
+
+		public void UpdateScore(IGame game)
+		{
+			ScoreComponent.UpdateScore(game);
 
 			if (santaDice == null)
 			{
@@ -33,16 +80,16 @@ namespace Back.Game
 
 					if(heroDice != null)
 					{
-						game.ScoreDecorator.RemoveDice(heroDice);
+						game.Score.RemoveDice(heroDice);
 						game.Bag.ReturnDice(heroDice);
-						game.ScoreDecorator.BrainsCount--;
+						game.Score.BrainsCount--;
 					}
 
 					if(heroineDice != null)
 					{
-						game.ScoreDecorator.RemoveDice(heroineDice);
+						game.Score.RemoveDice(heroineDice);
 						game.Bag.ReturnDice(heroineDice);
-						game.ScoreDecorator.BrainsCount--;
+						game.Score.BrainsCount--;
 					}
 				}
 			}
@@ -65,23 +112,6 @@ namespace Back.Game
 					AllRolledDice.Add(dice);
 				}
 			}
-		}
-
-		public override void ResetScore()
-		{
-			base.ResetScore();
-
-			santaDice = null;
-		}
-
-		public override bool CheckAndKill()
-		{
-			if(santaDice != null && santaDice.Side == DiceSide.HELMET && ShotgunCount < 4)
-			{
-				return false;
-			}
-
-			return base.CheckAndKill();
 		}
 	}
 }

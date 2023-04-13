@@ -6,7 +6,7 @@ namespace Back.Game
 {
 	public interface IGame
 	{
-		IScoreDecorator ScoreDecorator { get; set; }
+		IScore Score { get; set; }
 
 		IHand Hand { get; set; }
 
@@ -22,7 +22,7 @@ namespace Back.Game
 
 		void StopAction();
 
-		Task RollAction();
+		void RollAction();
 
 		void ResetGame();
 

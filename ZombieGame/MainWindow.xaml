@@ -50,41 +50,18 @@
 						 Margin="0,0,0,0"
 						 HorizontalAlignment="Center"
 						 VerticalAlignment="Top" />
-		<Border Grid.Column="2"
-				Grid.Row="3"
-				BorderThickness="0">
-			<Border.Resources>
-				<Style TargetType="Border">
-					<Style.Triggers>
-						<DataTrigger Binding="{Binding KilledViewModel.Killed}"
-									 Value="true">
-							<Setter Property="Visibility"
-									Value="Hidden" />
-						</DataTrigger>
-					</Style.Triggers>
-				</Style>
-			</Border.Resources>
-			<local:Options Grid.Column="2"
-						   Grid.Row="3"
-						   HorizontalAlignment="Center"
-						   VerticalAlignment="Bottom" />
-		</Border>
-		<Border Grid.Column="2"
+		<local:Options x:Name="Options_UserControl"
+					   Grid.Column="2"
+					   Grid.Row="3"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Bottom" />
+		<Border x:Name="RIPImage_Border"
+				Grid.Column="2"
 				Grid.Row="3"
 				BorderThickness="1"
 				CornerRadius="4"
-				Width="80">
-			<Border.Resources>
-				<Style TargetType="Border">
-					<Style.Triggers>
-						<DataTrigger Binding="{Binding KilledViewModel.Killed}"
-									 Value="false">
-							<Setter Property="Visibility"
-									Value="Hidden" />
-						</DataTrigger>
-					</Style.Triggers>
-				</Style>
-			</Border.Resources>
+				Width="100"
+				Visibility="Hidden">
 			<Border.Background>
 				<ImageBrush Opacity="0.9"
 							Stretch="Fill"
