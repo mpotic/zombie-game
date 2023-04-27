@@ -607,10 +607,176 @@
 					</Border>
 				</Border>
 			</ControlTemplate>
+			<!--Buss brain template-->
+			<ControlTemplate x:Key="BussBrainTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="Black"
+						BorderThickness="3"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4"
+						Background="#fff200">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border>
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Buss/Brain.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Buss shotgun template-->
+			<ControlTemplate x:Key="BussShotgunTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="Black"
+						BorderThickness="3"
+						Margin="8"
+						Padding="6"
+						CornerRadius="4"
+						Background="#fff200">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border>
+						<Border.Background>
+							<ImageBrush ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Buss/Shotgun.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Buss double brain one shotgun template-->
+			<ControlTemplate x:Key="BussDoubleBrainOneShotgunTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="Black"
+						BorderThickness="3"
+						Margin="8"
+						Padding="0"
+						CornerRadius="4"
+						Background="#fff200">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border>
+						<Border.Background>
+							<ImageBrush Stretch="Fill" ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Buss/DoubleBrainOneShotgun.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Buss dead end template-->
+			<ControlTemplate x:Key="BussDeadEndTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="Black"
+						BorderThickness="3"
+						Margin="8"
+						Padding="2"
+						CornerRadius="4"
+						Background="#fff200">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border>
+						<Border.Background>
+							<ImageBrush Stretch="Fill"
+										ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Buss/DeadEnd.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Buss run over template-->
+			<ControlTemplate x:Key="BussRunOverTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="Black"
+						BorderThickness="3"
+						Margin="8"
+						Padding="2"
+						CornerRadius="4"
+						Background="#fff200">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border>
+						<Border.Background>
+							<ImageBrush Stretch="Fill"
+										ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Buss/RunOver.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Buss stop template-->
+			<ControlTemplate x:Key="BussStopTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="Black"
+						BorderThickness="3"
+						Margin="8"
+						Padding="2"
+						CornerRadius="4"
+						Background="#fff200">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border>
+						<Border.Background>
+							<ImageBrush Stretch="Fill"
+										ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Buss/Stop.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
+			<!--Buss yield template-->
+			<ControlTemplate x:Key="BussYieldTemplate"
+							 TargetType="{x:Type ListViewItem}">
+				<Border BorderBrush="Black"
+						BorderThickness="3"
+						Margin="8"
+						Padding="2"
+						CornerRadius="4"
+						Background="#fff200">
+					<Border.Effect>
+						<DropShadowEffect BlurRadius="4"
+										  Color="DimGray"
+										  Opacity="0.8"
+										  RenderingBias="Quality"
+										  ShadowDepth="6" />
+					</Border.Effect>
+					<Border>
+						<Border.Background>
+							<ImageBrush Stretch="Uniform"
+										ImageSource="pack://application:,,,/ZombieGame;../../Images/DiceFaces/Buss/Yield.PNG" />
+						</Border.Background>
+					</Border>
+				</Border>
+			</ControlTemplate>
 			<Style TargetType="ListViewItem">
 				<Setter Property="Focusable"
 						Value="False" />
 				<Style.Triggers>
+					<!--Green brain triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -621,6 +787,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource GreenBrainTemplate}" />
 					</MultiDataTrigger>
+					<!--Green shotgun triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -631,6 +798,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource GreenShotgunTemplate}" />
 					</MultiDataTrigger>
+					<!--Green footsteps triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -641,6 +809,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource GreenFootstepsTemplate}" />
 					</MultiDataTrigger>
+					<!--Yellow brain triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -651,6 +820,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource YellowBrainTemplate}" />
 					</MultiDataTrigger>
+					<!--Yellow shotgun triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -661,6 +831,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource YellowShotgunTemplate}" />
 					</MultiDataTrigger>
+					<!--Yellow footsteps triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -671,6 +842,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource YellowFootstepsTemplate}" />
 					</MultiDataTrigger>
+					<!--Red brain triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -681,6 +853,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource RedBrainTemplate}" />
 					</MultiDataTrigger>
+					<!--Red shotgun triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -691,6 +864,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource RedShotgunTemplate}" />
 					</MultiDataTrigger>
+					<!--Red footsteps triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -701,6 +875,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource RedFootstepsTemplate}" />
 					</MultiDataTrigger>
+					<!--Santa brain triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -711,6 +886,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource SantaBrainTemplate}" />
 					</MultiDataTrigger>
+					<!--Santa footsteps triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -721,6 +897,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource SantaFootstepsTemplate}" />
 					</MultiDataTrigger>
+					<!--Santa shotgun triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -731,6 +908,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource SantaShotgunTemplate}" />
 					</MultiDataTrigger>
+					<!--Santa double brain gift triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -741,6 +919,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource SantaDoubleBrainTemplate}" />
 					</MultiDataTrigger>
+					<!--Santa energy drink triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -751,6 +930,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource SantaEnergyDrinkTemplate}" />
 					</MultiDataTrigger>
+					<!--Santa helmet triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -761,6 +941,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource SantaHelmetTemplate}" />
 					</MultiDataTrigger>
+					<!--Hero double brain triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -771,6 +952,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource HeroDoubleBrainTemplate}" />
 					</MultiDataTrigger>
+					<!--Hero footsteps triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -781,6 +963,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource HeroFootstepsTemplate}" />
 					</MultiDataTrigger>
+					<!--Hero shotgun triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -791,6 +974,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource HeroShotgunTemplate}" />
 					</MultiDataTrigger>
+					<!--Hero double shotgun triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -801,6 +985,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource HeroDoubleShotgunTemplate}" />
 					</MultiDataTrigger>
+					<!--Heroine brain triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -811,6 +996,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource HeroineBrainTemplate}" />
 					</MultiDataTrigger>
+					<!--Heroine footsteps triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -821,6 +1007,7 @@
 						<Setter Property="Template"
 								Value="{StaticResource HeroineFootstepsTemplate}" />
 					</MultiDataTrigger>
+					<!--Heroine shotgun triggers-->
 					<MultiDataTrigger>
 						<MultiDataTrigger.Conditions>
 							<Condition Binding="{Binding DiceType}"
@@ -830,6 +1017,83 @@
 						</MultiDataTrigger.Conditions>
 						<Setter Property="Template"
 								Value="{StaticResource HeroineShotgunTemplate}" />
+					</MultiDataTrigger>
+					<!--Buss brain triggers-->
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="BussDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="BRAIN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource BussBrainTemplate}" />
+					</MultiDataTrigger>
+					<!--Buss shotgun triggers-->
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="BussDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="SHOTGUN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource BussShotgunTemplate}" />
+					</MultiDataTrigger>
+					<!--Buss double brain one shotgun triggers-->
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="BussDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="DOUBLE_BRAIN_ONE_SHOTGUN" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource BussDoubleBrainOneShotgunTemplate}" />
+					</MultiDataTrigger>
+					<!--Buss dead end triggers-->
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="BussDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="DEAD_END" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource BussDeadEndTemplate}" />
+					</MultiDataTrigger>
+					<!--Buss run over triggers-->
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="BussDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="RUN_OVER" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource BussRunOverTemplate}" />
+					</MultiDataTrigger>
+					<!--Buss stop triggers-->
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="BussDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="STOP" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource BussStopTemplate}" />
+					</MultiDataTrigger>
+					<!--Buss yield triggers-->
+					<MultiDataTrigger>
+						<MultiDataTrigger.Conditions>
+							<Condition Binding="{Binding DiceType}"
+									   Value="BussDice" />
+							<Condition Binding="{Binding Side}"
+									   Value="YIELD" />
+						</MultiDataTrigger.Conditions>
+						<Setter Property="Template"
+								Value="{StaticResource BussYieldTemplate}" />
 					</MultiDataTrigger>
 				</Style.Triggers>
 			</Style>

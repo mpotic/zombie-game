@@ -1,8 +1,6 @@
 ﻿using Back.Dice;
 using Back.Game;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Back.UnitTests.BagTests
 {

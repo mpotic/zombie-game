@@ -1,4 +1,5 @@
-﻿using Back.PlayerModel;
+﻿using Back.Helpers.Events;
+using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -10,11 +11,13 @@ namespace ViewModel
 {
 	public class PlayersViewModel : IPlayersViewModel, INotifyPropertyChanged
 	{
-		private ObservableCollection<IPlayer> players = new ObservableCollection<IPlayer>();
+		private readonly ObservableCollection<IPlayer> players = new ObservableCollection<IPlayer>();
 
 		private IPlayer currentPlayer;
 
-		public IPlayer CurrentPlayer 
+		private int delayDurationMilliseconds = 1600;
+
+		public IPlayer CurrentPlayer
 		{
 			get
 			{
@@ -42,9 +45,9 @@ namespace ViewModel
 
 		private void UpdatePlayersProperty(object sender, NotifyCollectionChangedEventArgs args)
 		{
-			if(args.Action == NotifyCollectionChangedAction.Reset)
+			if (args.Action == NotifyCollectionChangedAction.Reset)
 			{
-				while(Players.Count > 0)
+				while (Players.Count > 0)
 				{
 					Players.RemoveAt(0);
 				}
@@ -53,7 +56,7 @@ namespace ViewModel
 			{
 				Players.Add((IPlayer)args.NewItems[0]);
 			}
-			else if(args.Action == NotifyCollectionChangedAction.Remove)
+			else if (args.Action == NotifyCollectionChangedAction.Remove)
 			{
 				Players.Remove((IPlayer)args.OldItems[0]);
 			}
@@ -61,14 +64,28 @@ namespace ViewModel
 
 		private void PlayerChanged(object sender, PropertyChangedEventArgs args)
 		{
-			Task.Run(() =>
+			if (args is CustomPropertyChangedEventArgs customArgs)
 			{
-				if(Players.Count > 1)
+				DelayedPlayerChanged(sender, customArgs);
+				return;
+			}
+
+			CurrentPlayer = ((IPlayerList)sender).CurrentPlayer;
+		}
+
+		public void DelayedPlayerChanged(object sender, CustomPropertyChangedEventArgs customArgs)
+		{
+			if (customArgs.CustomArgs == CustomEnumPropertyChangedEventArgs.DELAYED_UPDATE)
+			{
+				Task.Run(() =>
 				{
-					Thread.Sleep(1200);
-				}
-				CurrentPlayer = ((IPlayerList)sender).CurrentPlayer;
-			});
+					if (Players.Count > 1)
+					{
+						Thread.Sleep(delayDurationMilliseconds);
+					}
+					CurrentPlayer = ((IPlayerList)sender).CurrentPlayer;
+				});
+			}
 		}
 	}
 }

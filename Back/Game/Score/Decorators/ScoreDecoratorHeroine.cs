@@ -26,9 +26,19 @@ namespace Back.Game
 			ScoreComponent.RemoveDice(dice);
 		}
 
+		public void AddDice(IDice dice)
+		{
+			ScoreComponent.AddDice(dice);
+		}
+
 		public void ResetScore()
 		{
 			ScoreComponent.ResetScore();
+		}
+
+		public void DelayedResetScore()
+		{
+			ScoreComponent.DelayedResetScore();
 		}
 
 		public List<IDice> RetrieveFootsteps()

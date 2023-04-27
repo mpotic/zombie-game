@@ -1,4 +1,6 @@
-﻿namespace ViewModel.Options
+﻿using Common.DTO;
+
+namespace ViewModel.Options
 {
 	public interface IOptions
 	{
@@ -12,6 +14,8 @@
 
 		void StartAction();
 
-		void SetupNewGameAction(bool includeSanta, bool includeHero, bool includeHeroine);
+		void SetupNewGameAction(IGameSettingsInfo gameSettingsInfo);
+
+		void ConfigureBussAction(bool useBuss);
 	}
 }

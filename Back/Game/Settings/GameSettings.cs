@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Common.DTO;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Back.Game
@@ -50,11 +51,13 @@ namespace Back.Game
 			}
 		}
 
-		public void Configure(bool includeSanta, bool includeHero, bool includeHeroine)
+		public bool IncludedBuss { get; set; }
+
+		public void Configure(IGameSettingsInfo gameSettingsInfo)
 		{
-			IncludedSanta = includeSanta;
-			IncludedHero = includeHero;
-			IncludedHeroine = includeHeroine;
+			IncludedSanta = gameSettingsInfo.UseSanta;
+			IncludedHero = gameSettingsInfo.UseHero;
+			IncludedHeroine = gameSettingsInfo.UseHeroine;
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

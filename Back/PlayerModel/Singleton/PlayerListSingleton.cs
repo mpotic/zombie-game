@@ -2,7 +2,7 @@
 {
 	public class PlayerListSingleton : IPlayerListSingleton
 	{
-		public static readonly PlayerListSingleton instance = new PlayerListSingleton();
+		public static readonly IPlayerListSingleton instance = new PlayerListSingleton();
 
 		public IPlayerList PlayersList { get; }
 

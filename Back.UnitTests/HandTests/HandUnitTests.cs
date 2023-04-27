@@ -1,7 +1,6 @@
 ﻿using Back.Dice;
 using Back.Game;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
 namespace Back.UnitTests.HandTests
 {

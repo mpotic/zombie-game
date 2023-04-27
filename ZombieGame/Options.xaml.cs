@@ -16,22 +16,22 @@ namespace ZombieGame
 
 		private void ResetButton_Click(object sender, RoutedEventArgs e)
 		{
-			OptionsSingleton.Options.ResetAction();
+			OptionsSingleton.instance.Options.ResetAction();
 		}
 
 		private void RollButton_Click(object sender, RoutedEventArgs e)
 		{
-			OptionsSingleton.Options.RollAction();
+			OptionsSingleton.instance.Options.RollAction();
 		}
 
 		private void StopButton_Click(object sender, RoutedEventArgs e)
 		{
-			OptionsSingleton.Options.StopAction();
+			OptionsSingleton.instance.Options.StopAction();
 		}
 
 		private void StartButton_Click(object sender, RoutedEventArgs e)
 		{
-			OptionsSingleton.Options.StartAction();
+			OptionsSingleton.instance.Options.StartAction();
 		}
 
 		private void NewGameButton_Click(object sender, RoutedEventArgs e)
@@ -42,6 +42,18 @@ namespace ZombieGame
 			gameSettingsWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
 			gameSettingsWindow.ShowDialog();
+		}
+
+		private void BussCheckBox_CheckedUnchecked(object sender, RoutedEventArgs e)
+		{
+			bool? useBuss = BussCheckBox.IsChecked;
+
+			if(useBuss == null)
+			{
+				return;
+			}
+
+			OptionsSingleton.instance.Options.ConfigureBussAction((bool)useBuss);
 		}
 	}
 }

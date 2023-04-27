@@ -1,13 +1,9 @@
 ﻿using Back.Dice;
 using Back.Game;
 using Back.PlayerModel;
+using Common.DTO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Back.UnitTests.ScenarioTests
 {
@@ -238,7 +234,7 @@ namespace Back.UnitTests.ScenarioTests
 		{
 			var randomNumberProviderStub = Substitute.For<IRandomNumberProvider>();
 			randomNumberProviderStub.GetRandomNumber(Arg.Any<int>(), Arg.Any<int>()).Returns<int>(0, 0, 0, 1, 0, 0);
-			game.SetupNewGame(true, false, false);
+			game.SetupNewGame(new GameSettingsInfo(true, false, false));
 			game.Hand = new Hand(randomNumberProviderStub);
 
 			game.RollAction();
@@ -251,7 +247,7 @@ namespace Back.UnitTests.ScenarioTests
 		{
 			var randomNumberProviderStub = Substitute.For<IRandomNumberProvider>();
 			randomNumberProviderStub.GetRandomNumber(Arg.Any<int>(), Arg.Any<int>()).Returns<int>(0, 0, 0, 1, 5, 0);
-			game.SetupNewGame(true, true, false);
+			game.SetupNewGame(new GameSettingsInfo(true, true, false));
 			game.Hand = new Hand(randomNumberProviderStub);
 
 			game.RollAction();
@@ -264,7 +260,7 @@ namespace Back.UnitTests.ScenarioTests
 		{
 			var randomNumberProviderStub = Substitute.For<IRandomNumberProvider>();
 			randomNumberProviderStub.GetRandomNumber(Arg.Any<int>(), Arg.Any<int>()).Returns<int>(0, 0, 0, 5, 2, 4);
-			game.SetupNewGame(true, true, true);
+			game.SetupNewGame(new GameSettingsInfo(true, true, true));
 			game.Hand = new Hand(randomNumberProviderStub);
 
 			game.RollAction();
@@ -277,7 +273,7 @@ namespace Back.UnitTests.ScenarioTests
 		{
 			var randomNumberProviderStub = Substitute.For<IRandomNumberProvider>();
 			randomNumberProviderStub.GetRandomNumber(Arg.Any<int>(), Arg.Any<int>()).Returns<int>(0, 0, 0, 5, 4, 4);
-			game.SetupNewGame(true, true, true);
+			game.SetupNewGame(new GameSettingsInfo(true, true, true));
 			game.Hand = new Hand(randomNumberProviderStub);
 
 			game.RollAction();
@@ -290,7 +286,7 @@ namespace Back.UnitTests.ScenarioTests
 		{
 			var randomNumberProviderStub = Substitute.For<IRandomNumberProvider>();
 			randomNumberProviderStub.GetRandomNumber(Arg.Any<int>(), Arg.Any<int>()).Returns<int>(0, 0, 0, 5, 2, 4);
-			game.SetupNewGame(true, true, true);
+			game.SetupNewGame(new GameSettingsInfo(true, true, true));
 			game.Hand = new Hand(randomNumberProviderStub);
 
 			game.RollAction();
@@ -303,7 +299,7 @@ namespace Back.UnitTests.ScenarioTests
 		{
 			var randomNumberProviderStub = Substitute.For<IRandomNumberProvider>();
 			randomNumberProviderStub.GetRandomNumber(Arg.Any<int>(), Arg.Any<int>()).Returns<int>(0, 0, 0, 5, 4, 4);
-			game.SetupNewGame(true, true, true);
+			game.SetupNewGame(new GameSettingsInfo(true, true, true));
 			game.Hand = new Hand(randomNumberProviderStub);
 
 			game.RollAction();
@@ -316,7 +312,7 @@ namespace Back.UnitTests.ScenarioTests
 		{
 			var randomNumberProviderStub = Substitute.For<IRandomNumberProvider>();
 			randomNumberProviderStub.GetRandomNumber(Arg.Any<int>(), Arg.Any<int>()).Returns<int>(0, 0, 0, 1, 0, 0);
-			game.SetupNewGame(true, true, true);
+			game.SetupNewGame(new GameSettingsInfo(true, true, true));
 			game.Hand = new Hand(randomNumberProviderStub);
 
 			game.RollAction();

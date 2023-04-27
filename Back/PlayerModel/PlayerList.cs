@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Back.Helpers.Events;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -7,7 +8,7 @@ namespace Back.PlayerModel
 {
 	public class PlayerList : IPlayerList, INotifyCollectionChanged, INotifyPropertyChanged
 	{
-		private IPlayer currentPlayer; 
+		private IPlayer currentPlayer;
 
 		public PlayerList()
 		{
@@ -18,7 +19,7 @@ namespace Back.PlayerModel
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public IPlayer CurrentPlayer 
+		public IPlayer CurrentPlayer
 		{
 			get
 			{
@@ -28,7 +29,7 @@ namespace Back.PlayerModel
 			{
 				currentPlayer = value;
 				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CurrentPlayer"));
-			} 
+			}
 		}
 
 		public List<IPlayer> Players { get; set; }
@@ -53,7 +54,7 @@ namespace Back.PlayerModel
 
 		public void ResetPlayersScore()
 		{
-			foreach(IPlayer player in Players)
+			foreach (IPlayer player in Players)
 			{
 				player.TotalBrainCount = 0;
 			}
@@ -61,11 +62,11 @@ namespace Back.PlayerModel
 
 		public void RemoveAllPlayers()
 		{
-			while(Players.Count > 0)
+			while (Players.Count > 0)
 			{
 				Players.RemoveAt(0);
 			}
-			
+
 			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 		}
 
@@ -77,6 +78,13 @@ namespace Back.PlayerModel
 		public void ChangeCurrentPlayerToNext()
 		{
 			CurrentPlayer = Players[(Players.IndexOf(CurrentPlayer) + 1) % Players.Count];
+		}
+
+		public void DelayedChangeCurrentPlayerToNext()
+		{
+			currentPlayer = Players[(Players.IndexOf(CurrentPlayer) + 1) % Players.Count];
+			PropertyChanged?.Invoke(this, new CustomPropertyChangedEventArgs(nameof(CurrentPlayer),
+				CustomEnumPropertyChangedEventArgs.DELAYED_UPDATE));
 		}
 	}
 }

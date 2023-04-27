@@ -1,25 +1,20 @@
 ﻿using Back.Game;
+using Common.DTO;
 
 namespace ViewModel.Command
 {
 	public class NewGameCommand : ICommand
 	{
-		private readonly bool includedSanta;
+		public IGameSettingsInfo GameSettingsInfo { get; set; }
 
-		private readonly bool includedHero;
-
-		private readonly bool includedHeroine;
-
-		public NewGameCommand(bool includedSanta, bool includedHero, bool includedHeroine)
+		public NewGameCommand(IGameSettingsInfo gameSettingsInfo)
 		{
-			this.includedSanta = includedSanta;
-			this.includedHero = includedHero;
-			this.includedHeroine = includedHeroine;
+			GameSettingsInfo = gameSettingsInfo;
 		}
 
 		public void Execute()
 		{
-			GameSingleton.instance.Game.SetupNewGame(includedSanta, includedHero, includedHeroine);
+			GameSingleton.instance.Game.SetupNewGame(GameSettingsInfo);
 		}
 	}
 }

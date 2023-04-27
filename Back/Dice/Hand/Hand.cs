@@ -26,6 +26,8 @@ namespace Back.Dice
 			GrabbedDice.Clear();
 			GrabbedDice.AddRange(score.RetrieveFootsteps());
 
+			CheckIfBussIsInUse(settings);
+
 			if (GrabbedDice.Count < 3)
 			{
 				GrabbedDice.AddRange(bag.GrabDice(3 - GrabbedDice.Count, settings, randomNumberProvider));
@@ -34,6 +36,14 @@ namespace Back.Dice
 			foreach(IDice dice in GrabbedDice)
 			{
 				dice.Roll(randomNumberProvider);
+			}
+		}
+
+		private void CheckIfBussIsInUse(IGameSettings gameSettings)
+		{
+			if (gameSettings.IncludedBuss && GrabbedDice.Count < 3)
+			{
+				GrabbedDice.Add(new BussDice());
 			}
 		}
 	}

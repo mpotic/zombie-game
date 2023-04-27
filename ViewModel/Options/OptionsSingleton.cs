@@ -2,17 +2,13 @@
 {
 	public class OptionsSingleton : IOptionsSingleton
 	{
-		private static IOptions options = null;
-		private OptionsSingleton() { }
-		public static IOptions Options
-		{
-			get
-			{
-				if (options == null)
-					options = new Options();
+		public static readonly IOptionsSingleton instance = new OptionsSingleton();
 
-				return options;
-			}
+		private OptionsSingleton() 
+		{
+			this.Options = new Options();
 		}
+
+		public IOptions Options { get; set; }
 	}
 }

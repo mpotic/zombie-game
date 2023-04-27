@@ -1,7 +1,7 @@
 ﻿using Back.Dice;
 using Back.PlayerModel;
 using Back.PlayerModel.Singleton;
-using System.Threading.Tasks;
+using Common.DTO;
 
 namespace Back.Game
 {
@@ -16,7 +16,7 @@ namespace Back.Game
 			Bag = new Bag();
 			Factory = new ScoreFlyweightFactory();
 
-			Score = (IScore)Factory.GetFlyweight(typeof(Score));
+			Score = Factory.GetFlyweight(typeof(Score));
 		}
 
 		public IScore Score { get; set; }
@@ -46,10 +46,19 @@ namespace Back.Game
 			}
 		} 
 
-		public void SetupNewGame(bool includeSanta = false, bool includeHero = false, bool includeHeroine = false)
+		public void SetupNewGame(IGameSettingsInfo gameSettingsInfo)
 		{
-			GameSettings.Configure(includeSanta, includeHero, includeHeroine);
+			GameSettings.Configure(gameSettingsInfo);
 
+			ConfigureScoreDecorator();
+
+			Hand = new Hand(new RandomNumberProvider());
+
+			StartGame();
+		}
+
+		private void ConfigureScoreDecorator()
+		{
 			IScore currentDecorator = Factory.GetFlyweight(typeof(Score));
 
 			if (GameSettings.IncludedSanta)
@@ -73,11 +82,32 @@ namespace Back.Game
 				currentDecorator = heroineDecorator;
 			}
 
+			if (GameSettings.IncludedBuss)
+			{
+				IScoreDecorator bussDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(ScoreDecoratorBuss));
+				bussDecorator.SetScoreComponent(currentDecorator);
+				currentDecorator = bussDecorator;
+			}
+
 			Score = currentDecorator;
+		}
 
-			Hand = new Hand(new RandomNumberProvider());
+		public void ConfigureBuss(bool includedBuss)
+		{
+			if (includedBuss)
+			{
+				IScoreDecorator bussDecorator = (IScoreDecorator)Factory.GetFlyweight(typeof(ScoreDecoratorBuss));
+				bussDecorator.SetScoreComponent(Score);
+				Score = bussDecorator;
 
-			StartGame();
+				GameSettings.IncludedBuss = true;
+			}
+			else
+			{
+				GameSettings.IncludedBuss = false;
+
+				ConfigureScoreDecorator();
+			}
 		}
 
 		public void StopAction()
@@ -95,9 +125,9 @@ namespace Back.Game
 			if (Score.CheckAndKill())
 			{
 				Score.SetKilledToFalse();
-				PlayerList.ChangeCurrentPlayerToNext();
+				PlayerList.DelayedChangeCurrentPlayerToNext();
 				Bag.ResetBag(GameSettings);
-				Score.ResetScore();
+				Score.DelayedResetScore();
 			}
 		}
 

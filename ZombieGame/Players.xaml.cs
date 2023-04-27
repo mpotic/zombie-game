@@ -31,7 +31,7 @@ namespace ZombieGame
 
 		private void AddPlayerButton_Click(object sender, RoutedEventArgs e)
 		{
-			OptionsSingleton.Options.AddNewPlayer(PlayerName.Text);
+			OptionsSingleton.instance.Options.AddNewPlayer(PlayerName.Text);
 			PlayerName.Text = "";
 		}
 	}

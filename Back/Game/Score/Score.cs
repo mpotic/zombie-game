@@ -1,10 +1,9 @@
 ﻿using Back.Dice;
+using Back.Helpers.Events;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Back.Game
 {
@@ -42,20 +41,26 @@ namespace Back.Game
 
 		public List<IDice> AllRolledDice { get; set; }
 
-		public void ResetScore()
+		public void DoResetScore()
 		{
-			if (killed)
-			{
-				Thread.Sleep(1200);
-			}
-
 			BrainsCount = 0;
 			ShotgunCount = 0;
 			if (AllRolledDice != null)
 			{
 				AllRolledDice.Clear();
-				CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 			}
+		}
+
+		public void ResetScore()
+		{
+			DoResetScore();
+			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+		}
+
+		public void DelayedResetScore()
+		{
+			DoResetScore();
+			CollectionChanged?.Invoke(this, new CustomNotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset, CustomEnumNotifyCollectionChangedEventArgs.DELAYED_RESET));
 		}
 
 		public void UpdateScore(IGame game)
@@ -97,7 +102,6 @@ namespace Back.Game
 		public void RemoveDice(IDice dice)
 		{
 			AllRolledDice.Remove(dice);
-
 			CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, dice));
 		}
 

@@ -17,5 +17,7 @@ namespace Back.PlayerModel
 		void SetFirstPlayerAsCurrent();
 
 		void ChangeCurrentPlayerToNext();
+
+		void DelayedChangeCurrentPlayerToNext();
 	}
 }

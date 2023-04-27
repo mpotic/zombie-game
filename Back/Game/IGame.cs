@@ -1,6 +1,6 @@
 ﻿using Back.Dice;
 using Back.PlayerModel;
-using System.Threading.Tasks;
+using Common.DTO;
 
 namespace Back.Game
 {
@@ -18,7 +18,9 @@ namespace Back.Game
 
 		IPlayerList PlayerList { get; set; }
 
-		void SetupNewGame(bool includeSanta, bool includeHero, bool includeHeroine);
+		void SetupNewGame(IGameSettingsInfo gameSettingsInfo);
+
+		void ConfigureBuss(bool includedBuss);
 
 		void StopAction();
 

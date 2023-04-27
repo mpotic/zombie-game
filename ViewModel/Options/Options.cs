@@ -1,5 +1,6 @@
 ﻿using ViewModel.Command;
 using Back.PlayerModel.Singleton;
+using Common.DTO;
 
 namespace ViewModel.Options
 {
@@ -56,9 +57,16 @@ namespace ViewModel.Options
 			invoker.ExecuteCommand(command);
 		}
 
-		public void SetupNewGameAction(bool includeSanta, bool includeHero, bool includeHeroine)
+		public void SetupNewGameAction(IGameSettingsInfo gameSettingsInfo)
 		{
-			NewGameCommand command = new NewGameCommand(includeSanta, includeHero, includeHeroine);
+			NewGameCommand command = new NewGameCommand(gameSettingsInfo);
+
+			invoker.ExecuteCommand(command);
+		}
+
+		public void ConfigureBussAction(bool useBuss)
+		{
+			ConfigBussCommand command = new ConfigBussCommand(useBuss);
 
 			invoker.ExecuteCommand(command);
 		}

@@ -1,4 +1,6 @@
-﻿namespace Back.Game
+﻿using Common.DTO;
+
+namespace Back.Game
 {
 	public interface IGameSettings
 	{
@@ -8,6 +10,8 @@
 		
 		bool IncludedHeroine { get; set; }
 
-		void Configure(bool includeSanta, bool includeHero, bool includeHeroine);
+		bool IncludedBuss { get; set; }
+
+		void Configure(IGameSettingsInfo gameSettingsInfo);
 	}
 }

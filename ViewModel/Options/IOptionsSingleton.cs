@@ -2,5 +2,6 @@
 {
 	public interface IOptionsSingleton
 	{
+		IOptions Options { get; set; }
 	}
 }

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Callback\IPlayerCallback.cs" />
+    <Compile Include="Command\ConfigBussCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\IInvoker.cs" />
     <Compile Include="Command\Invoker.cs" />
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\Back\Back.csproj">
       <Project>{329CA298-5435-476B-9E2D-1847C5E7B40B}</Project>
       <Name>Back</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{3EB3AFA2-C26B-43DF-93F5-24BB649636B4}</Project>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

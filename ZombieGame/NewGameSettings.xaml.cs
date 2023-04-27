@@ -1,5 +1,6 @@
 ﻿using ViewModel.Options;
 using System.Windows;
+using Common.DTO;
 
 namespace ZombieGame
 {
@@ -15,11 +16,12 @@ namespace ZombieGame
 
 		private void StartNewGame_Click(object sender, RoutedEventArgs e)
 		{
-			bool includeSanta = IncludeSanta.IsChecked.Value;
-			bool includeHero = IncludeHero.IsChecked.Value;
-			bool includedHeroine = IncludeHeroine.IsChecked.Value;
+			bool useSanta = IncludeSanta.IsChecked.Value;
+			bool useHero = IncludeHero.IsChecked.Value;
+			bool useHeroine = IncludeHeroine.IsChecked.Value;
+			IGameSettingsInfo gameSettingsInfo = new GameSettingsInfo(useSanta, useHero, useHeroine);
 
-			OptionsSingleton.Options.SetupNewGameAction(includeSanta, includeHero, includedHeroine);
+			OptionsSingleton.instance.Options.SetupNewGameAction(gameSettingsInfo);
 
 			this.DialogResult = true;
 			this.Close();

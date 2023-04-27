@@ -28,9 +28,19 @@ namespace Back.Game
 			return ScoreComponent.CheckAndKill();
 		}
 
+		public void DelayedResetScore()
+		{
+			ScoreComponent.DelayedResetScore();
+		}
+
 		public void RemoveDice(IDice dice)
 		{
 			ScoreComponent.RemoveDice(dice);
+		}
+
+		public void AddDice(IDice dice)
+		{
+			ScoreComponent.AddDice(dice);
 		}
 
 		public void ResetScore()

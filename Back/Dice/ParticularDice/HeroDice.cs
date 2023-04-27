@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-
-namespace Back.Dice
+﻿namespace Back.Dice
 {
 	public class HeroDice : IDice
 	{

@@ -1,6 +1,5 @@
 ﻿using Back.Dice;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Back.Game
 {
@@ -20,10 +19,14 @@ namespace Back.Game
 		void SetKilledToFalse();
 
 		void ResetScore();
-		
+
+		void DelayedResetScore();
+
 		void UpdateScore(IGame game);
 
 		void RemoveDice(IDice dice);
+
+		void AddDice(IDice dice);
 
 		List<IDice> RetrieveFootsteps();
 	}

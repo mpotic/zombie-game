@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dice\Bag\Bag.cs" />
+    <Compile Include="Dice\ParticularDice\BussDice.cs" />
     <Compile Include="Dice\ParticularDice\DiceEnum.cs" />
     <Compile Include="Dice\Hand\Hand.cs" />
     <Compile Include="Dice\Bag\IBag.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Game\GameSingleton\GameSingletonGenerator.cs" />
     <Compile Include="Game\IGame.cs" />
     <Compile Include="Game\GameSingleton\IGameSingleton.cs" />
+    <Compile Include="Game\Score\Decorators\ScoreDecoratorBuss.cs" />
     <Compile Include="Game\Score\Flyweight\IScoreFlyweightFactory.cs" />
     <Compile Include="Game\Score\IScore.cs" />
     <Compile Include="Game\Score\Decorators\ScoreDecoratorHero.cs" />
@@ -67,6 +69,10 @@
     <Compile Include="Game\Score\Flyweight\ScoreFlyweightFactory.cs" />
     <Compile Include="Game\Settings\GameSettings.cs" />
     <Compile Include="Game\Settings\IGameSettings.cs" />
+    <Compile Include="Helpers\Events\CustomEnumNotifyCollectionChangedEventArgs.cs" />
+    <Compile Include="Helpers\Events\CustomEnumPropertyChangedEventArgs.cs" />
+    <Compile Include="Helpers\Events\CustomNotifyCollectionChangedEventArgs.cs" />
+    <Compile Include="Helpers\Events\CustomPropertyChangedEventArgs.cs" />
     <Compile Include="PlayerModel\Singleton\IPlayerListSingleton.cs" />
     <Compile Include="PlayerModel\Singleton\PlayerListSingletonGenerator.cs" />
     <Compile Include="PlayerModel\IPlayer.cs" />
@@ -79,6 +85,11 @@
     <Compile Include="Game\Score\Score.cs" />
     <Compile Include="Dice\ParticularDice\YellowDice.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{3EB3AFA2-C26B-43DF-93F5-24BB649636B4}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

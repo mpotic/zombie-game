@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Back.Dice
+﻿namespace Back.Dice
 {
 	public class SantaDice : IDice
 	{
